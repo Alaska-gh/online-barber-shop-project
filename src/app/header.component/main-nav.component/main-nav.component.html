@@ -1,0 +1,51 @@
+ <!-- MAIN NAVIGATION -->
+<nav class="navbar navbar-expand-lg mt-3">
+  <!-- MAIN NAVIGATION CONTAINER -->
+  <div class="container">
+  <!-- BRAND LOGO -->
+    <a class="navbar-brand text-white" href="#">Online<span>Barber</span>Shop</a>
+    <!-- TOGGLE BUTTON ON SMALL SCRENS -->
+      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+      </button>
+    <!-- NAVIGATION BAR ITEMS ONLY APPEARS ON WIDE SCREENS -->
+    <div class="collapse navbar-collapse justify-content-between 
+    " id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto ">
+    <!-- HOME BUTTON -->
+    <li class="nav-item">
+    <a class="nav-link "  href="#home">Home</a>
+    </li>
+    <!-- ABOUT BUTTON -->
+    <li class="nav-item">
+    <a class="nav-link" href="#about">About</a>
+    </li>
+    <!-- DROPDOWN FOR SERVICES -->
+    <li class="nav-item">
+    <a class="nav-link" href="#services">
+    Services
+    </a>    
+    </li>
+    <!-- BOOK AN APPOINTMENT BUTTON -->
+    <li class="nav-item text-center">
+    <a class="nav-link appointment" (click)="showMessage()" href="#">Book An Appointment</a>
+    </li>
+    <!-- OUR MISSION BUTTON -->
+    <li class="nav-item">
+    <a class="nav-link" href="#team" (click)="showMessage()">Serve With Us</a>
+    </li>
+    <!--  CONTACT US BUTTON -->
+    <li class="nav-item">
+    <a class="nav-link" href="#" (click)="showMessage()">Contact Us</a>
+    </li>
+    <!-- LOGIN BUTTON -->
+    <li class="nav-item">
+    <a class="nav-link"  href="#" (click)="showMessage()">Singup / Login</a>
+    </li>
+
+    </ul>
+
+    </div>
+  </div>
+</nav>
+
