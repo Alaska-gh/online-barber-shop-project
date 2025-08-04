@@ -14,10 +14,8 @@
       <!-- links -->
       <div class="col-auto links">
         <div class="social-links">
-          <a href=""><i class="fab fa-facebook"></i></a>
-          <a href=""> <i class="fab fa-twitter"></i></a>
-          <a href=""><i class="fab fa-instagram"></i></a>
-          <a href=""><i class="fab fa-tiktok"></i></a>
+          <a *ngFor = "let item of iconList" href=""><i class= {{item}}></i></a>
+        
         </div>
       </div>
 

@@ -11,10 +11,10 @@ a{
     color: #996515 !important;
 }
 .social-links a{
-    padding: 10px;
+    padding: 3px;
     border-radius: 100%;
-   background-color: #996515;
-   transition: all 0.4s ease;
+    background-color: #996515;
+    transition: all 0.4s ease;
 }
 .social-links a:hover{
     background: transparent;

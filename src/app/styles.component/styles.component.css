@@ -1,0 +1,27 @@
+h2{
+  color: #996515;
+}
+a{
+  text-decoration: none;
+  color: #fff;
+  background-color: rgb(10, 10, 36);
+  margin-top: -20px;
+}
+.my-card{
+  display: flex;
+  height: 100px;
+  width: 300px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+.my-card-img{
+  width: 50%;
+  height: 100%;
+  object-fit: cover;
+}
+.my-card-title{
+  margin-top: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100px;
+  height: 25%;
+}
