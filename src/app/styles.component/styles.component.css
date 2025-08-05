@@ -39,3 +39,6 @@ a{
   padding: 5px;
   border-radius: 50%;
 }
+.swiper-container{
+  overflow: hidden;
+}

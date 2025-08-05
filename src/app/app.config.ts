@@ -2,7 +2,7 @@ import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChang
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
-import { StylesService } from './styles.component/styles.service';
+import { StylesService } from './styles.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [

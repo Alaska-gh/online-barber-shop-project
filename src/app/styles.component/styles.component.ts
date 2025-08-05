@@ -1,8 +1,8 @@
 import { Component, AfterViewInit } from '@angular/core';
-import { StylesService } from './styles.service';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
+import { StylesService } from '../styles.service';
 
 Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 

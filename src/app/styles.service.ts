@@ -1,0 +1,49 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class StylesService {
+  Style: Styles [] = [
+    {
+      image: 'images/braids2.webp',
+      title: 'Braids',
+      price: 150,
+      link: 'Book Now'
+    },
+    {
+      image: 'images/staff-2.jpeg',
+      title: 'Beard',
+      price: 70,
+      link: 'Book Now'
+    },
+    {
+      image: 'images/staff-3.jpeg',
+      title: 'Sweat Cut',
+      price: 30,
+      link: 'Book Now'
+    },
+    {
+      image: 'images/staff-4.jpeg',
+      title: 'Afro Cut',
+      price: 50,
+      link: 'Book Now'
+    },
+    {
+      image: 'images/staff-1.jpeg',
+      title: 'Layers',
+      price: 150,
+      link: 'Book Now'
+    },
+    
+    
+    
+  ]
+}
+
+interface Styles{
+  image?: string
+  title: string
+  price: number
+  link: string
+}
