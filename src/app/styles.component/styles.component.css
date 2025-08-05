@@ -1,3 +1,7 @@
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
 h2{
   color: #996515;
 }
@@ -24,4 +28,14 @@ a{
   text-overflow: ellipsis;
   max-width: 100px;
   height: 25%;
+}
+.swiper-button-prev, .swiper-button-next{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #996515;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  border-radius: 50%;
 }
