@@ -4,6 +4,7 @@ import { HeaderComponent } from './header.component/header.component';
 import { HeroComponent } from './hero.component/hero.component';
 import { StylesComponent } from './styles.component/styles.component';
 import { AboutComponent } from './about.component/about.component';
+import { AdvertComponent } from './advert.component/advert.component';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,7 @@ import { AboutComponent } from './about.component/about.component';
      HeroComponent, 
      StylesComponent,
      AboutComponent,
-     
+     AdvertComponent
     ],
   templateUrl: './app.html',
   styleUrl: './app.css'

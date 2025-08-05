@@ -1,0 +1,31 @@
+ <section id="mission" class="mt-5">
+        <!-- OUR MISSION CONTAINER -->
+        <div class="container pt-5">
+        <div class="row justify-content-center align-items-center">
+            <!-- OUR MISSION IMAGE COLUMN -->
+            <div class="col-lg-5 text-center mb-5 me-3">
+                <img src="../images/staff-5.jpeg" alt="">
+            </div>
+            <!-- OUR MISSION TEXT COLUMN -->
+            <div class="col-lg-5 mission-text">
+                <h3 class="fw-bolder">We care about your</h3>
+                <h3 class="my-style fw-bold">Hair and Beard</h3>
+                <p>
+                    {{paragraphText}}
+                </p>
+                <ul>
+                    <li *ngFor = "let list of advertList">
+                        ✨ {{ list }}
+                    </li>
+               
+                </ul>
+            </div>
+        </div>
+        </div>
+         <!-- BOOK APPOINTMENT BUTTON -->
+        <div class="work-hrs">
+            <a href="">Book an appointment</a>
+        </div>
+    </section>
+
+

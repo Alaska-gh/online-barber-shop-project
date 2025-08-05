@@ -2,9 +2,9 @@ import { Component, AfterViewInit } from '@angular/core';
 import { StylesService } from './styles.service';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
-import { Pagination, Navigation, Autoplay } from 'swiper/modules';
+import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
 
-Swiper.use([Navigation, Pagination, Autoplay])
+Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 
 @Component({
   selector: 'styles-component',
@@ -21,10 +21,15 @@ export class StylesComponent implements AfterViewInit{
     ngAfterViewInit() {
     new Swiper('.swiper-container', 
       {
+        modules: [Pagination, Navigation, Autoplay, Scrollbar],
         loop: true,
         autoplay: {
           delay: 3000,
           disableOnInteraction: false
+        },
+        scrollbar:{
+          hide: true,
+          draggable: false
         },
         pagination:{
           el: '.swiper-pagination',
@@ -35,7 +40,7 @@ export class StylesComponent implements AfterViewInit{
           prevEl: '.swiper-button-prev'
         },
         breakpoints: {
-          640: { slidesPerView: 1, navigation: false },
+          0: { slidesPerView: 1, navigation: false },
           768: { slidesPerView: 2, navigation: false},
           1024: { slidesPerView: 4, navigation: true}
         }

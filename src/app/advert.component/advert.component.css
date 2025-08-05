@@ -1,0 +1,33 @@
+#mission{
+    background-color: rgba(243, 162, 49, 0.041);
+    
+}
+#mission img{
+    height: 300px;
+    width: 100%;
+    box-shadow: 20px 20px #996515;
+}
+#mission p, #mission li{
+    font-size: 12px;
+    list-style-type: none;
+}
+#mission .mission-text{
+    align-self: flex-start;
+}
+
+.work-hrs a{
+    width: 200px;
+    display: flex;
+    background-color: #996515;
+    color: #fff;
+    text-decoration: none;
+    padding: 20px;
+    justify-content: center;
+    justify-self: end;
+    transition: all 0.4s ease;
+}
+
+.work-hrs a:hover{
+    background: transparent;
+    color: #996515 !important;
+}
