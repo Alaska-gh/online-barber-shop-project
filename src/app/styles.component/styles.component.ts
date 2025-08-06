@@ -27,10 +27,10 @@ export class StylesComponent implements AfterViewInit{
           delay: 3000,
           disableOnInteraction: false
         },
-        scrollbar:{
-          hide: true,
-          draggable: false
-        },
+        // scrollbar:{
+        //   hide: true,
+        //   draggable: false
+        // },
         pagination:{
           el: '.swiper-pagination',
           clickable: true
@@ -40,9 +40,9 @@ export class StylesComponent implements AfterViewInit{
           prevEl: '.swiper-button-prev'
         },
         breakpoints: {
-          0: { slidesPerView: 1, navigation: false },
-          768: { slidesPerView: 2, navigation: false},
-          1024: { slidesPerView: 4, navigation: true}
+          0: { slidesPerView: 1},
+          768: { slidesPerView: 2},
+          1024: { slidesPerView: 4}
         }
       }
     );
