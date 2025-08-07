@@ -10,6 +10,7 @@ import { StarredBarbersComponent } from './starred-barbers.component/starred-bar
 import { SubscribeComponent } from './subscribe.component/subscribe.component';
 import { ClientFeedbackComponent } from './client-feedback-component/client-feedback-component';
 import { BottomBannerComponent } from './bottom-banner-component/bottom-banner-component';
+import { FooterComponent } from './footer-component/footer-component';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ import { BottomBannerComponent } from './bottom-banner-component/bottom-banner-c
      StarredBarbersComponent,
      SubscribeComponent,
      ClientFeedbackComponent,
-     BottomBannerComponent
+     BottomBannerComponent,
+     FooterComponent
     ],
   templateUrl: './app.html',
   styleUrl: './app.css'
