@@ -25,6 +25,7 @@ export class StarredBarbersComponent implements AfterViewInit {
       {
         modules: [Pagination, Navigation, Autoplay, Scrollbar],
         loop: true,
+        speed: 2000,
         autoplay: {
           delay: 3000,
           disableOnInteraction: false

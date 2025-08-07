@@ -4,18 +4,25 @@
 @import 'swiper/css/pagination';
 
 .card img{
-    width: 60px;
+    width: 100px;
     border-radius: 100%;
 }
 .card-body{
-    max-width: 400px;
+  display: flex;
     font-size: 18px;
     margin: auto;
+}
+.card-body p{
+   max-width: 400px;
+   height: 100px;
+   margin-right: 20px;
+   text-overflow: ellipsis;
 }
 .card{
     margin: auto;
     border: none;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+    height: 200px;
 }
 
 .card{

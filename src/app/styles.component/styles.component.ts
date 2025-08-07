@@ -31,6 +31,7 @@ export class StylesComponent implements AfterViewInit{
         //   hide: true,
         //   draggable: false
         // },
+        speed: 3000,
         pagination:{
           el: '.swiper-pagination',
           clickable: true

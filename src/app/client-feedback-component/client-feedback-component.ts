@@ -18,7 +18,7 @@ export class ClientFeedbackComponent implements AfterViewInit{
       modules: [Pagination, Navigation, Autoplay, Scrollbar],
 
       loop: true,
-
+      speed: 3000,
       pagination: {
         el: '.client-swiper-pagination',
         clickable: true
