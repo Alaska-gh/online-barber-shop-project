@@ -10,3 +10,12 @@ footer ul{
     font-size: 12px;
 }
 
+li{
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+li:hover{
+    background: transparent;
+    color: #996515 !important;
+}
