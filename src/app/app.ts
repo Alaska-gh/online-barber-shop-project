@@ -8,6 +8,7 @@ import { AdvertComponent } from './advert.component/advert.component';
 import { BannerComponent } from './banner.component/banner.component';
 import { StarredBarbersComponent } from './starred-barbers.component/starred-barbers.component';
 import { SubscribeComponent } from './subscribe.component/subscribe.component';
+import { ClientFeedbackComponent } from './client-feedback-component/client-feedback-component';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ import { SubscribeComponent } from './subscribe.component/subscribe.component';
      AdvertComponent,
      BannerComponent,
      StarredBarbersComponent,
-     SubscribeComponent
+     SubscribeComponent,
+     ClientFeedbackComponent,
     ],
   templateUrl: './app.html',
   styleUrl: './app.css'

@@ -1,0 +1,47 @@
+
+@import 'swiper/css';
+@import 'swiper/css/navigation';
+@import 'swiper/css/pagination';
+
+.card img{
+    width: 60px;
+    border-radius: 100%;
+}
+.card-body{
+    max-width: 400px;
+    font-size: 18px;
+    margin: auto;
+}
+.card{
+    margin: auto;
+    border: none;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.8);
+}
+
+.card{
+    border-left: 2px solid #996515;
+    border-right: 2px solid #996515;
+}
+.card-footer{
+    border: none;
+    background-color: #fff;
+    color: #996515;
+}
+.client-swiper-container{
+  overflow: hidden;
+  position: relative;
+}
+.swiper-wrapper{
+  display: flex;
+
+}
+
+.client-swiper-button-next, .client-swiper-button-prev{
+  position: absolute;
+  background-color: #996515;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  top: 105%;
+  border-radius: 10%;
+}

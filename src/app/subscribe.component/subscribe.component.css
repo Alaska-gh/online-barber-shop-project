@@ -18,6 +18,9 @@
 .input input{
     width: 100%;
 }
+.input input:focus{
+    outline: none;
+}
 #subscribe a{
     position: absolute;
     right: 0;
@@ -25,6 +28,7 @@
     bottom: -20%;
     background-color: rgb(10, 10, 36);
     transition: all 0.4s ease;
+    text-decoration: none;
 }
 #subscribe a:hover{
     top: 0;

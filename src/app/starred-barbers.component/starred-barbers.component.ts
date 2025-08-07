@@ -8,6 +8,7 @@ import { StarredBarbersService } from './starred-barbers.service';
 @Component({
   selector: 'starred-barbers',
   imports: [CommonModule],
+  standalone: true,
   templateUrl: './starred-barbers.component.html',
   styleUrl: './starred-barbers.component.css'
 })
@@ -20,7 +21,7 @@ export class StarredBarbersComponent implements AfterViewInit {
 
   ngAfterViewInit() {
    setTimeout(()=>{
-       new Swiper('.swiper-container', 
+       new Swiper('.barbers-swiper-container', 
       {
         modules: [Pagination, Navigation, Autoplay, Scrollbar],
         loop: true,
@@ -34,12 +35,12 @@ export class StarredBarbersComponent implements AfterViewInit {
           draggable: false
         },
         pagination:{
-          el: '.swiper-pagination',
+          el: '.barbers-swiper-pagination',
           clickable: true
         },
         navigation: {
-          nextEl: '.swiper-button-next',
-          prevEl: '.swiper-button-prev'
+          nextEl: '.barbers-swiper-button-next',
+          prevEl: '.barbers-swiper-button-prev'
         },
         breakpoints: {
           0: { slidesPerView: 1},

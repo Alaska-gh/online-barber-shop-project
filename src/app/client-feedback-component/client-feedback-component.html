@@ -1,0 +1,30 @@
+         <section id="our-client" class="mb-5">
+            <!-- CLIENT SECTION TITLE -->
+             <h2 class="text-center fw-bold">Our <span class="my-style">lovely</span> clients</h2>
+             <!-- CLIENT SECTION CONTAINER -->
+             <div class="container mt-4">
+                <!-- CLIENT SECTION SLIDER -->
+                 <div class="client-swiper-container">
+                    <div class="swiper-wrapper ">
+                        <!-- CLIENT 1 -->
+                        <div class="swiper-slide" *ngFor = "let detail of details.Card">
+                            <div class="card">
+                                <div class="card-body">
+                                <p>
+                                    {{detail.text}}
+                                </p>
+                                <img src="{{detail.image}}" alt="">
+                            </div>
+                            <div class="card-footer">
+                            <h5 class="text-center">{{detail.name}}</h5>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="client-swiper-pagination"></div>
+                    <div class="client-swiper-button-prev"></div>
+                    <div class="client-swiper-button-next"></div>
+               </div>
+             </div>
+         </section>
+
