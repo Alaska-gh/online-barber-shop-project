@@ -11,8 +11,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './client-feedback-component.css'
 })
 export class ClientFeedbackComponent implements AfterViewInit{
+  // CREATING AN INSTANCE OF THE CLIENTFEEDBACKSERVICE
   details = new ClientFeedbackService();
 
+  // SWIPER CONFIGURRATIONS
   ngAfterViewInit() {
     new Swiper('.client-swiper-container', {
       modules: [Pagination, Navigation, Autoplay, Scrollbar],

@@ -16,8 +16,10 @@ export class StylesComponent implements AfterViewInit{
 
   styles
   constructor(){
+    // CREATING INSTANCE OF THE SERVICE CLASS TO GET ACCESS TO THE PROPERTIES
   this.styles = new StylesService()
   } 
+  // SWIPER CONFIGURATIONS
     ngAfterViewInit() {
     new Swiper('.swiper-container', 
       {

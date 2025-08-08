@@ -7,5 +7,6 @@ import { CommonModule } from '@angular/common';
   styleUrl: './top-nav.component.css'
 })
 export class TopNavComponent {
+  // LIST OF ICONS 
   iconList: string[] = ["fab fa-facebook","fab fa-twitter","fab fa-instagram","fab fa-tiktok"]
 }

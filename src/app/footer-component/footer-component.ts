@@ -9,6 +9,7 @@ import { FooterService } from './footer-service';
   styleUrl: './footer-component.css'
 })
 export class FooterComponent {
+  // CREATING A LIST OF TITLES FOR USE IN THE TEMPLATE
  listOfTitles = ['Links', 'Business Hours', 'Company', 'Contact']
 
  listOfLinks = new FooterService()

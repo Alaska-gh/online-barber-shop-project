@@ -3,10 +3,10 @@
              <h2 class="text-center fw-bold">Our <span class="my-style">lovely</span> clients</h2>
              <!-- CLIENT SECTION CONTAINER -->
              <div class="container mt-4">
-                <!-- CLIENT SECTION SLIDER -->
+                <!-- CLIENT SECTION SLIDER IMPLEMENTING SWIPER ON THE CARDS-->
                  <div class="client-swiper-container">
                     <div class="swiper-wrapper ">
-                        <!-- CLIENT 1 -->
+                        <!-- USING NGFOR TO DYNAMICALLY GENERATE THE CARDS-->
                         <div class="swiper-slide" *ngFor = "let detail of details.Card">
                             <div class="card">
                                 <div class="card-body">

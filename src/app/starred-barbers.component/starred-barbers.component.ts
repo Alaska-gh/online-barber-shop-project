@@ -14,11 +14,14 @@ import { StarredBarbersService } from './starred-barbers.service';
 })
 export class StarredBarbersComponent implements AfterViewInit {
   cardItem;
+  // A LIST OF ICONS
   socialLinks = ["fab fa-facebook", "fab fa-twitter", "fab fa-instagram","fab fa-tiktok"]
  constructor(){
+  // GETING THE CARD DATA FROM THE STARREDBARBERSSERVICE
    this.cardItem = new StarredBarbersService()
  }
 
+//  SWIPER CONFIURATIONS
   ngAfterViewInit() {
    setTimeout(()=>{
        new Swiper('.barbers-swiper-container', 

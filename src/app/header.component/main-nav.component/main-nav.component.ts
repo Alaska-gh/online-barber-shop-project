@@ -7,8 +7,9 @@ import { CommonModule } from '@angular/common';
   styleUrl: './main-nav.component.css'
 })
 export class MainNavComponent {
-
+  // LIST OF NAVIGATION ITEMS
   mainNavItems: string[] =['Home','Services', 'About', 'Serve With Us', 'Signup / Login']
+  // A SIMPLE ALERT MESSAGE TO SHOW THE LINKS WORKS
   showMessage(){
     alert('Hi Please Hold on!!! we are working on this feature')
   }

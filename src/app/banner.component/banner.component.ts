@@ -11,6 +11,7 @@ import { StylesService } from '../styles.service';
 export class BannerComponent {
  style;
  constructor(){
+  // creating an instance of the style service class to get access to the properties
   this.style = new StylesService()
  }
 }

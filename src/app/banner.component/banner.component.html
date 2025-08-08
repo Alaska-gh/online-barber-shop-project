@@ -5,7 +5,7 @@
                 <!-- Price tag column -->
                 <div class="col-lg-2  price-tag">
                    <div class="row justify-content-center py-5">
-                    <!-- PRICE TAG 1 -->
+                    <!-- PRICE TAG 1 USING ngFor to loop through the styles list to render the first 4 items-->
                         <div class="mb-4 text-center" *ngFor="let stl of style.Style | slice: 0 : 4">
                             <h5>{{stl.title}}</h5>
                             <h6 class="text-white">{{stl.price}}ghs</h6>

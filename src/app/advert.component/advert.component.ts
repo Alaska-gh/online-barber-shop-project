@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
   styleUrl: './advert.component.css'
 })
 export class AdvertComponent {
+  // GENERATING THE CONTENT FOR THE P ELEMENT
   paragraphText = `Our expert stylists and aestheticians are dedicated to providing top-tier hair, skin, and nail services tailored to your individual needs. Whether you're looking for a bold new haircut, a rejuvenating facial, or flawless nail artistry, we combine the latest trends with personalized care to ensure you leave feeling confident and refreshed.`
+  // GENERATING THE CONTENT FOR THE LI ELEMENT
   advertList: string [] = [
     'Expert Stylists - Trained in the latest techniques and trends',
     'Premium Products - Only high-quality, nourishing formulas',

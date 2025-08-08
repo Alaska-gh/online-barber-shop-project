@@ -6,13 +6,14 @@
             <div class="row gx-4 d-flex">
               <div class="barbers-swiper-container">
                 <div class="swiper-wrapper" >
-                <!-- TEAM CARD 1 -->
+                <!-- DYNAMICALLY GENERATING THE CARDS -->
                 <div class="swiper-slide card" *ngFor="let item of cardItem.cardItems">
                   <div class="card-img">
                     <img src={{item.image}} alt="A barber">
                     <div class="overlay"></div>
                   </div>
                     <div class="social-links" >
+                      <!-- GENERATING THE LINKS DYNAMICALLY -->
                             <a href="#" *ngFor="let link of socialLinks"><i class="{{link}}"></i></a>
                     </div>
                   <div class="card-body">

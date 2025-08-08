@@ -7,6 +7,7 @@ import { Component } from '@angular/core';
   styleUrl: './about.component.css'
 })
 export class AboutComponent {
+  // GENERATING THE CONTENT FOR A THE P ELEMENTS
   firstParagraph: string = `Welcome to OnlineBarberShop, where style meets sophistication in a welcoming, gender-inclusive space. We believe that everyone deserves to look and feel their best, which is why we've created a modern, unisex salon that caters to all hair types, textures, and personal styles.`
 
   secondParagraph: string = `Our team of skilled stylists is passionate about delivering exceptional haircuts, coloring, styling, and treatments tailored to your unique preferences. Whether you're looking for a bold transformation, a classic trim, or expert grooming services, we combine the latest techniques with personalized care to ensure you leave feeling confident and refreshed.
