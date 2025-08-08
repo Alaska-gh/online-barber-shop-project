@@ -9,11 +9,11 @@
                 <!-- TEAM CARD 1 -->
                 <div class="swiper-slide card" *ngFor="let item of cardItem.cardItems">
                   <div class="card-img">
-                    <img src={{item.image}} alt="">
+                    <img src={{item.image}} alt="A barber">
                     <div class="overlay"></div>
                   </div>
                     <div class="social-links" >
-                            <a href="" *ngFor="let link of socialLinks"><i class="{{link}}"></i></a>
+                            <a href="#" *ngFor="let link of socialLinks"><i class="{{link}}"></i></a>
                     </div>
                   <div class="card-body">
                     <h6 class="text-center">{{item.name}}</h6>
@@ -21,9 +21,9 @@
                   </div>
                 </div>
                  </div>
-                 <div class="barbers-swiper-pagination"></div>
-                <div class="barbers-swiper-button-next"></div>
-                <div class="barbers-swiper-button-prev"></div>
+                 <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
               </div>
                
             </div>

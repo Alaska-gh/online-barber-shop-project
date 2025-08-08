@@ -20,7 +20,7 @@ export class ClientFeedbackComponent implements AfterViewInit{
       loop: true,
       speed: 3000,
       pagination: {
-        el: '.client-swiper-pagination',
+        el: '.swiper-pagination',
         clickable: true
       },
       autoplay:{
@@ -29,12 +29,10 @@ export class ClientFeedbackComponent implements AfterViewInit{
       },
       spaceBetween: 20,
       navigation:{
-        prevEl: '.client-swiper-button-prev',
-        nextEl: '.client-swiper-button-next',
+        prevEl: '.swiper-button-prev',
+        nextEl: '.swiper-button-next',
       },
-      breakpoints:{
-       
-      }
+     
     })
   }
 }

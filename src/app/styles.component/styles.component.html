@@ -8,7 +8,7 @@ generating dynamic html with ngFor directive and applying some bootstrap styling
     <div class="swiper-wrapper">
         <div *ngFor="let style of styles.Style" class="swiper-slide">
           <div class="my-card px-0 mx-auto ">
-            <img [src]="style.image" class="my-card-img me-3">
+            <img [src]="style.image" class="my-card-img me-3" alt="A barber">
             <div class="my-card-body">
               <h5 class="my-card-title">{{style.title}}</h5>
               <p class="my-card-text">Price: {{style.price}} ghs</p>

@@ -56,7 +56,7 @@
 .barbers-swiper-container{
   overflow: hidden;
 }
-.barbers-swiper-button-next, .barbers-swiper-button-prev{
+.swiper-button-next, .swiper-button-prev{
   position: absolute;
   background-color: #996515;
   color: #fff;
@@ -66,10 +66,10 @@
   border-radius: 10%;
 }
 
-.barbers-swiper-button-next{
+.swiper-button-next{
   left: 50%;
 }
-.barbers-swiper-button-prev{
+.swiper-button-prev{
   left: 45%;
 }
 i{

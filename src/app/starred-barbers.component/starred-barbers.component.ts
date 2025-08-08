@@ -31,17 +31,14 @@ export class StarredBarbersComponent implements AfterViewInit {
           disableOnInteraction: false
         },
         spaceBetween: 20,
-        scrollbar:{
-          hide: true,
-          draggable: false
-        },
+       
         pagination:{
           el: '.barbers-swiper-pagination',
           clickable: true
         },
         navigation: {
-          nextEl: '.barbers-swiper-button-next',
-          prevEl: '.barbers-swiper-button-prev'
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev'
         },
         breakpoints: {
           0: { slidesPerView: 1},
