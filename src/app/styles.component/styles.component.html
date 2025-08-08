@@ -6,7 +6,9 @@ generating dynamic html with ngFor directive and applying some bootstrap styling
 -------------------------------------------------------------------------------->
   <div class="container-fluid my-4 swiper-container" >
     <div class="swiper-wrapper">
-        <div *ngFor="let style of styles.Style" class="swiper-slide">
+      @for ( style of styles.Style; track $index) 
+      {    
+         <div  class="swiper-slide">
           <div class="my-card px-0 mx-auto ">
             <img [src]="style.image" class="my-card-img me-3" alt="A barber">
             <div class="my-card-body">
@@ -15,7 +17,8 @@ generating dynamic html with ngFor directive and applying some bootstrap styling
               <a href="#" class="btn btn-primary py-0">{{style.link}}</a>
             </div>
           </div>
-        </div>
+        </div>}
+   
     </div>
     <div class="swiper-pagination"></div>
     <div class="swiper-button-next"></div>

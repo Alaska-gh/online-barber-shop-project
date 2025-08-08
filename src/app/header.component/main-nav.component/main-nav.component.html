@@ -18,9 +18,12 @@
         <a class="nav-link appointment" (click)="showMessage()" href="#">Book An Appointment</a>
     </li>
     <!-- generating the html for the navigation links-->
-    <li *ngFor = "let item of mainNavItems" class="nav-item">
-    <a class="nav-link " href="#home" (click)="showMessage()">{{item}}</a>
+     @for (item of mainNavItems; track $index) {
+       <li class="nav-item">
+        <a class="nav-link " href="#home" (click)="showMessage()">{{item}}</a>
     </li>
+     }
+   
     </ul>
     </div>
   </div>

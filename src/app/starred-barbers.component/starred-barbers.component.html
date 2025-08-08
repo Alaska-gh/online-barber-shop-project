@@ -7,20 +7,26 @@
               <div class="barbers-swiper-container">
                 <div class="swiper-wrapper" >
                 <!-- DYNAMICALLY GENERATING THE CARDS -->
-                <div class="swiper-slide card" *ngFor="let item of cardItem.cardItems">
+                 @for (item of cardItem.cardItems; track $index) {
+                    <div class="swiper-slide card" >
                   <div class="card-img">
                     <img src={{item.image}} alt="A barber">
                     <div class="overlay"></div>
                   </div>
                     <div class="social-links" >
                       <!-- GENERATING THE LINKS DYNAMICALLY -->
-                            <a href="#" *ngFor="let link of socialLinks"><i class="{{link}}"></i></a>
+                       @for ( link of socialLinks; track $index) {
+                        <a href="#" ><i class="{{link}}"></i></a>
+                       }
+                            
                     </div>
                   <div class="card-body">
                     <h6 class="text-center">{{item.name}}</h6>
                     <p class="text-center">{{item.disc}}</p>
                   </div>
                 </div>
+                 }
+              
                  </div>
                  <div class="swiper-pagination"></div>
                 <div class="swiper-button-next"></div>

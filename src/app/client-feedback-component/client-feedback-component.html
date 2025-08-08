@@ -7,7 +7,8 @@
                  <div class="client-swiper-container">
                     <div class="swiper-wrapper ">
                         <!-- USING NGFOR TO DYNAMICALLY GENERATE THE CARDS-->
-                        <div class="swiper-slide" *ngFor = "let detail of details.Card">
+                         @for (detail of  details.Card; track $index) {
+                             <div class="swiper-slide" >
                             <div class="card">
                                 <div class="card-body">
                                 <p>
@@ -20,6 +21,8 @@
                             </div>
                             </div>
                         </div>
+                         }
+                       
                     </div>
                     <div class="swiper-pagination"></div>
                     <div class="swiper-button-prev"></div>

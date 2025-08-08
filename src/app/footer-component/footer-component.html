@@ -2,7 +2,8 @@
      <div class="container py-5">
         <div class="row">
             <!-- DYNAMICALLY GENERATING THE CONTENT WITH NGFOR DIRECTIVE -->
-            <div class="col-lg-3" *ngFor="let title of listOfTitles">
+             @for (title of listOfTitles; track $index) {
+                <div class="col-lg-3" >
                 <h6 class="my-style">{{title}}</h6>
                 <ul>
                     <li>Services</li>
@@ -12,6 +13,8 @@
                     <li>Contact</li>
                 </ul>
             </div>
+             }
+            
 
         </div>
      </div>

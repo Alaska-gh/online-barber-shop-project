@@ -12,9 +12,12 @@
             <div class="col-11">
                 <div class="row gy-5">
                     <!-- GALLERY IMAGES using ngFor to render the images-->
-                <div class="col-lg-3 mx-3 gallery-image" *ngFor="let image of imageUrls">
-                    <img src="{{image}}" alt="A barber">
+                     @for (image of imageUrls; track $index) {
+                        <div class="col-lg-3 mx-3 gallery-image">
+                        <img src="{{image}}" alt="A barber">
                 </div>
+                     }
+                
            
                 </div>
             </div>

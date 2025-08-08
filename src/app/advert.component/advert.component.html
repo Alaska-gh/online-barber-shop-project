@@ -16,9 +16,12 @@
                 </p>
                 <ul>
                     <!-- USING ngFor TO RE LOOP THROUGH THE ARRAY IN THE COMPONENT CLASS AND RENDER THEM -->
-                    <li *ngFor = "let list of advertList">
-                    ✨{{ list }}
-                    </li>
+                     @for (list of advertList; track $index) {
+                        <li >
+                        ✨{{ list }}
+                        </li>
+                     }
+                    
                
                 </ul>
             </div>
