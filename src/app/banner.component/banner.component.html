@@ -6,15 +6,13 @@
                 <div class="col-lg-2  price-tag">
                    <div class="row justify-content-center py-5">
                     <!-- PRICE TAG 1 USING ngFor to loop through the styles list to render the first 4 items-->
-                     @for (stl of style.Style | slice: 0 : 4; track $index) {
+                     @for (stl of style | slice: 0 : 4; track $index) {
                          <div class="mb-4 text-center" >
                             <h5>{{stl.title}}</h5>
                             <h6 class="text-white">{{stl.price}}ghs</h6>
                             <a href="#">{{stl.link}}</a>
                         </div>
                      }
-                       
-                          
                         
                     </div>
                 </div>
@@ -23,7 +21,7 @@
                     <div class="row py-5 justify-content-center">
                         <!-- MAIN AREA TEXT -->
                         <div class="col-lg-5">
-                            <div class="">
+                            <div class="row">
                                 <h3 class="text-white fw-bold">We do our best to</h3>
                                 <h3 class="my-style fw-bold">Satisfy you</h3>
                                 <h6 class="text-white fw-bold">Precision Cuts. Classic Style. Modern Grooming.</h6>
@@ -33,26 +31,20 @@
                                     Whether you need a classic taper, a fresh fade, or a straight-razor shave, we provide meticulous attention to detail in every service.
                                 </p>
                             </div>
-                        <div class="row">
-                                <div class="col-4">
-                                    <h6 class="my-style">Mon - Fri</h6>
-                                    <p class="text-white">10 AM - 08 PM</p>
-                                </div>
-                                <div class="col-4">
-                                    <h6 class="my-style">Saturday</h6>
-                                    <p class="text-white">10 AM - 08 PM</p>
-                                </div>
-                                <div class="col-4">
-                                    <h6 class="my-style">Sunday</h6>
-                                    <p class="text-white">10 AM - 08 PM</p>
-                                </div>
-                        </div>
-                        </div>
+                             <div class="row">
+                                @for (item of wrkHrs; track $index) {
+                                   <div class="col-4">
+                                    <h6 class="my-style">{{item.days}}</h6>
+                                    <p class="text-white">{{item.hrs}}</p>
+                                   </div>
+                                }
+                             </div>
+                         </div>
                         <!-- MAIN AREA IMAGE -->
                         <div class="col-lg-5 mt-5">
                             <div class="custom-image">
                                 <img src="../images/we-do-our-best.jpeg" alt="A barber">
-                            <p class="text-white text-center">Excellent Grooming Service</p>
+                                <p class="text-white text-center">Excellent Grooming Service</p>
                             </div>
                         </div>
                     </div>
@@ -60,5 +52,4 @@
             
         </div>
     </section>
-
 

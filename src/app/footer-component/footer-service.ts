@@ -1,20 +1,66 @@
 import { Injectable } from '@angular/core';
 
+
+  const list: Footer []= [
+    {
+      group: {
+        title: 'Link',
+        items: [
+          'Services',
+          'Book Apointment',
+          'About Us',
+          'Privacy Policy',
+          'Contact'
+        ]
+      }
+    },
+    {
+      group: {
+        title: 'Business Hours',
+        items: [
+          'Monday - Friday 8am - 5pm',
+          'Weekends 12pm - 5pm',
+      
+        ]
+      }
+    },
+    {
+      group: {
+        title: 'Company',
+        items: [
+          'No 33, Medical Village',
+          'Koforidua',
+          'Eastern Region',
+          'Ghana'
+      
+        ]
+      }
+    },
+    {
+      group: {
+        title: 'Contact',
+        items: [
+          'Youtube',
+          'Twiter (X)',
+          'Instagram',
+          'Facebook'
+        ]
+      }
+    },
+  ]
+
 @Injectable({
   providedIn: 'root'
 })
 export class FooterService {
-  list: Footer = {
-     link: [''],
-     busHours: [''],
-     company: [''],
-     contact: ['']
-  }
-  
+
+  getList(){
+    return list
+  }  
 }
-interface Footer{
-  link: string[],
-  busHours: string[],
-  company: string[],
-  contact: string[]
+export interface Footer{
+  group: {
+    title: string;
+    items: string[]
+  }
 }

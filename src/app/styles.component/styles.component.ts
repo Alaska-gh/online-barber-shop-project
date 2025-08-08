@@ -1,8 +1,8 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
-import { StylesService } from '../styles.service';
+import { StylesService, Styles} from '../styles.service';
 
 Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 
@@ -12,16 +12,25 @@ Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
   templateUrl: './styles.component.html',
   styleUrl: './styles.component.css'
 })
-export class StylesComponent implements AfterViewInit{
+export class StylesComponent implements OnInit, AfterViewInit{
 
-  styles
-  constructor(){
-    // CREATING INSTANCE OF THE SERVICE CLASS TO GET ACCESS TO THE PROPERTIES
-  this.styles = new StylesService()
-  } 
+  styles: Styles[] = [];
+  ss = inject(StylesService)
+
+  constructor(
+    private styleService: StylesService
+   ){ }
+
+
+   ngOnInit(): void {
+    this.styles = this.ss.getStyles();
+    
+   }
+
   // SWIPER CONFIGURATIONS
+  // why I use the aftervieinit?
     ngAfterViewInit() {
-    new Swiper('.swiper-container', 
+      new Swiper('.swiper-container', 
       {
         modules: [Pagination, Navigation, Autoplay, Scrollbar],
         loop: true,

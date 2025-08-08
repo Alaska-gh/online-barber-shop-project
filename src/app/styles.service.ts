@@ -1,10 +1,6 @@
 import { Injectable } from '@angular/core';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class StylesService {
-  Style: Styles [] = [
+  const style: Styles [] = [
     {
       image: 'images/braids2.webp',
       title: 'Braids',
@@ -69,11 +65,20 @@ export class StylesService {
     
     
   ]
+
+  @Injectable({
+  providedIn: 'root'
+})
+export class StylesService {
+  getStyles(): Styles[]{
+    return style
+  }
 }
 
-interface Styles{
+export interface Styles{
   image?: string
   title: string
   price: number
   link: string
 }
+

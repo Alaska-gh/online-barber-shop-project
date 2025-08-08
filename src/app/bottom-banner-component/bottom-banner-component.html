@@ -14,7 +14,7 @@
                     <!-- GALLERY IMAGES using ngFor to render the images-->
                      @for (image of imageUrls; track $index) {
                         <div class="col-lg-3 mx-3 gallery-image">
-                        <img src="{{image}}" alt="A barber">
+                        <img [src]="image" alt="A barber">
                 </div>
                      }
                 

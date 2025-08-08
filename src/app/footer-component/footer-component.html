@@ -4,14 +4,15 @@
             <!-- DYNAMICALLY GENERATING THE CONTENT WITH NGFOR DIRECTIVE -->
              @for (title of listOfTitles; track $index) {
                 <div class="col-lg-3" >
-                <h6 class="my-style">{{title}}</h6>
-                <ul>
-                    <li>Services</li>
-                    <li>Book appointment</li>
-                    <li>About Us</li>
-                    <li>Privacy Policy</li>
-                    <li>Contact</li>
-                </ul>
+                <h6 class="my-style">{{title.group.title}}</h6>
+                @for (list of title.group.items; track $index) {
+                  <ul>
+                     <li>
+                        {{list}}
+                     </li>
+                  </ul>
+                }
+                
             </div>
              }
             

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { FooterService } from './footer-service';
+import { Component, inject, OnInit } from '@angular/core';
+import { Footer, FooterService } from './footer-service';
 
 @Component({
   selector: 'footer-component',
@@ -8,9 +8,14 @@ import { FooterService } from './footer-service';
   templateUrl: './footer-component.html',
   styleUrl: './footer-component.css'
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit{
   // CREATING A LIST OF TITLES FOR USE IN THE TEMPLATE
- listOfTitles = ['Links', 'Business Hours', 'Company', 'Contact']
+ listOfTitles: Footer[] = []
 
- listOfLinks = new FooterService()
+ listOfLinks = inject(FooterService)
+
+ ngOnInit(): void {
+   this.listOfTitles = this.listOfLinks.getList();
+   
+ }
 }
