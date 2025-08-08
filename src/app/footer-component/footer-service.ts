@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-
+import { Footer } from '../interface/interface';
 
   const list: Footer []= [
     {
@@ -57,10 +57,4 @@ export class FooterService {
   getList(){
     return list
   }  
-}
-export interface Footer{
-  group: {
-    title: string;
-    items: string[]
-  }
 }

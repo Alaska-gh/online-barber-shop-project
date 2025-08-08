@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Styles } from './interface/interface';
+
 
   const style: Styles [] = [
     {
@@ -75,10 +77,5 @@ export class StylesService {
   }
 }
 
-export interface Styles{
-  image?: string
-  title: string
-  price: number
-  link: string
-}
+
 

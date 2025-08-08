@@ -1,6 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Styles, StylesService } from '../styles.service';
+import { StylesService } from '../styles.service';
+import { Styles } from '../interface/interface';
 
 @Component({
   selector: 'banner-component',
