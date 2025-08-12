@@ -1,0 +1,43 @@
+/* MAIN NAVIGATIONS */
+.navbar{
+    background-color: rgba(0, 0, 0, 0.575);
+    position: sticky;
+    top: 0;
+}
+
+/* logo */
+.navbar-brand span{
+    color: #996515;
+}
+
+.appointment{
+    background-color: #996515;
+    padding: 10px 30px;
+    margin: 0 60px;
+    transition: all 0.5s ease;
+}
+.appointment:hover{
+    background: transparent;
+}
+.navbar-nav a{
+    margin: 0 10px !important;
+    transition: all 0.5s ease;
+    color: #fff;
+}
+
+.navbar-nav a:hover{
+    color: #996515 !important;
+}
+
+.dropdown-menu{
+    background-color: #996515;
+    z-index: 1060 !important;
+    display: block;
+}
+.nav-item.dropdown .dropdown-menu{
+    position: absolute !important;
+}
+.dropdown-menu a:hover{
+    background-color: transparent;
+    color: rgba(0, 0, 0, 0.575) !important;
+}

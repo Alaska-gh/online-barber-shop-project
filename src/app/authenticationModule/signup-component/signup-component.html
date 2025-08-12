@@ -1,0 +1,51 @@
+<div class="container ">
+  <div class="col-10 mx-auto my-4">
+    <h1 class="text-center">Sign Up</h1>
+ 
+    
+    <div class="signup-type-selector">
+      <span>I'm signing up as a: </span>
+
+      <span class="customer-selector">
+        <span class="label">Customer</span>
+        <input type="radio" name="signup-type" id="" value="customer" [(ngModel)]="selectedSignupType">
+      </span>
+      
+     <span class="stylist-selector">
+      <span class="label">Stylist</span>
+      <input type="radio" name="signup-type" id="" value="stylist" [(ngModel)]="selectedSignupType">
+     </span>
+    </div>
+
+    <label for="">Full Name</label> <br>
+    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.name">
+    
+    <label for="">Password</label> <br>
+    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.password">
+    
+    <label for="">Email</label> <br>
+    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.email">
+    
+    <label for="">Phone Number</label> <br>
+    <input class="form-input" type="number" name="" id="" required [(ngModel)]="model.phoneNum">
+
+    <label for="">Gender</label> <br>
+    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.gender">
+
+    
+    @if (selectedSignupType === 'stylist') {
+      <label for="">Specialty</label> <br>
+      <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.specialty">
+
+
+      <div class="bio">
+        <label for="">Your custmers will like to know you</label> <br>
+        <textarea name="" id="" [(ngModel)]="model.bio"></textarea >
+      </div>
+
+    }
+    <a  (click)="signUp()">Signup</a>
+  </div>
+
+</div>
+

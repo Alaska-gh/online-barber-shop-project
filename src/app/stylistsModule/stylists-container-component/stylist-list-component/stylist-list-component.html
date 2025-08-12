@@ -1,0 +1,15 @@
+
+<h1>List Of Stylist</h1>
+
+<app-filter (selectedStylistEvent)="recieveBtnChage($event)"></app-filter>
+
+@if (selectedStylist === 'women') {
+  <women-stylist></women-stylist>
+}
+@else if (selectedStylist === 'men') {
+  <men-stylist></men-stylist>
+
+}@else {
+  <men-stylist></men-stylist>
+  <women-stylist></women-stylist>
+}

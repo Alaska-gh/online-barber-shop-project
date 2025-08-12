@@ -1,0 +1,39 @@
+    <section id="team" class="mb-5">
+          <h3 class="text-center fw-bold"><span class="my-style">Our</span> Top Artist</h3>
+           <!-- CARDS CONTAINER -->
+          <div class="container ">
+            <!-- TEAM SLIDER -->
+            <div class="row gx-4 d-flex">
+              <div class="barbers-swiper-container">
+                <div class="swiper-wrapper" >
+                <!-- DYNAMICALLY GENERATING THE CARDS -->
+                 @for (item of cardItem; track $index) {
+                    <div class="swiper-slide card" >
+                  <div class="card-img">
+                    <img [src]= item.image alt="A barber">
+                    <div class="overlay"></div>
+                  </div>
+                    <div class="social-links" >
+                      <!-- GENERATING THE LINKS DYNAMICALLY -->
+                       @for ( link of socialLinks; track $index) {
+                        <a href="#" ><i class="{{link}}"></i></a>
+                       }
+                            
+                    </div>
+                  <div class="card-body">
+                    <h6 class="text-center">{{item.name}}</h6>
+                    <p class="text-center">{{item.disc}}</p>
+                  </div>
+                </div>
+                 }
+              
+                 </div>
+                 <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+              </div>
+               
+            </div>
+          </div>
+       </section>
+

@@ -1,0 +1,53 @@
+.container{
+  width: 480px;
+  border: 1px solid #996515;
+  background-color: #fff;
+  position: absolute;
+  top: 20%;
+  right: 0;
+  left: 60%;
+  border-radius: 2%;
+}
+.container .form-input{
+  width: 100%;
+  margin-bottom: 1rem;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid #996515;
+}
+.container label{
+  color: #996515;
+  font-weight: 800;
+ 
+}
+
+a{
+  background-color: #996515;
+  padding: 0.3rem 2rem;
+  border-radius: 5%;
+  cursor: pointer;
+  color: #fff !important;
+}
+.signup-type-selector{
+  display: inline-flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.signup-type-selector .label{
+  margin-right: 5px;
+}
+.stylist-selector, .customer-selector{
+  display: flex;
+  align-items: center;
+}
+
+h1{
+  margin: 30px;
+  font-weight: bold;
+  text-decoration: underline;
+}
+.bio{
+  margin-bottom: 20px;
+}
