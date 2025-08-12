@@ -1,6 +1,6 @@
 import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, inject, OnChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Stylist, StylistService } from '../../shared/stylist-service';
+import { Stylist, StylistService } from '../../services/stylist-service';
 
 @Component({
   selector: 'signup-component',
@@ -37,10 +37,10 @@ export class SignupComponent{
     ...this.model
    }
     this.getStylistService.createStylist(newStylist)
-    console.log(newStylist);
+    
    }
-   
-   
+   alert('Acount created successfuly')
+  
  }
 }
  

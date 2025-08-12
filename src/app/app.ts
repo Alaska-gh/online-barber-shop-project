@@ -14,6 +14,7 @@ import { FooterComponent } from './LanddingPageModule/footer-component/footer-co
 import { SignupComponent } from "./authenticationModule/signup-component/signup-component";
 import { HeaderComponent } from './LanddingPageModule/header.component/header.component';
 import { StylistsContainerComponent } from './stylistsModule/stylists-container-component/stylists-container-component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -30,18 +31,19 @@ import { StylistsContainerComponent } from './stylistsModule/stylists-container-
     BottomBannerComponent,
     FooterComponent,
     SignupComponent,
-    StylistsContainerComponent
+    StylistsContainerComponent,
+    CommonModule
     ],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
- signup: boolean = false;
+ link: string = '';
   
  showStylistPage: boolean = true;
 
-  recieveSignupEvent(value: boolean){ 
-    this.signup = value
+  recieveSignupEvent(value: string){ 
+    this.link = value
     // this.showStylistPage = value
   }
 

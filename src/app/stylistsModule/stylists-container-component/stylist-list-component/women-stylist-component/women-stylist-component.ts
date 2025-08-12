@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { Stylist, StylistService } from '../../../../shared/stylist-service';
+import { Stylist, StylistService } from '../../../../services/stylist-service';
 
 @Component({
   selector: 'women-stylist',

@@ -10,43 +10,30 @@ declare const bootstrap: any;
 })
 export class MainNavComponent{
   // LIST OF NAVIGATION ITEMS
-  mainNavItems: string[] =['Home', 'About', 'Styles and Services']
+  mainNavItems: string[] =[ 'About', 'Styles and Services']
 
-  signupClicked: boolean = false; 
+  link: string = ''
 
-  showStylistPage: boolean = false;
-  
   showMessage(){
     alert('Hi Please Hold on!!! we are working on this feature')
   }
  
-  @ViewChild('stylist') stylistEl: ElementRef
-  @ViewChild('signup') signupEl: ElementRef
+
+  @Output() signupEvent = new EventEmitter<string>();
 
 
-
-  @Output() signupEvent = new EventEmitter<boolean>();
-
-
-  onChanged(event: Event){
-    event.preventDefault();
-    // console.log(event.target);
-    // console.log(this.stylistEl.nativeElement);
-    if(event.target === this.stylistEl.nativeElement){
-      this.showStylistPage = !this.showStylistPage
-      this.signupEvent.emit(this.showStylistPage)
-    }else if(event.target === this.signupEl.nativeElement){
-      this.signupClicked = !this.signupClicked
-      this.signupEvent.emit(this.signupClicked)
-    }
-    
+  onStylistBtnClicked(){
+    this.link = 'stylist'
+    this.signupEvent.emit(this.link)
   }
 
+  onSignupBtnClicked(){
+    this.link = 'signup'
+    this.signupEvent.emit(this.link)
+  }
 
-  // showStylistPage(value: Event){
-  //   this.stylistBtnClicked = !this.stylistBtnClicked;
-  //   this.signupEvent.emit(this.stylistBtnClicked)
-  //   console.log(value);
-    
-  // }
+  onHomeBtnCliked(){
+    this.link = 'home'
+    this.signupEvent.emit(this.link)
+  }
 }

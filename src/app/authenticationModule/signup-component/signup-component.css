@@ -2,11 +2,8 @@
   width: 480px;
   border: 1px solid #996515;
   background-color: #fff;
-  position: absolute;
-  top: 20%;
-  right: 0;
-  left: 60%;
   border-radius: 2%;
+  margin: 50px auto;
 }
 .container .form-input{
   width: 100%;
