@@ -1,6 +1,7 @@
 import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, inject, OnChanges, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Stylist, StylistService } from '../../services/stylist-service';
+import {  StylistService } from '../../services/stylist-service';
+import { Stylist } from '../../interfaces/interface';
 
 @Component({
   selector: 'signup-component',
@@ -16,13 +17,14 @@ export class SignupComponent{
   private idCounter: number = 0;
 
    model = {
-    name: '',
+    shopName: '',
+    fullName: '',
     password: '',
     email: '',
-    phoneNum: 0,
+    phoneNum:null,
     gender: '',
-    specialty: '',
-    bio: ''
+    serviceType: '',
+    
   };
   
 
@@ -32,12 +34,12 @@ export class SignupComponent{
  signUp(){
   
    if(this.selectedSignupType === 'stylist'){
-     const newStylist: Stylist ={
-    id: this.idCounter++,
+    
+   const newStylist: Stylist = {
+    id: this.idCounter,
     ...this.model
    }
     this.getStylistService.createStylist(newStylist)
-    
    }
    alert('Acount created successfuly')
   

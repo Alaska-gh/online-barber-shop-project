@@ -1,15 +1,24 @@
 
 <h1>List Of Stylist</h1>
 
-<app-filter (selectedStylistEvent)="recieveBtnChage($event)"></app-filter>
+<app-filter></app-filter>
 
-@if (selectedStylist === 'women') {
-  <women-stylist></women-stylist>
-}
-@else if (selectedStylist === 'men') {
-  <men-stylist></men-stylist>
+<div class="container my-5">
+  <div class="row">
+    @for (stylist of listOfStylists; track $index) {
+      @if (selectedStylist === 'all' || stylist.serviceType.toLowerCase().includes(selectedStylist)) {
+        <div class="col-lg-3">
+          <div class="stylist-container">
+            <i class="fa-solid fa-eye"></i>
+            <img [src]="stylist.image" alt="">
+            <h3 class="name">{{stylist.shopName}}</h3>
+            <p>{{stylist.serviceType}}</p>
+            <p>{{stylist.phoneNum}}</p>
+            <a href="#">Book Now</a>
+          </div>
+        </div>
+      }
+    }
+  </div>
+</div>
 
-}@else {
-  <men-stylist></men-stylist>
-  <women-stylist></women-stylist>
-}

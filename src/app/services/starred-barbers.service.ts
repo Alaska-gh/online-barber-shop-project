@@ -1,5 +1,5 @@
+import { Card } from '../interfaces/interface';
 import { Injectable } from '@angular/core';
-import { Card } from '../interface/interface';
 
 
  const cardItems: Card[]= 

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { HeroComponent } from './LanddingPageModule/hero.component/hero.component';
@@ -15,6 +15,7 @@ import { SignupComponent } from "./authenticationModule/signup-component/signup-
 import { HeaderComponent } from './LanddingPageModule/header.component/header.component';
 import { StylistsContainerComponent } from './stylistsModule/stylists-container-component/stylists-container-component';
 import { CommonModule } from '@angular/common';
+import { NavigationService } from './services/navigation.service';
 
 @Component({
   selector: 'app-root',
@@ -37,14 +38,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
-export class App {
+export class App implements OnInit{
  link: string = '';
   
- showStylistPage: boolean = true;
+  navservice = inject(NavigationService)
 
-  recieveSignupEvent(value: string){ 
-    this.link = value
-    // this.showStylistPage = value
+  ngOnInit(): void {
+    this.navservice.navLinkChangeEvent.subscribe((value) => {
+      this.link = value
+    })  
   }
 
 }

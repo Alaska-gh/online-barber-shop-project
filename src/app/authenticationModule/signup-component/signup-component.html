@@ -7,44 +7,53 @@
       <span>I'm signing up as a: </span>
 
       <span class="customer-selector">
-        <span class="label">Customer</span>
-        <input type="radio" name="signup-type" id="" value="customer" [(ngModel)]="selectedSignupType">
+        <input type="radio" name="signup-type" id="customer" value="customer" [(ngModel)]="selectedSignupType">
+        <label class="label" for="customer">Customer</label>
       </span>
       
      <span class="stylist-selector">
-      <span class="label">Stylist</span>
-      <input type="radio" name="signup-type" id="" value="stylist" [(ngModel)]="selectedSignupType">
+       <input type="radio" name="signup-type" id="stylist" value="stylist" [(ngModel)]="selectedSignupType">
+       <label class="label" for="stylist">Stylist</label>
      </span>
     </div>
 
-    <label for="">Full Name</label> <br>
-    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.name">
+    @if (selectedSignupType === 'stylist') {
+      <label for="shop-name">Shop Name</label> <br>
+      <input class="form-input" type="text" name="shop-name" id="shop-name" required [(ngModel)]="model.shopName">
+    }
     
-    <label for="">Password</label> <br>
-    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.password">
+    <label for="fName">Full Name</label> <br>
+    <input class="form-input" type="text" name="fName" id="fName" required [(ngModel)]="model.fullName">
     
-    <label for="">Email</label> <br>
-    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.email">
+    <label for="email">Email</label> <br>
+    <input class="form-input" type="text" name="email" id="email" required [(ngModel)]="model.email">
     
-    <label for="">Phone Number</label> <br>
-    <input class="form-input" type="number" name="" id="" required [(ngModel)]="model.phoneNum">
+    <label for="phone">Phone Number</label> <br>
+    <input class="form-input" type="tel" name="phone" id="phone" required [(ngModel)]="model.phoneNum">
+
+    <label for="password">Password</label> <br>
+    <input class="form-input" type="password" name="password" id="password" required [(ngModel)]="model.password">
 
     <label for="">Gender</label> <br>
-    <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.gender">
+    <select name="" id="" [(ngModel)]="model.gender">
+      <option value="">Choose Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    <!-- <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.gender"> -->
 
     
     @if (selectedSignupType === 'stylist') {
-      <label for="">Specialty</label> <br>
-      <input class="form-input" type="text" name="" id="" required [(ngModel)]="model.specialty">
-
-
-      <div class="bio">
-        <label for="">Your custmers will like to know you</label> <br>
-        <textarea name="" id="" [(ngModel)]="model.bio"></textarea >
-      </div>
+      <label for="">Service Type</label> <br>
+      <select name="" id="" [(ngModel)]="model.serviceType">
+        <option value="">Choose Service Type</option>
+        <option value="Unisex Salon Service">Unisex Salon Service</option>
+        <option value="Barber Salon Service">Barber Salon Service</option>
+        <option value="Beauty Salon Service">Beauty Salon Service</option>
+      </select>
 
     }
-    <a  (click)="signUp()">Signup</a>
+    <a (click)="signUp()">Signup</a>
   </div>
 
 </div>

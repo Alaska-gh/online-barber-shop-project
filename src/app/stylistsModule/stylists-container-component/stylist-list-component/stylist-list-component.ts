@@ -1,24 +1,32 @@
-import { Component} from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import { Filter } from './filter/filter';
-import { WomenStylistComponent } from './women-stylist-component/women-stylist-component';
-import { MenStylistComponent } from './men-stylist-component/men-stylist-component';
+import { StylesService } from '../../../services/styles.service';
+import { Stylist } from '../../../interfaces/interface';
+import { StylistService } from '../../../services/stylist-service';
+import { FilterService } from '../../../services/filter.service';
+
 
 @Component({
   selector: 'stylist-list',
-  imports: [Filter, WomenStylistComponent,MenStylistComponent],
+  imports: [Filter],
   templateUrl: './stylist-list-component.html',
   styleUrl: './stylist-list-component.css'
 })
-export class StylistListComponent {
+export class StylistListComponent implements OnInit{
    
-  selectedStylist: string;
+  selectedStylist: string = 'all';
 
-  recieveBtnChage(value: string){
-    this.selectedStylist = value
-    
-    
+  listOfStylists: Stylist[] = []
+
+  filterService = inject(FilterService)
+
+  stylistService = inject(StylistService)
+
+  ngOnInit(): void {
+    this.listOfStylists = this.stylistService.getStylist();
+
+    this.filterService.selectedBtnEvent.subscribe((value) =>{
+      this.selectedStylist = value;
+    })
   }
-
- 
-  
 }

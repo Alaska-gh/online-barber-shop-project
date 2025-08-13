@@ -1,0 +1,18 @@
+.stylist-details-container{
+  width: 100vh;
+  padding: 20px;
+}
+
+.stylist-image, .stylist-details{
+  width: 600px;
+  height: 400px;
+}
+
+.stylist-image img{
+  width: 100%;
+}
+
+.stylist-details{
+  text-align: center;
+}
+

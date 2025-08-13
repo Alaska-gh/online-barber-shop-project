@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FilterService } from '../../../../services/filter.service';
 
 @Component({
   selector: 'app-filter',
@@ -10,9 +11,9 @@ import { FormsModule } from '@angular/forms';
 export class Filter {
   selectedStylists: string = 'all';
 
-  @Output() selectedStylistEvent = new EventEmitter<string>();
+ fiterService = inject(FilterService)
 
  onBtnChange(){
-  this.selectedStylistEvent.emit(this.selectedStylists)
+   this.fiterService.onRadioBtnChanged(this.selectedStylists)
  }
 }

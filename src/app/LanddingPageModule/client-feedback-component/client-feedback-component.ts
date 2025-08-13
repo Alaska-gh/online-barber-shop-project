@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
 import { ClientFeedbackService} from './client-feedback-service';
 import { CommonModule } from '@angular/common';
-import { CardDetails } from '../interface/interface';
+import { CardDetails } from '../../interfaces/interface';
 @Component({
   selector: 'client-feedback',
   imports: [CommonModule],

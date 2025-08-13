@@ -5,5 +5,43 @@ h1 {
   margin-top: 20px;
 }
 
+.stylist-container{
+  padding: 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  position: relative;
+  border-radius: 30% 0 30% 0;
+  margin-bottom: 50px;
+}
+.stylist-container img{
+  height: 200px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 30% 0 0 0;
+}
+i{
+  position: absolute;
+  right: 1%;
+  top: 2%;
+  font-size: 18px;
+  color: #996515;
+}
+i:hover{
+  color: #cf8311;
+}
 
+h3{
+  flex-wrap: nowrap;
+  max-height: 40px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-top: 5px;
+}
 
+a{
+  background-color: #996515;
+  padding: 5px;
+  margin: 0 20%;
+}
+a:hover{
+  background-color: #cf8311;
+}

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Styles } from './LanddingPageModule/interface/interface';
-
+import { Styles } from '../interfaces/interface';
 
   const style: Styles [] = [
     {

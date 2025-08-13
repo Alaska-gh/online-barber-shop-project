@@ -1,13 +1,17 @@
 .filter{
   margin-left: 10%;
 }
-.filter span{ 
-  margin-right: 5px;
-}
-
-input{ 
+.filter label{ 
   margin-right: 20px;
+}
+.filter label:hover{
+  color: #996515;
+  cursor: pointer;
+}
+input{ 
+  margin-right: 5px;
 }
 .title{
   font-weight: 600;
+  margin-right: 10px;
 }

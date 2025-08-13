@@ -22,3 +22,15 @@ export interface Card {
   name: string,
   disc: string
 }
+
+export interface Stylist{
+  id: number
+  image?: string
+  shopName: string;
+  fullName: string
+  password: string;
+  phoneNum: number | null;
+  email: string;
+  gender: string;
+  serviceType: string
+ }

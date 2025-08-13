@@ -1,31 +1,39 @@
 import { Injectable } from '@angular/core';
+import { Stylist } from '../interfaces/interface';
 
-const menStylist: Stylist [] =  [
- {
-    id: 2,
-    image: 'images/barber-png.webp',
-    name: 'Alaska',
-    password: 'skjas',
-    phoneNum: +233543644,
-    email: 'oeywr45',
-    bio: 'ths fgdga',
-    specialty: 'Men',
-    gender: 'Male',
-}
-
-  
-]
-const womenStylist: Stylist [] =  [
+const allStylist: Stylist [] =  [
   {
     id: 1,
-    image: 'images/braids2.webp',
-    name: 'Alaska',
-    password: 'skjas',
+    shopName: 'Jackie Joe Barber Shop',
+    image: 'images/female-avatar.jpeg',
+    fullName: 'Jaclie Joe',
+    password: 'Jackiee',
     phoneNum: +233543644,
-    email: 'oeywr45',
-    bio: 'ths fgdga',
-    specialty: 'Women',
+    email: 'jackie@gmail.com',
     gender: 'Male',
+    serviceType: 'Beauty Salon Service'
+},
+ {
+    id: 2,
+    image: 'images/male-avatar.jpeg',
+    shopName: 'Elite Beauty Bar',
+    fullName: 'Bless Tulasi',
+    password: 'blesred',
+    phoneNum: +233543644,
+    email: 'bless@gmail.com',
+    gender: 'Male',
+    serviceType: 'Barber Salon Service'
+},
+ {
+    id: 3,
+    image: 'images/unisex.png',
+    shopName: 'Elite Beauty Bar',
+    fullName: 'Bless Tulasi',
+    password: 'blesred',
+    phoneNum: +233543644,
+    email: 'bless@gmail.com',
+    gender: 'Male',
+    serviceType: 'Unisex Salon Service'
 }
  
  
@@ -36,26 +44,21 @@ const womenStylist: Stylist [] =  [
 })
 export class StylistService {
 
-  getMenStylist(){
-    return menStylist
-  }
-
-  getWomenStylist(){
-    return womenStylist
+  getStylist(){
+    return allStylist
   }
 
   createStylist(stylist: Stylist): Stylist{
-    if(stylist.specialty.toLowerCase() === 'men' && stylist.image === undefined){
-      stylist.image = 'images/barber-png.webp';
-      menStylist.push(stylist)
-      localStorage.setItem('menStylist', JSON.stringify(stylist))
-    }else if(stylist.specialty.toLowerCase() === 'women' && stylist.image === undefined){
-      stylist.image = 'images/braids2.webp'
-      localStorage.setItem('womenStylist', JSON.stringify(stylist))
-      womenStylist.push(stylist)
-    }
+    if(stylist.serviceType.toLowerCase() === 'barber salon service' && stylist.image === undefined){
+      stylist.image = 'images/male-avatar.jpeg';
 
-    
+    }else if(stylist.serviceType.toLowerCase() === 'beauty salon service' && stylist.image === undefined){
+      stylist.image = 'images/female-avatar.jpeg';
+    }
+    else if(stylist.serviceType.toLowerCase() === 'unisex salon service' && stylist.image === undefined){
+      stylist.image = 'images/unisex.png'
+    }
+    allStylist.push(stylist)
     return stylist
   }
 }
@@ -63,24 +66,5 @@ export class StylistService {
 
 
 
-export interface Stylist{
-  id: number
-  image?: string
-  name: string;
-  password: string;
-  phoneNum: number;
-  email: string;
-  gender: string;
-  specialty: string; 
-  bio: string;
- }
 
-// type Gender = {
-//   male: 'Male',
-//   female: 'Female'
-// }
 
-// type Specialty = {
-//   men: 'Men Hair Cut',
-//   women: 'Women Hair Styling'
-// }

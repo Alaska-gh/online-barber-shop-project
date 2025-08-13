@@ -1,5 +1,6 @@
-import { Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
+import { Component, ElementRef, EventEmitter, inject, Output, ViewChild} from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NavigationService } from '../../../services/navigation.service';
 
 declare const bootstrap: any;
 @Component({
@@ -18,22 +19,23 @@ export class MainNavComponent{
     alert('Hi Please Hold on!!! we are working on this feature')
   }
  
+  navService = inject(NavigationService)
 
-  @Output() signupEvent = new EventEmitter<string>();
-
-
+  // when stylist link is clicked
   onStylistBtnClicked(){
     this.link = 'stylist'
-    this.signupEvent.emit(this.link)
+    this.navService.onNavLinkChanged(this.link)
   }
 
+  // when signup link is clicked
   onSignupBtnClicked(){
     this.link = 'signup'
-    this.signupEvent.emit(this.link)
+    this.navService.onNavLinkChanged(this.link)
   }
 
+  // when home link is clicked
   onHomeBtnCliked(){
     this.link = 'home'
-    this.signupEvent.emit(this.link)
+    this.navService.onNavLinkChanged(this.link)
   }
 }

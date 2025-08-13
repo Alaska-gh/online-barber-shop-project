@@ -1,12 +1,13 @@
 <div class="filter">
   <span class="title">Filter By:</span>
 
-  <span>All</span>
-  <input type="radio" name="filter" id="" value="all" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <input type="radio" name="filter" id="all" value="all" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <label for="all">All</label>
 
-  <span>Men Hair Stylist</span>
-  <input type="radio" name="filter" id="" value="men" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <input type="radio" name="filter" id="barber" value="barber" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <label for="barber">Barber Services</label>
 
-  <span>Women Hair Stylist</span>
-  <input type="radio" name="filter" id="" value="women" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <input type="radio" name="filter" id="beauty" value="beauty" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <label for="beauty">Beauty Services</label>
+
 </div>

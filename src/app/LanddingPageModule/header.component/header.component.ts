@@ -10,10 +10,6 @@ import { TopNavComponent } from "./top-nav.component/top-nav.component";
 })
 export class HeaderComponent {
 
- @Output() signupEvent = new EventEmitter<string>();
-
-  recieveSignupClickedEvent(value: string){
-    this.signupEvent.emit(value)
-  }
+ 
 
 }

@@ -4,8 +4,10 @@
   background-color: #fff;
   border-radius: 2%;
   margin: 50px auto;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
 }
-.container .form-input{
+.container .form-input, 
+select{
   width: 100%;
   margin-bottom: 1rem;
   outline: none;
@@ -24,6 +26,7 @@ a{
   border-radius: 5%;
   cursor: pointer;
   color: #fff !important;
+  margin: 0 30%;
 }
 .signup-type-selector{
   display: inline-flex;
@@ -33,7 +36,7 @@ a{
 }
 
 .signup-type-selector .label{
-  margin-right: 5px;
+  margin-left: 5px;
 }
 .stylist-selector, .customer-selector{
   display: flex;
@@ -45,6 +48,11 @@ h1{
   font-weight: bold;
   text-decoration: underline;
 }
-.bio{
-  margin-bottom: 20px;
+
+select{
+  font-size: 14px;
+}
+
+a:hover{
+  background-color: #cf8311;
 }
