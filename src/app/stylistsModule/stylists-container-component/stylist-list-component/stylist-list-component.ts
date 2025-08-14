@@ -3,11 +3,12 @@ import { Filter } from './filter/filter';
 import { Stylist } from '../../../interfaces/interface';
 import { StylistService } from '../../../services/stylist-service';
 import { FilterService } from '../../../services/filter.service';
+import { RouterModule } from '@angular/router';
 
 
 @Component({
   selector: 'stylist-list',
-  imports: [Filter],
+  imports: [Filter, RouterModule],
   templateUrl: './stylist-list-component.html',
   styleUrl: './stylist-list-component.css'
 })

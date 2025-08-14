@@ -9,10 +9,10 @@
                 <!-- DYNAMICALLY GENERATING THE CARDS -->
                  @for (item of cardItem; track $index) {
                     <div class="swiper-slide card" >
-                  <div class="card-img">
-                    <img [src]= item.image alt="A barber">
-                    <div class="overlay"></div>
-                  </div>
+                    <div class="card-img">
+                      <img [src]= item.image alt="A barber">
+                      <div class="overlay"></div>
+                    </div>
                     <div class="social-links" >
                       <!-- GENERATING THE LINKS DYNAMICALLY -->
                        @for ( link of socialLinks; track $index) {
