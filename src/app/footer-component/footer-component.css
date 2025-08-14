@@ -1,7 +1,7 @@
 footer{
     background: linear-gradient(rgba(10, 10, 36, 0.877), 
     rgba(10, 10, 36, 0.932)), 
-    url(../../../../public/images/bg-2.jpg);
+    url(../../../public/images/bg-2.jpg);
     background-position: center;
     color: #fff;
     text-align:center;

@@ -1,6 +1,5 @@
 import { Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import { Filter } from './filter/filter';
-import { StylesService } from '../../../services/styles.service';
 import { Stylist } from '../../../interfaces/interface';
 import { StylistService } from '../../../services/stylist-service';
 import { FilterService } from '../../../services/filter.service';

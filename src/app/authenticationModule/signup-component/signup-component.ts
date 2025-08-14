@@ -1,4 +1,4 @@
-import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, ElementRef, inject, OnChanges, ViewChild } from '@angular/core';
+import {  Component, inject  } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {  StylistService } from '../../services/stylist-service';
 import { Stylist } from '../../interfaces/interface';

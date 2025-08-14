@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
-import { StylistListComponent } from './stylist-list-component/stylist-list-component';
-import { StylistProfileComponent } from './stylist-profile-component/stylist-profile-component';
+import { Component} from '@angular/core';
+
 
 @Component({
   selector: 'stylists-container',
-  imports: [StylistListComponent],
+  imports: [],
   templateUrl: './stylists-container-component.html',
   styleUrl: './stylists-container-component.css'
 })

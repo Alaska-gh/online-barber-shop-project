@@ -1,9 +1,9 @@
-import { StarredBarbersService } from './../../services/starred-barbers.service';
+import { Card } from './../../../interfaces/interface';
+import { StarredBarbersService } from './../../../services/starred-barbers.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit} from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
-import { Card } from '../../interfaces/interface';
 
 
 @Component({

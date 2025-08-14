@@ -1,0 +1,8 @@
+.container{
+  height: 100vh;
+  margin: 100px;
+}
+h1, p{
+  text-align: center;
+}
+.page-not-found{color: red;}

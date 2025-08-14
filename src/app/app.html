@@ -1,22 +1,6 @@
 <header-component ></header-component>
 
+  <router-outlet></router-outlet>
+  
+ <footer-component></footer-component>
 
-@switch (link) {
-  @default {
-    <hero-section></hero-section>
-    <about-component></about-component>
-    <styles-component></styles-component>
-    <advert-component></advert-component>
-    <banner-component></banner-component>
-    <starred-barbers></starred-barbers>
-    <subscribe-component></subscribe-component>
-    <client-feedback></client-feedback>
-    <bottom-banner></bottom-banner>
-    <footer-component></footer-component>
-    <router-outlet />
-  }@case ('stylist') {
-    <stylists-container></stylists-container>
-  }@case ('signup') {
-    <signup-component></signup-component>
-  }
-}
