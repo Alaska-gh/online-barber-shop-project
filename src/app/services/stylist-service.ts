@@ -4,33 +4,36 @@ import { Stylist } from '../interfaces/interface';
 const allStylist: Stylist [] =  [
   {
     id: 1,
+    userName: 'jack',
     shopName: 'Jackie Joe Barber Shop',
     image: 'images/female-avatar.jpeg',
     fullName: 'Jaclie Joe',
     password: 'Jackiee',
-    phoneNum: +233543644,
+    phoneNum: 2089993,
     email: 'jackie@gmail.com',
     gender: 'Male',
     serviceType: 'Beauty Salon Service'
 },
  {
     id: 2,
+    userName: 'bless',
     image: 'images/male-avatar.jpeg',
     shopName: 'Elite Beauty Bar',
     fullName: 'Bless Tulasi',
     password: 'blesred',
-    phoneNum: +233543644,
+    phoneNum: 233543644,
     email: 'bless@gmail.com',
     gender: 'Male',
     serviceType: 'Barber Salon Service'
 },
  {
     id: 3,
+    userName: 'ble',
     image: 'images/unisex.png',
     shopName: 'Elite Beauty Bar',
     fullName: 'Bless Tulasi',
     password: 'blesred',
-    phoneNum: +233543644,
+    phoneNum: 54536,
     email: 'bless@gmail.com',
     gender: 'Male',
     serviceType: 'Unisex Salon Service'

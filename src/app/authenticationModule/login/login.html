@@ -1,0 +1,16 @@
+<div class="container ">
+  <div class="col-10 mx-auto my-4">
+    <h1 class="text-center">LogIn</h1>
+
+    <label for="user-name">User Name</label> <br>
+    <input class="form-input" type="text" name="user-name" id="phone" required #user>
+
+    <label for="password">Password</label> <br>
+    <input class="form-input" type="password" name="password" id="password" required #password>
+
+    <div [ngClass]="!stylist ? 'err' : 'success'" #errMsg></div>
+  
+    <a (click)="onLoginClicked()">Signup</a>
+  </div>
+
+</div>

@@ -9,6 +9,12 @@
     color: #996515;
 }
 
+
+img{
+    margin-top: 10px;
+    width: 30px;
+    border-radius: 100%;
+}
 .appointment{
     background-color: #996515;
     padding: 10px 30px;

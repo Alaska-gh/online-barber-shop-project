@@ -24,7 +24,7 @@ export class SignupComponent{
     phoneNum:null,
     gender: '',
     serviceType: '',
-    
+    userName: '',
   };
   
 

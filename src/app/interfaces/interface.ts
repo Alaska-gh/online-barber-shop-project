@@ -25,7 +25,8 @@ export interface Card {
 
 export interface Stylist{
   id: number
-  image?: string
+  image?: string,
+  userName: string
   shopName: string;
   fullName: string
   password: string;
