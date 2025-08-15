@@ -1,4 +1,4 @@
-import { Component,  inject,  OnInit } from '@angular/core';
+import { Component,  inject,  OnDestroy,  OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Stylist } from '../../../../interfaces/interface';
@@ -24,6 +24,8 @@ export class StylistDetailsComponent implements OnInit{
   stylistService : StylistService = inject(StylistService);
 
   activeroute: ActivatedRoute = inject(ActivatedRoute);
+  
+  paramMapsObservable;
 
   ngOnInit() {
      new Swiper('.portfolio-swiper-container', {
@@ -45,13 +47,14 @@ export class StylistDetailsComponent implements OnInit{
           1024: { slidesPerView: 2}
       }
     })
-    
-    this.searchId = Number(this.activeroute.snapshot.paramMap.get('id'))
-    this.stylists = this.stylistService.getStylist()  
-    this.selectedStylist = this.stylists.find(stylist => stylist.id === this.searchId) 
-
-    console.log(this.selectedStylist);
+      // using paramMaps observable to get the curent active route parameter to check if the id matches any of the urls.
+      this.paramMapsObservable = this.activeroute.paramMap.subscribe((data) =>{
+      this.searchId = Number(data.get('id'));
+      this.stylists = this.stylistService.getStylist()
+      this.selectedStylist = this.stylists.find(stylist => stylist.id === this.searchId) 
+    })
     
   }
+
   
 }

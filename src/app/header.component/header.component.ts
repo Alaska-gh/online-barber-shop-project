@@ -1,6 +1,8 @@
-import { Component, EventEmitter, Output} from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MainNavComponent } from './main-nav.component/main-nav.component';
 import { TopNavComponent } from "./top-nav.component/top-nav.component";
+import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
+import { filter } from 'rxjs';
 // import 'bootstrap';
 @Component({
   selector: 'header-component',
@@ -8,8 +10,18 @@ import { TopNavComponent } from "./top-nav.component/top-nav.component";
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
 
- 
+ currentRoute: string
+ activeRoute: Router = inject(Router);
 
+
+  ngOnInit(): void {
+   
+    this.activeRoute.events.pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) =>{
+        this.currentRoute = event.urlAfterRedirects;
+        
+      })
+  }
 }

@@ -1,8 +1,7 @@
 /* MAIN NAVIGATIONS */
 .navbar{
     background-color: rgba(0, 0, 0, 0.575);
-    position: sticky;
-    top: 0;
+  
 }
 
 /* logo */
@@ -30,21 +29,8 @@
     color: #996515 !important;
 }
 
-.dropdown-menu{
-    background-color: #996515;
-    z-index: 1060 !important;
-    display: block;
-}
-.nav-item.dropdown .dropdown-menu{
-    position: absolute !important;
-}
-.dropdown-menu a:hover{
-    background-color: transparent;
-    color: rgba(0, 0, 0, 0.575) !important;
-}
 .active{
     background: none;
     color: #996515 !important;
-    font-size: 24px;
     font-weight: bold;
 }

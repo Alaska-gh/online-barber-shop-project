@@ -1,18 +1,8 @@
  <div class="container top-nav">
 
-    <div class="row justify-content-between align-items-center">
-
-      <!-- email link -->
-      <!-- <div class="col-auto">
-        <a href="#" class="top-left">barbershop<i class="fa-solid fa-at"></i>mail.com</a>
-     </div> -->
-      <!-- working hours -->
-      <!-- <div class="col-auto text-white ">
-          <p class="working-hrs">Monday-Saturday, 08 Am - 09 Pm</p>
-      </div> -->
-
+    <div class="row justify-content-between">
       <!-- links -->
-      <div class="col-auto links">
+      <div class="col-auto links ms-auto ">
         <div class="social-links">
           <!-- DYNAMICALLY GENERATING THE NAVIGATION LINKS WITH NGFOR DIRECTIVE -->
            @for (item of iconList; track $index) {
@@ -23,6 +13,14 @@
         </div>
       </div>
 
+      <div class="navigation col-auto links">
+        <a routerLink="home" fragment="top">Top</a>
+        <a routerLink="home" fragment="about">About</a>
+        <a routerLink="home" fragment="styles">Popular Styles</a>
+        <a routerLink="home" fragment="top-stylist">Popular Stylists</a>
+        <a routerLink="home" fragment="subscribe">Subscribe</a>
+        <a routerLink="home" fragment="testimony">Testimonies</a>
+      </div>
     </div>
 
   </div>
