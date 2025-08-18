@@ -30,6 +30,7 @@ export interface Stylist{
   shopName: string;
   fullName: string
   password: string;
+  confirmPassword: string,
   phoneNum: number | null;
   email: string;
   gender: string;

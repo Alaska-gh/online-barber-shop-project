@@ -6,6 +6,7 @@ import { WildCardComponent } from './wild-card-component/wild-card-component';
 import { StylistDetailsComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component';
 import { Login } from './authenticationModule/login/login';
 import { CanActivate } from './authenticationModule/authGuard';
+import { AppointmentsComponent } from './appointments-component/appointments-component';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -19,6 +20,7 @@ export const routes: Routes = [
     }
   ]},
   {path: 'login', component: Login},
+  {path: 'booking', component: AppointmentsComponent},
   {path: '**', component: WildCardComponent}
 ];
 

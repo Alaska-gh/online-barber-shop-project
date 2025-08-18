@@ -1,25 +1,38 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Stylist } from '../../interfaces/interface';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    RouterModule
+  ],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
 export class Login implements OnInit{
-  @ViewChild('user') username: ElementRef;
-  @ViewChild('password') password: ElementRef;
+
   @ViewChild('errMsg') errMessage: ElementRef
+
+ formBuilder: FormBuilder = inject(FormBuilder);
 
   router: Router = inject(Router);
   stylist: Stylist
   authService: AuthService = inject(AuthService)
 
   activeRoute = inject(ActivatedRoute)
+
+  loginForm = this.formBuilder.group({
+    username: ['', Validators.required],
+    password:['', [Validators.required, Validators.minLength(8)
+    ]]
+  })
+
 
  ngOnInit(): void {
     this.activeRoute.queryParamMap.subscribe((route)=>{
@@ -32,17 +45,25 @@ export class Login implements OnInit{
    })
  }
 
+ get userName(){
+  return this.loginForm.controls['username']
+ }
+
+ get pwd(){
+  return this.loginForm.controls['password']
+ }
+
   onLoginClicked(){
-    const username: string = this.username.nativeElement.value;
-    const password : string = this.password.nativeElement.value;
+    const username: string = this.loginForm.get('username')?.value;
+    const password : string = this.loginForm.get('password')?.value;
 
     this.stylist = this.authService.login(username, password);
+    console.log(this.stylist.password);
+    
 
     if(this.stylist){
-      this.errMessage.nativeElement.innerHTML = `Welcome ${this.stylist.fullName} you are logged in`
-      setTimeout(()=>{
+      alert(`Welcome ${this.stylist.fullName} you are logged in`)
         this.router.navigate(['home'])
-      },300)
     }
     else{
         this.errMessage.nativeElement.innerHTML = `Sorry your credentials are incorrect`;

@@ -7,7 +7,7 @@
   <div class="row">
     @for (stylist of listOfStylists; track $index) {
       @if (selectedStylist === 'all' || stylist.serviceType.toLowerCase().includes(selectedStylist)) {
-        <div class="col-lg-3">
+        <div class="col-lg-3 col-md-2 col-sm-1">
           <div class="stylist-container">
             <!-- passing a dummy router path to this icon  -->
             <i [routerLink]="'/stylists/stylist/'+stylist.id" class="fa-solid fa-eye" title="View Stylist Details"></i>

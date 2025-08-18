@@ -1,0 +1,12 @@
+.main-container{
+  margin-bottom: 50px;
+  color: rgb(10, 10, 36);
+}
+
+h1{
+  margin-bottom: 20px;
+}
+.image{
+  background-image: url(../../../public/images/hero-bg.jpeg);
+  height: 300px;
+}

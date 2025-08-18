@@ -8,6 +8,7 @@ import { Subject } from "rxjs";
 })
 
 export class AuthService {
+  
   isLoggedIn: boolean = false;
 
   stylistArray: Stylist[]= []
@@ -17,6 +18,7 @@ export class AuthService {
   stylistService: StylistService = inject(StylistService);
 
   logInState = new Subject<boolean>()
+
 
   login( userName: string, password: string){
    this.stylistArray = this.stylistService.getStylist()

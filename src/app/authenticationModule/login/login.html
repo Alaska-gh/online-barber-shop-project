@@ -1,16 +1,48 @@
-<div class="container ">
-  <div class="col-10 mx-auto my-4">
-    <h1 class="text-center">LogIn</h1>
 
-    <label for="user-name">User Name</label> <br>
-    <input class="form-input" type="text" name="user-name" id="phone" required #user>
-
-    <label for="password">Password</label> <br>
-    <input class="form-input" type="password" name="password" id="password" required #password>
-
-    <div [ngClass]="!stylist ? 'err' : 'success'" #errMsg></div>
+<form action="" [formGroup]="loginForm">
+  <div class="container ">
+    <div class="col-10 mx-auto my-4">
+      <h1 class="text-center">LogIn</h1>
   
-    <a (click)="onLoginClicked()">Signup</a>
-  </div>
+      <div class="field">
+        <label for="username">User Name</label> <br>
+        <input class="form-input" type="text" name="username" 
+        placeholder="Enter User Name"
+        id="phone" formControlName="username" >
+      </div>
 
-</div>
+      @if (userName.invalid && (userName.dirty || userName.touched)) {
+        @if (userName.errors?.['required']) {
+          <small class="err">User Name is required</small>
+        }
+      }
+  
+      <div class="field">
+        <label for="password">Password</label> <br>
+        <input class="form-input" type="password" name="password" 
+        id="password" formControlName="password"
+        placeholder="Enter Password">
+      </div>
+
+        @if (pwd.invalid && (pwd.dirty || pwd.touched)) {
+
+        @if (pwd.errors?.['required']) {
+        <small class="err">Password is required</small>
+        }@else if(pwd.errors?.['minlength']){
+          <small class="err">Password must be  at least {{pwd.errors?.['minlength'].requiredLength}}</small>
+        }
+      }
+
+      <button [disabled]="loginForm.invalid" (click)="onLoginClicked()"  class="login-btn">Login</button>
+      
+      <div class="mt-3 ms-auto text-center">
+        Not Registered? <a routerLink="/signup" class="signup-link">Sign Up</a>
+      </div>
+    </div>
+  
+  </div>
+</form>
+
+
+
+

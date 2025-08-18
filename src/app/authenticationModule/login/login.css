@@ -14,6 +14,7 @@
   outline: none;
   border: none;
   border-bottom: 1px solid #996515;
+  font-size: 14px;
 }
 .container label {
   color: #996515;
@@ -21,13 +22,18 @@
 
 }
 
-a {
+.login-btn{
   background-color: #996515;
   padding: 0.3rem 2rem;
-  border-radius: 5%;
   cursor: pointer;
   color: #fff !important;
-  margin: 0 30%;
+  width: 100%;
+  margin-top: 10px;
+}
+.login-btn:disabled{
+  /* pointer-events: none; */
+  cursor: not-allowed;
+  opacity: 0.5;
 }
 .err{
   color: red;
@@ -35,6 +41,7 @@ a {
   margin-bottom: 10px;
   font-size: 12px;
   padding: 5px;
+  width: 100%;
 }
 .success{
   color: #fff;
@@ -43,3 +50,9 @@ a {
   font-size: 12px;
   padding: 5px;
 }
+.signup-link{
+  cursor: pointer;
+  color: #996515;
+} 
+
+
