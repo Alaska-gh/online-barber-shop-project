@@ -26,12 +26,10 @@ export interface Card {
 export interface Stylist{
   id: number
   image?: string,
-  userName: string
-  shopName: string;
+  shopName?: string;
   fullName: string
   password: string;
   confirmPassword: string,
-  phoneNum: number | null;
   email: string;
   gender: string;
   serviceType: string

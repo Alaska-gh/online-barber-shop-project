@@ -1,47 +1,50 @@
 
-h1 {
-  text-align: center;
-  font-weight: bold;
-  margin-top: 20px;
+
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #cf8311;
+  border-color: #cf8311;
+  box-shadow: none;
+  outline: none;
 }
 
-.stylist-container{
-  padding: 20px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+.btn-primary {
+  background-color: #996515;
+    padding: 5px;
+    margin: 0 20%;
+}
+
+.card-container{
+  z-index: 2;
+  margin-bottom: 30px;
+}
+
+.card-container .card {
   position: relative;
+  min-height: 312px;
   border-radius: 30% 0 30% 0;
-  margin-bottom: 50px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19);
 }
-.stylist-container img{
-  height: 200px;
-  width: 100%;
-  object-fit: cover;
-  border-radius: 30% 0 0 0;
+
+.card-container .card .card-title{
+  color: #996515 !important;
 }
-i{
+
+.card-container .card .card-body img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.view-details {
   position: absolute;
-  right: 1%;
   top: 2%;
+  right: 1%;
   font-size: 18px;
   color: #996515;
 }
-i:hover{
+.view-detailsi:hover {
   color: #cf8311;
 }
-
-h3{
-  flex-wrap: nowrap;
-  max-height: 40px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-top: 5px;
-}
-
-a{
-  background-color: #996515;
-  padding: 5px;
-  margin: 0 20%;
-}
-a:hover{
-  background-color: #cf8311;
+ul i{
+  color: #cf8311;
 }

@@ -1,5 +1,5 @@
 
-<h1>List Of Stylist</h1>
+<h1 class="text-center mt-5">List Of Stylist</h1>
 
 <app-filter></app-filter>
 
@@ -7,17 +7,56 @@
   <div class="row">
     @for (stylist of listOfStylists; track $index) {
       @if (selectedStylist === 'all' || stylist.serviceType.toLowerCase().includes(selectedStylist)) {
-        <div class="col-lg-3 col-md-2 col-sm-1">
-          <div class="stylist-container">
-            <!-- passing a dummy router path to this icon  -->
+        
+        <!-- <div class="col-lg-3 col-md-2 col-sm-1">
+          <div class="stylist-container card">
             <i [routerLink]="'/stylists/stylist/'+stylist.id" class="fa-solid fa-eye" title="View Stylist Details"></i>
-            <img [src]="stylist.image" alt="">
+            <img [src]="stylist.image" alt="" class="card-image-to">
             <h3 class="name">{{stylist.shopName}}</h3>
             <p>{{stylist.serviceType}}</p>
-            <p>{{stylist.phoneNum}}</p>
+            <p>0{{stylist.phoneNum}}</p>
             <a href="#">Book Now</a>
           </div>
-        </div>
+        </div> -->
+      
+            <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="card-container">
+          
+              <div class="card">
+                  <div class="view-details">
+                    <i [routerLink]="'/stylists/stylist/'+stylist.id" class="fa-solid fa-eye " title="View Stylist Details"></i>
+                  </div>
+                <div class="card-body text-center">
+                  <p><img class=" img-fluid" [src]="stylist.image" alt="card image"></p>
+                    <h4 class="card-title">{{stylist.shopName}}</h4>
+                    <p class="card-text">{{stylist.serviceType}}</p>
+                    <ul class="list-inline">
+                      <li class="list-inline-item ">
+                        <a class="social-icon text-xs-center" target="_blank" href="#">
+                          <i class="fab fa-facebook"></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="social-icon text-xs-center" target="_blank" href="#">
+                          <i class="fab fa-twitter "></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="social-icon text-xs-center" target="_blank" href="#">
+                          <i class="fab fa-skype "></i>
+                        </a>
+                      </li>
+                      <li class="list-inline-item">
+                        <a class="social-icon text-xs-center" target="_blank" href="#">
+                          <i class="fab fa-google "></i>
+                        </a>
+                      </li>
+                    </ul>
+                    <a href="#" class=" btn-primary ">Book Now</a>
+                </div>
+              </div>
+            </div>
+            </div>
       }
     }
   </div>

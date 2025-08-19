@@ -1,8 +1,9 @@
 import {  Component, inject  } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {  StylistService } from '../../services/stylist-service';
+import {  StylistAuthService } from '../../services/stylist-auth-service';
 import { Stylist } from '../../interfaces/interface';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { passwordMatchValidator } from '../../shared/password-match.directive';
 
 @Component({
   selector: 'signup-component',
@@ -18,21 +19,23 @@ export class SignupComponent{
 
 formBuilder: FormBuilder = inject(FormBuilder)
 
-
- getStylistService = inject(StylistService)
+router: Router = inject(Router)
+ getStylistService = inject(StylistAuthService)
 
  signUpForm = this.formBuilder.group({
   signupType:['customer'],
   shopName: ['', [Validators.required]],
-  fName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)+$/)]],
+  fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)+$/)]],
   email: ['', [Validators.required, Validators.email]],
-  phone: ['', [Validators.required]],
-  username: ['', [Validators.required]],
   password: ['', [Validators.required, Validators.minLength(8)]],
   confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
   gender:['', Validators.required],
   serviceType:['', Validators.required]
- })
+ },
+ {
+   validators: passwordMatchValidator
+  }
+)
 
  selectedSignupType: string;
 
@@ -43,62 +46,57 @@ formBuilder: FormBuilder = inject(FormBuilder)
  
  }
 
-  private idCounter: number = 0;
+//  this counter will be inremented upon creating a new user
+ private idCounter: number = 0;
 
-  // model = {
-  //   shopName: this.signUpForm.get('shopName')?.value,
-  //   fullName: this.signUpForm.get('fName')?.value,
-  //   password: this.signUpForm.get('password')?.value,
-  //   confirmPassword: this.signUpForm.get('confirmPassword')?.value,
-  //   email: this.signUpForm.get('email')?.value,
-  //   phoneNum: Number(this.signUpForm.get('phone')?.value),
-  //   gender: this.signUpForm.get('gender')?.value,
-  //   serviceType: this.signUpForm.get('serviceType')?.value,
-  //   userName: this.signUpForm.get('username')?.value,
-  // };
-  
-
-  
  signUp(){
-
+  
   const formValues = this.signUpForm.value
    if(this.selectedSignupType === 'stylist'){
-   const newStylist: Stylist = {
+   const stylistData: Stylist = {
     id: this.idCounter,
     shopName: formValues.shopName,
-    fullName: formValues.fName,
+    fullName: formValues.fullName,
     email: formValues.email,
-    phoneNum: +formValues.phone,
-    userName: formValues.username,
     password: formValues.password,
     confirmPassword: formValues.confirmPassword,
     gender: formValues.gender,
     serviceType: formValues.serviceType
    }
-    this.getStylistService.createStylist(newStylist)
+   delete stylistData.confirmPassword;
+
+    this.getStylistService.createStylist(stylistData).subscribe(
+      response => {
+        alert('Acount created successfuly');
+         this.router.navigate(['login'])
+      },
+      error =>{
+        console.log(error);
+        
+      }
+    )
    }
-   alert('Acount created successfuly');
+   
+  
  }
+
+//  a getter method to get the formControls
 
  get sName(){
   return this.signUpForm.controls['shopName']
  }
  get fName(){
-  return this.signUpForm.controls['fName']
+  return this.signUpForm.controls['fullName']
  }
  get password(){
   return this.signUpForm.controls['password']
  }
- get phoneNum(){
-  return this.signUpForm.controls['phone']
- }
+
  get email(){
   return this.signUpForm.controls['email']
  }
  get cPassword(){
   return this.signUpForm.controls['confirmPassword']
  }
- get userName(){
-  return this.signUpForm.controls['username']
- }
+
 }

@@ -1,9 +1,9 @@
-import { Component,  inject,  OnDestroy,  OnInit } from '@angular/core';
+import { Component,  inject,  OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { Stylist } from '../../../../interfaces/interface';
-import { StylistService } from '../../../../services/stylist-service';
 import { ActivatedRoute } from '@angular/router';
+import { StylistAuthService } from '../../../../services/stylist-auth-service';
 
 
 @Component({
@@ -21,7 +21,7 @@ export class StylistDetailsComponent implements OnInit{
  
   stylists: Stylist [];
 
-  stylistService : StylistService = inject(StylistService);
+  stylistService : StylistAuthService = inject(StylistAuthService);
 
   activeroute: ActivatedRoute = inject(ActivatedRoute);
   
@@ -50,8 +50,13 @@ export class StylistDetailsComponent implements OnInit{
       // using paramMaps observable to get the curent active route parameter to check if the id matches any of the urls.
       this.paramMapsObservable = this.activeroute.paramMap.subscribe((data) =>{
       this.searchId = Number(data.get('id'));
-      this.stylists = this.stylistService.getStylist()
+      this.stylistService.getStylist().subscribe((data) =>{
+      this.stylists = data;
       this.selectedStylist = this.stylists.find(stylist => stylist.id === this.searchId) 
+
+       })
+      
+      
     })
     
   }

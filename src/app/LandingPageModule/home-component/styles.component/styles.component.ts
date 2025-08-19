@@ -35,10 +35,7 @@ export class StylesComponent implements OnInit{
           delay: 3000,
           disableOnInteraction: false
         },
-        // scrollbar:{
-        //   hide: true,
-        //   draggable: false
-        // },
+       
         speed: 3000,
         pagination:{
           el: '.swiper-pagination',
@@ -57,36 +54,5 @@ export class StylesComponent implements OnInit{
     
    }
 
-  // SWIPER CONFIGURATIONS
-  // why I use the aftervieinit?
-  //   ngAfterViewInit() {
-  //     new Swiper('.swiper-container', 
-  //     {
-  //       modules: [Pagination, Navigation, Autoplay, Scrollbar],
-  //       loop: true,
-  //       autoplay: {
-  //         delay: 3000,
-  //         disableOnInteraction: false
-  //       },
-  //       // scrollbar:{
-  //       //   hide: true,
-  //       //   draggable: false
-  //       // },
-  //       speed: 3000,
-  //       pagination:{
-  //         el: '.swiper-pagination',
-  //         clickable: true
-  //       },
-  //       navigation: {
-  //         nextEl: '.swiper-button-next',
-  //         prevEl: '.swiper-button-prev'
-  //       },
-  //       breakpoints: {
-  //         0: { slidesPerView: 1},
-  //         768: { slidesPerView: 2},
-  //         1024: { slidesPerView: 4}
-  //       }
-  //     }
-  //   );
-  // }
+  
 }

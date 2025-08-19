@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import { Filter } from './filter/filter';
 import { Stylist } from '../../../interfaces/interface';
-import { StylistService } from '../../../services/stylist-service';
 import { FilterService } from '../../../services/filter.service';
 import { RouterModule } from '@angular/router';
+import { StylistAuthService } from '../../../services/stylist-auth-service';
 
 
 @Component({
@@ -20,10 +20,12 @@ export class StylistListComponent implements OnInit{
 
   filterService = inject(FilterService)
 
-  stylistService = inject(StylistService)
+  stylistService = inject(StylistAuthService)
 
   ngOnInit(): void {
-    this.listOfStylists = this.stylistService.getStylist();
+     this.stylistService.getStylist().subscribe((data) =>{
+      this.listOfStylists = data
+     });
 
     this.filterService.selectedBtnEvent.subscribe((value) =>{
       this.selectedStylist = value;

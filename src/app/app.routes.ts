@@ -5,8 +5,8 @@ import { StylistListComponent } from './stylistsModule/stylists-container-compon
 import { WildCardComponent } from './wild-card-component/wild-card-component';
 import { StylistDetailsComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component';
 import { Login } from './authenticationModule/login/login';
-import { CanActivate } from './authenticationModule/authGuard';
 import { AppointmentsComponent } from './appointments-component/appointments-component';
+import { CanActivate } from './authenticationModule/guards/authGuard';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},

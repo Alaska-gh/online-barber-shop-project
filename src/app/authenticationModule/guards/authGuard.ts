@@ -1,10 +1,11 @@
 import { inject } from "@angular/core"
-import { AuthService } from "../services/auth.service"
 import { Router } from "@angular/router";
+import { AuthService } from "../../services/auth.service";
+import { StylistAuthService } from "../../services/stylist-auth-service";
 
 export const CanActivate = () =>{
 
-  const authService = inject(AuthService);
+  const authService = inject(StylistAuthService);
 
   const router = inject(Router)
 

@@ -1,12 +1,15 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Stylist } from '../../interfaces/interface';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { StylistAuthService } from '../../services/stylist-auth-service';
+declare var bootstrap: any;
+
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -17,18 +20,18 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 })
 export class Login implements OnInit{
 
-  @ViewChild('errMsg') errMessage: ElementRef
-
- formBuilder: FormBuilder = inject(FormBuilder);
+  formBuilder: FormBuilder = inject(FormBuilder);
 
   router: Router = inject(Router);
-  stylist: Stylist
-  authService: AuthService = inject(AuthService)
+
+  
+
+  authService: StylistAuthService = inject(StylistAuthService)
 
   activeRoute = inject(ActivatedRoute)
 
   loginForm = this.formBuilder.group({
-    username: ['', Validators.required],
+    email: ['', Validators.required, Validators.email],
     password:['', [Validators.required, Validators.minLength(8)
     ]]
   })
@@ -37,7 +40,6 @@ export class Login implements OnInit{
  ngOnInit(): void {
     this.activeRoute.queryParamMap.subscribe((route)=>{
     const logout = Boolean(route.get('logout'));
-
     if(logout && this.authService.isLoggedIn){
       this.authService.logout();
       alert(`you are logged out: status: ${this.authService.isLoggedIn}`)
@@ -45,8 +47,8 @@ export class Login implements OnInit{
    })
  }
 
- get userName(){
-  return this.loginForm.controls['username']
+ get email(){
+  return this.loginForm.controls['email']
  }
 
  get pwd(){
@@ -54,20 +56,21 @@ export class Login implements OnInit{
  }
 
   onLoginClicked(){
-    const username: string = this.loginForm.get('username')?.value;
-    const password : string = this.loginForm.get('password')?.value;
+  const email: string = this.loginForm.get('email')?.value;
+  const password : string = this.loginForm.get('password')?.value;
 
-    this.stylist = this.authService.login(username, password);
-    console.log(this.stylist.password);
-    
-
-    if(this.stylist){
-      alert(`Welcome ${this.stylist.fullName} you are logged in`)
-        this.router.navigate(['home'])
+  this.authService.login(email, password).subscribe({
+  next: (stylist) => {
+    if (stylist) {
+        this.router.navigate(['home']);
+    } else {
+      console.log('Login failed');
     }
-    else{
-        this.errMessage.nativeElement.innerHTML = `Sorry your credentials are incorrect`;
-    }
+  },
+  error: (err) => {
+    console.error('Login error:', err);
+  }
+});
     
   }
 }
