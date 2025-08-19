@@ -9,7 +9,6 @@ export interface Styles{
   image?: string
   title: string
   price: number
-  link: string
 }
 export interface CardDetails{
   image: string,

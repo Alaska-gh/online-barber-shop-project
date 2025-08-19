@@ -42,3 +42,8 @@ a{
 .swiper-container{
   overflow: hidden;
 }
+i{
+  position: absolute;
+  right: 7%;
+  top: 5%;
+}
