@@ -9,3 +9,9 @@
 .active{
   background-color: #996515;
 }
+.redirect-btn{
+  background-color: green;
+  border-radius: 20px;
+  color: #fff;
+  padding: 10px 30px;
+}

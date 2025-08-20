@@ -1,9 +1,9 @@
-import { Card } from './../../../interfaces/interface';
 import { StarredBarbersService } from './../../../services/starred-barbers.service';
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit} from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
+import { CardDetails } from '../../../interfaces/interface';
 
 
 @Component({
@@ -14,7 +14,7 @@ import  { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
   styleUrl: './starred-barbers.component.css'
 })
 export class StarredBarbersComponent implements OnInit {
-  cardItem: Card[] = [];
+  cardItem: CardDetails[] = [];
   // A LIST OF ICONS
   socialLinks = ["fab fa-facebook", "fab fa-twitter", "fab fa-instagram","fab fa-tiktok"]
 

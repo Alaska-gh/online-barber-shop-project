@@ -7,6 +7,7 @@ export class TimeService{
   
   getTimeOfDay(): string {
     const hours = new Date().getHours()
+    
     if(hours < 12){
       return 'Morning'
     }else if(hours < 17){

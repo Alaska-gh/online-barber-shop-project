@@ -1,12 +1,8 @@
-<div class="d-flex min-vh-100 justify-content-center">
-  <!-- Sidebar -->
-  <!-- <a class="sidebar " style="width: 40px;" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button"
-    aria-controls="offcanvasExample">
-    <i class="fas fa-angle-right ms-3"></i>
-  </a> -->
-  <div class="sidebar text-white p-3 t" style="width: 280px;" >
+@if (isLoggedIn) {
+  <div class="d-flex min-vh-100 justify-content-center">
+    <div class="sidebar text-white p-3 t" style="width: 280px;">
       <span class="fs-4 offcanvas-title">{{currentStylist.shopName}}</span>
-    <hr>
+      <hr>
       <ul class="nav nav-pills flex-column mb-auto ">
         <li class="nav-item">
           <a href="#" class="nav-link active">Dashboard</a>
@@ -25,10 +21,17 @@
         </div>
         <a href="#" (click)="onLogOutClicked($event)">Sign out</a>
       </div>
+    </div>
+  
+    <!-- Main Content -->
+    <div class="flex-grow-1 p-4">
+      <stylist-dashboard></stylist-dashboard>
+    </div>
   </div>
-
-  <!-- Main Content -->
-  <div class="flex-grow-1 p-4">
-    <stylist-dashboard></stylist-dashboard>
+}@else {
+  <div class="text-center mt-5">
+    <h2 class="text-danger">You are Logged out</h2>
+    <p>Kindly log in again</p>
+    <a routerLink="/login" class="redirect-btn">Go To LogIn</a>
   </div>
-</div>
+}
