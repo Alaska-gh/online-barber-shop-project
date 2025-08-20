@@ -1,37 +1,37 @@
-import { Card } from '../interfaces/interface';
 import { Injectable } from '@angular/core';
+import { CardDetails } from '../interfaces/interface';
 
-
- const cardItems: Card[]= 
+// hard coded values for the barbers information
+ const cardItems: CardDetails[]= 
  [
    {
     image: '../images/staff-1.jpeg',
     name: 'Yussif Bashiru',
-    disc: 'Senior Barber'
+    comments: 'Senior Barber'
   
   },
    {
     image: '../images/staff-1.jpeg',
     name: 'Yussif Bashiru',
-    disc: 'Senior Barber'
+    comments: 'Senior Barber'
   
   },
    {
     image: '../images/staff-1.jpeg',
     name: 'Yussif Bashiru',
-    disc: 'Senior Barber'
+    comments: 'Senior Barber'
   
   },
    {
     image: '../images/staff-1.jpeg',
     name: 'Yussif Bashiru',
-    disc: 'Senior Barber'
+    comments: 'Senior Barber'
   
   },
    {
     image: '../images/staff-1.jpeg',
     name: 'Yussif Bashiru',
-    disc: 'Senior Barber'
+    comments: 'Senior Barber'
   
   }
 ]
@@ -39,7 +39,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class StarredBarbersService {
-
+//  returning list of data 
   getCardItem(){
     return cardItems;
   }

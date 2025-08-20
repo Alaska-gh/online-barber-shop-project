@@ -1,0 +1,11 @@
+.divider{
+  margin-top: 200px;
+}
+
+.sidebar {
+  background-color: rgb(10, 10, 36);
+
+}
+.active{
+  background-color: #996515;
+}

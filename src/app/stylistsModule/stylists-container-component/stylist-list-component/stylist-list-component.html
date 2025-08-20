@@ -5,20 +5,9 @@
 
 <div class="container my-5">
   <div class="row">
+    <!-- for all of the stylist in the database we are checking if their service category equal the filtered category -->
     @for (stylist of listOfStylists; track $index) {
       @if (selectedStylist === 'all' || stylist.serviceType.toLowerCase().includes(selectedStylist)) {
-        
-        <!-- <div class="col-lg-3 col-md-2 col-sm-1">
-          <div class="stylist-container card">
-            <i [routerLink]="'/stylists/stylist/'+stylist.id" class="fa-solid fa-eye" title="View Stylist Details"></i>
-            <img [src]="stylist.image" alt="" class="card-image-to">
-            <h3 class="name">{{stylist.shopName}}</h3>
-            <p>{{stylist.serviceType}}</p>
-            <p>0{{stylist.phoneNum}}</p>
-            <a href="#">Book Now</a>
-          </div>
-        </div> -->
-      
             <div class="col-xs-12 col-sm-6 col-md-4">
             <div class="card-container">
           

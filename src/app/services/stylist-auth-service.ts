@@ -21,7 +21,7 @@ export class StylistAuthService {
   loggedInUser: Stylist | null = null;
    
  getStylist(){
-    return this.http.get<Stylist[]>(`${this.url}/users`)
+    return this.http.get<Stylist[]>(`${this.url}/users`) //returing all list of users from the json server
  }
 
 
@@ -31,6 +31,7 @@ export class StylistAuthService {
       const user = users.find(
         u => u.email === email && u.password === password
       );
+      // if we are able login, we want to update the values of the isLoggedIn, LoggedInUser and the logInState properties
       if(user){
         this.loggedInUser = user
         this.isLoggedIn = true
@@ -41,7 +42,9 @@ export class StylistAuthService {
   );
 }
 
+
   createStylist(stylist: Stylist){
+    // setting a default image for all users who have not uploaded a picture, since for now we haven't added picture upload option
     if(stylist.serviceType.toLowerCase() === 'barber salon service' && stylist.image === undefined){
       stylist.image = 'images/last-1.jpeg';
 
@@ -52,7 +55,7 @@ export class StylistAuthService {
       stylist.image = 'images/unisex.png'
     }
    
-    return this.http.post(`${this.url}/users`, stylist)
+    return this.http.post(`${this.url}/users`, stylist) // sending the user details to the json server
   }
 
 

@@ -8,8 +8,5 @@ import { Component } from '@angular/core';
 })
 export class HeroComponent {
 
-  // A FUNCTION TO ALERT A MESSAGE
-  sendMessage(){
-    alert('Hi Thanks For Being here!!! We Are Currently working on this feature!')
-  }
+  
 }

@@ -1,0 +1,61 @@
+
+.myCard{
+  background-color: rgb(10, 10, 36);
+  margin: 5px;
+  padding: 10px 20px;
+  color: #fff;
+  font-weight: 400 !important;
+  font-size: 12px !important;
+  width: 230px;
+  border-radius: 10px;
+}
+
+h4{
+  margin-top: -15px;
+  color: #996515;
+}
+.appointments-container, .calender-container{
+    border: 1px rgba(10, 10, 36, 0.5) solid;
+  border-radius: 5px;
+    padding: 10px;
+    background-color: rgba(10, 10, 36, 0.1) ;
+}
+.calender-container{
+  margin-left: 20px;
+}
+.calender{
+ 
+  background-color: rgba(10, 10, 36, 0.5);
+  height: 300px;
+}
+
+.appointments{
+  background-color: rgba(10, 10, 36, 0.5);
+  padding: 2px 20px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.bottom-text{
+  margin-top: -20px;
+  margin-bottom: -10px;
+}
+.style-name{
+  color: rgba(255, 255, 255, 0.712);
+}
+.top-text{
+  color: #fff;
+  font-weight: 700;
+}
+.confirmed{
+  background-color: rgba(12, 167, 12, 0.438);
+  border-radius: 20px;
+  padding: 0 20px;
+  color: #fff;
+  font-size: 12px;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+
+.bold-text{
+  font-weight: bold;
+}

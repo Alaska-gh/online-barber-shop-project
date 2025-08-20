@@ -22,13 +22,16 @@ export class StylistListComponent implements OnInit{
 
   stylistService = inject(StylistAuthService)
 
+
   ngOnInit(): void {
+    // retrieves list of stylist from the database
      this.stylistService.getStylist().subscribe((data) =>{
       this.listOfStylists = data
      });
 
+    //  listening to the changes when the value of the radio button change
     this.filterService.selectedBtnEvent.subscribe((value) =>{
-      this.selectedStylist = value;
+      this.selectedStylist = value; 
     })
   }
 }

@@ -7,6 +7,7 @@ import { StylistDetailsComponent } from './stylistsModule/stylists-container-com
 import { Login } from './authenticationModule/login/login';
 import { AppointmentsComponent } from './appointments-component/appointments-component';
 import { CanActivate } from './authenticationModule/guards/authGuard';
+import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
 
 export const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,7 +22,9 @@ export const routes: Routes = [
   ]},
   {path: 'login', component: Login},
   {path: 'booking', component: AppointmentsComponent},
-  {path: '**', component: WildCardComponent}
+  {path: 'dashboard', component: StylistDashboardLayout},
+  {path: '**', component: WildCardComponent},
+  
 ];
 
 

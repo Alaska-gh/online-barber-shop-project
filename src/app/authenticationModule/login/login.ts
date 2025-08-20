@@ -1,10 +1,9 @@
-import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { Stylist } from '../../interfaces/interface';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { StylistAuthService } from '../../services/stylist-auth-service';
-declare var bootstrap: any;
+import { filter } from 'rxjs';
 
 
 @Component({
@@ -24,8 +23,6 @@ export class Login implements OnInit{
 
   router: Router = inject(Router);
 
-  
-
   authService: StylistAuthService = inject(StylistAuthService)
 
   activeRoute = inject(ActivatedRoute)
@@ -36,15 +33,8 @@ export class Login implements OnInit{
     ]]
   })
 
-
  ngOnInit(): void {
-    this.activeRoute.queryParamMap.subscribe((route)=>{
-    const logout = Boolean(route.get('logout'));
-    if(logout && this.authService.isLoggedIn){
-      this.authService.logout();
-      alert(`you are logged out: status: ${this.authService.isLoggedIn}`)
-    }
-   })
+   
  }
 
  get email(){
@@ -62,7 +52,7 @@ export class Login implements OnInit{
   this.authService.login(email, password).subscribe({
   next: (stylist) => {
     if (stylist) {
-        this.router.navigate(['home']);
+        this.router.navigate(['dashboard']);
     } else {
       console.log('Login failed');
     }

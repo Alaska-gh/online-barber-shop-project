@@ -1,3 +1,4 @@
+//the footer model
 export interface Footer{
   group: {
     title: string;
@@ -5,23 +6,20 @@ export interface Footer{
   }
 }
 
+// styles model
 export interface Styles{
   image?: string
   title: string
   price: number
 }
+
+// card details model
 export interface CardDetails{
   image: string,
   name: string,
   comments: string
 }
-
-export interface Card {
-  image: string,
-  name: string,
-  disc: string
-}
-
+//stylist model
 export interface Stylist{
   id: number
   image?: string,

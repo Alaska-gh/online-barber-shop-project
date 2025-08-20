@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component,inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FilterService } from '../../../../services/filter.service';
 
@@ -11,9 +11,9 @@ import { FilterService } from '../../../../services/filter.service';
 export class Filter {
   selectedStylists: string = 'all';
 
- fiterService = inject(FilterService)
+  fiterService = inject(FilterService)
 
  onBtnChange(){
-   this.fiterService.onRadioBtnChanged(this.selectedStylists)
+   this.fiterService.onRadioBtnChanged(this.selectedStylists) // passing the value of the selected radio button 
  }
 }

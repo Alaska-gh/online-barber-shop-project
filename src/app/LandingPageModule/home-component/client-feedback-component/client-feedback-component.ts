@@ -2,7 +2,7 @@ import { CardDetails } from './../../../interfaces/interface';
 import { Component, AfterViewInit, OnInit, inject} from '@angular/core';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
-import { ClientFeedbackService} from './client-feedback-service';
+import { ClientFeedbackService} from '../../../services/client-feedback-service';
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'client-feedback',
@@ -12,16 +12,18 @@ import { CommonModule } from '@angular/common';
   styleUrl: './client-feedback-component.css'
 })
 export class ClientFeedbackComponent implements OnInit{
-  // CREATING AN INSTANCE OF THE CLIENTFEEDBACKSERVICE
+ 
   details: CardDetails[] = [];
 
-  detailsCard = inject(ClientFeedbackService);
+  detailsCard = inject(ClientFeedbackService);  // CREATING AN INSTANCE OF THE CLIENTFEEDBACKSERVICE
 
   // SWIPER CONFIGURRATIONS
 
   ngOnInit() {
-    this.details = this.detailsCard.getCardDetails();
+    this.details = this.detailsCard.getCardDetails(); //fetching the card details from the clientfeedback service
     
+
+    //implementing swiper sliders
     new Swiper('.client-swiper-container', {
       modules: [Pagination, Navigation, Autoplay, Scrollbar],
 

@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Styles } from '../interfaces/interface';
 
+
+// hard coded values for the styles array
   const style: Styles [] = [
     {
       image: 'images/men-haircuts/mid-fade-haircut-curly-hair.jpg',
@@ -53,14 +55,13 @@ import { Styles } from '../interfaces/interface';
       price: 150,
     },
     
-    
-    
   ]
 
   @Injectable({
   providedIn: 'root'
 })
 export class StylesService {
+  // returning all styles from the Styles Array
   getStyles(): Styles[]{
     return style
   }

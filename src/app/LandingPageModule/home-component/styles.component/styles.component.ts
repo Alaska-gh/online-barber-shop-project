@@ -19,14 +19,10 @@ export class StylesComponent implements OnInit{
 
   stylesService = inject(StylesService)
 
-  // constructor(
-  //   private styleService: StylesService
-  //  ){ }
-
-
    ngOnInit(): void {
-    this.styles = this.stylesService.getStyles();
+    this.styles = this.stylesService.getStyles(); // fetching the list of styles from the styles service
 
+    // implementing swiper sliders
      new Swiper('.swiper-container', 
       {
         modules: [Pagination, Navigation, Autoplay, Scrollbar],

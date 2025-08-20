@@ -25,7 +25,7 @@ export class StarredBarbersComponent implements OnInit {
 
 //  SWIPER CONFIURATIONS
   ngOnInit() {
-    this.cardItem = this.cardItemDetails.getCardItem();
+    this.cardItem = this.cardItemDetails.getCardItem(); // getting card details from the starred barbers service
 
     setTimeout(()=>{
        new Swiper('.barbers-swiper-container', 

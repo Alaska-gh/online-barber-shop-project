@@ -4,9 +4,9 @@ export const passwordMatchValidator:ValidatorFn = (controls: AbstractControl): V
   const password = controls.get('password');
   const confirmPassword = controls.get('confirmPassword');
 
+  // if no value is entered in both fields we are returning null
   if(!password || !confirmPassword){
     return null
   }
-
   return password.value === confirmPassword.value ? null : {passwardMismatch: true}
 }

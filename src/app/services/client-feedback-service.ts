@@ -1,7 +1,7 @@
-import { CardDetails } from './../../../interfaces/interface';
+import { CardDetails } from '../interfaces/interface';
 import { Injectable } from '@angular/core';
 
-const Card: CardDetails[]=[
+const Card: CardDetails[] = [
     {
       image: "../images/staff-3.jpeg",
       name: 'James K. - Regular Client',
@@ -15,7 +15,7 @@ const Card: CardDetails[]=[
     {
       image: "../images/staff-1.jpeg",
       name: 'Sarah T. -  First-Time Client',
-      comments: `"Loved the convenience of choosing a barber based on reviews. The haircut was great, but the wait time was a bit longer than expected. Still, the service was professional, and I’ll be back!"`
+      comments: `"Loved the convenience of choosing a barber based on reviews. The haircut was great, but the wait time was a bit longer than expected. Still, the service was professional, and I'll be back!"`
     },
   ]
 
