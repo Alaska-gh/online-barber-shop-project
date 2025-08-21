@@ -14,21 +14,46 @@ h4{
   margin-top: -15px;
   color: #996515;
 }
-.appointments-container, .calender-container{
+.appointments-container{
     border: 1px rgba(10, 10, 36, 0.5) solid;
-  border-radius: 5px;
+    border-radius: 5px;
     padding: 10px;
     background-color: rgba(10, 10, 36, 0.1) ;
 }
-.calender-container{
-  margin-left: 20px;
+.calender-wrapper{
+  margin-left: 10px;
+  overflow: hidden;
+  background-color: rgba(10, 10, 36, 0.1);
+  padding: 2px;
+  width: 100%;
+  border-radius: 5px;
 }
-.calender{
- 
-  background-color: rgba(10, 10, 36, 0.5);
-  height: 300px;
+.calendar-view{
+  height: 100%;
+}
+.cal-title{
+  margin-left: 10px;
+}
+:host ::ng-deep .calendar-view .cal-month-view .cal-day-cell {
+  min-height: 30px;
+  font-size: 8px;
 }
 
+:host ::ng-deep .calendar-view .cal-event {
+  font-size: 11px;
+  margin: 1px;
+  padding: 1px 3px;
+}
+:host ::ng-deep .calendar-view .cal-cell-top {
+ height: 40px;
+ min-height: 40px;
+ flex: none;
+}
+
+:host ::ng-deep .calendar-view .cal-month-view .cal-header {
+  height: 40px;
+  font-size: 12px;
+}
 .appointments{
   background-color: rgba(10, 10, 36, 0.5);
   padding: 2px 20px;

@@ -1,27 +1,39 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { Stylist } from '../../interfaces/interface';
+import { Router, RouterModule } from '@angular/router';
+import { User } from '../../interfaces/interface';
 import { StylistAuthService } from '../../services/stylist-auth-service';
 
 @Component({
   selector: 'main-nav',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule,
+  ],
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.css'
 })
-export class MainNavComponent implements OnInit{
+export class MainNavComponent {
+isLoggedIn: boolean ;
+user: User;
 
 authService = inject(StylistAuthService)
+router: Router = inject(Router)
 
-isLoggedIn: boolean = false;
-
-currentStylist: Stylist;
 
 ngOnInit(): void {
-  this.authService.logInState.subscribe((state) =>{
-    this.isLoggedIn = state;
-    this.currentStylist = this.authService.loggedInUser
+  this.authService.logInState.subscribe((loggedIn) =>{
+    this.isLoggedIn = loggedIn
   })
+  this.authService.currentUser.subscribe((currentUser) =>{
+    this.user = currentUser
+  });
+  
+}
+
+
+onLogoutClicked(event: Event){
+    event.preventDefault(); //preventing the default behaviur of the anchor element
+    this.authService.logoutStylist()
+    this.router.navigate(['login']);
+    alert(`You are logged out`)
 }
 }

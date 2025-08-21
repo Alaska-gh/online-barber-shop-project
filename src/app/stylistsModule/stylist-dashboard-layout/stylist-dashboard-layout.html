@@ -19,7 +19,7 @@
           <img [src]="currentStylist.image" alt="" width="32" height="32" class="rounded-circle me-2">
           <strong>{{currentStylist.fullName}}</strong>
         </div>
-        <a href="#" (click)="onLogOutClicked($event)">Sign out</a>
+        <a href="#" (click)="onLogOutClicked($event)">Sign out <i class="fas fa-sign-out-alt"></i></a>
       </div>
     </div>
   
@@ -27,11 +27,5 @@
     <div class="flex-grow-1 p-4">
       <stylist-dashboard></stylist-dashboard>
     </div>
-  </div>
-}@else {
-  <div class="text-center mt-5">
-    <h2 class="text-danger">You are Logged out</h2>
-    <p>Kindly log in again</p>
-    <a routerLink="/login" class="redirect-btn">Go To LogIn</a>
   </div>
 }

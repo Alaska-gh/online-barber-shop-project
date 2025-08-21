@@ -4,7 +4,7 @@ import { FooterComponent } from './footer-component/footer-component';
 
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from './header.component/header.component';
-import { ActivatedRoute, NavigationEnd, Router, RouterOutlet} from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import { filter } from 'rxjs';
 
 

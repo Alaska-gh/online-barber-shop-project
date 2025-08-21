@@ -1,8 +1,9 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { StylistAuthService } from '../../services/stylist-auth-service';
-import { Stylist } from '../../interfaces/interface';
+import { User } from '../../interfaces/interface';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'stylist-dashboard-layout',
@@ -11,26 +12,24 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './stylist-dashboard-layout.css'
 })
 export class StylistDashboardLayout implements OnInit{
-
-  isLoggedIn: boolean = false;
-  currentStylist: Stylist;
+  isLoggedIn: boolean;
+  currentStylist: User;
 
   authService = inject(StylistAuthService)
   router: Router = inject(Router)
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isAuthorised();
-
-    this.currentStylist = this.authService.loggedInUser
+   this.isLoggedIn = this.authService.logInState.value
+   console.log(this.isLoggedIn);
+   this.authService.currentUser.subscribe((currentUser) => {
+    this.currentStylist = currentUser
+   })      
   }
 
-  onLogOutClicked(event: Event){
+   onLogOutClicked(event: Event){
     event.preventDefault(); //preventing the default behaviur of the anchor element
-
-    this.authService.logout()
-
-    this.router.navigate(['home']);
-
-    alert(`logged out ${this.authService.isLoggedIn}`)
+    this.authService.logoutStylist()
+    this.router.navigate(['login']);
+    alert(`You are logged out`)
   }
 }

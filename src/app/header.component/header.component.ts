@@ -16,8 +16,7 @@ export class HeaderComponent implements OnInit{
  activeRoute: Router = inject(Router);
 
 
-  ngOnInit(): void {
-   
+  ngOnInit(): void {   
     this.activeRoute.events.pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: NavigationEnd) =>{
         this.currentRoute = event.urlAfterRedirects;

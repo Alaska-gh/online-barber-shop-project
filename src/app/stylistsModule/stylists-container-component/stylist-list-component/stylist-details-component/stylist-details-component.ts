@@ -1,7 +1,7 @@
 import { Component,  inject,  OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { Stylist } from '../../../../interfaces/interface';
+import { User } from '../../../../interfaces/interface';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { StylistAuthService } from '../../../../services/stylist-auth-service';
 import { Observable } from 'rxjs';
@@ -16,11 +16,11 @@ import { Observable } from 'rxjs';
 })
 export class StylistDetailsComponent implements OnInit{
 
-  selectedStylist: Stylist;
+  selectedStylist: User;
 
   searchId: number;
  
-  stylists: Stylist [];
+  stylists: User [];
 
   stylistService : StylistAuthService = inject(StylistAuthService);
 
@@ -53,7 +53,7 @@ export class StylistDetailsComponent implements OnInit{
       this.searchId = Number(data.get('id')); // gets the id of the current route
 
       // retrieves list of tylist from the database
-      this.stylistService.getStylist().subscribe((data) =>{
+      this.stylistService.getUsers().subscribe((data) =>{
       this.stylists = data;
 
       //returns stylist who's id matches the id of the current route

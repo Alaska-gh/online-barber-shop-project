@@ -49,10 +49,11 @@ export class Login implements OnInit{
   const email: string = this.loginForm.get('email')?.value;
   const password : string = this.loginForm.get('password')?.value;
 
-  this.authService.login(email, password).subscribe({
+  this.authService.loginUser(email, password).subscribe({
   next: (stylist) => {
     if (stylist) {
-        this.router.navigate(['dashboard']);
+        alert('login successfully')
+        this.redirectUser(stylist.role)
     } else {
       console.log('Login failed');
     }
@@ -62,5 +63,16 @@ export class Login implements OnInit{
   }
 });
     
+  }
+
+  redirectUser(role: string){
+    if (role === 'stylist') {
+        this.router.navigate(['dashboard']);
+      } else if (role === 'customer') {
+        this.router.navigate(['home']);
+      } else {
+        // fallback
+        this.router.navigate(['/login']);
+      }
   }
 }

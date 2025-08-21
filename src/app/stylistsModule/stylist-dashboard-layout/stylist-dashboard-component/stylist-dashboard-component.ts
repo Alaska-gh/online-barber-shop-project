@@ -1,25 +1,44 @@
+import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Stylist } from '../../../interfaces/interface';
+import { User } from '../../../interfaces/interface';
 import { StylistAuthService } from '../../../services/stylist-auth-service';
 import { TimeService } from '../../../services/timeOfDay.service';
+import { CalendarEvent, CalendarModule, CalendarUtils } from 'angular-calendar';
+
 
 @Component({
   selector: 'stylist-dashboard',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, CalendarModule],
+  providers: [
+    CalendarUtils
+  ],
   templateUrl: './stylist-dashboard-component.html',
   styleUrl: './stylist-dashboard-component.css'
 })
 export class StylistDashboardComponent {
-  currentStylist: Stylist;
+  currentStylist: User;
   greetingTime: string
 
   authService = inject(StylistAuthService)
   timeService = inject(TimeService)
 
 
+  viewDate: Date = new Date()
+  view: string = 'month'
+  events: CalendarEvent[] = [
+      {
+      start: new Date(),
+      title: 'Today\'s Event',
+      color: {
+         primary: '#1e90ff', 
+         secondary: '#D1E8FF' 
+        },
+    }
+  ]
 
   ngOnInit(): void {    
-    this.currentStylist = this.authService.loggedInUser // getting the logged in stylist
+    this.currentStylist = this.authService.currentUser.value // getting the logged in stylist
 
     this.updateTimeOfDay()
     setInterval(()=>{
@@ -30,6 +49,10 @@ export class StylistDashboardComponent {
 
   updateTimeOfDay(){
   this.greetingTime = this.timeService.getTimeOfDay()
+  }
+
+   handleEvent(action: string, event: any): void {
+    // Handle event
   }
 }
 

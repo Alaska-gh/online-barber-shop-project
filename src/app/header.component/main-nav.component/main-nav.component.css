@@ -12,7 +12,7 @@
 
 img{
     margin-top: 10px;
-    width: 30px;
+    width: 20px;
     border-radius: 100%;
 }
 .appointment{
@@ -39,4 +39,9 @@ img{
     background: none;
     color: #996515 !important;
     font-weight: bold;
+}
+.quantity{
+    color: darkred;
+    font-weight: bolder;
+    font-size: 14px;
 }

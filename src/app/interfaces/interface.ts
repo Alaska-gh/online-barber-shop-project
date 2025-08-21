@@ -20,7 +20,7 @@ export interface CardDetails{
   comments: string
 }
 //stylist model
-export interface Stylist{
+export interface User{
   id: number
   image?: string,
   shopName?: string;
@@ -29,5 +29,6 @@ export interface Stylist{
   confirmPassword: string,
   email: string;
   gender: string;
-  serviceType: string
+  serviceType?: string;
+  role: string
  }

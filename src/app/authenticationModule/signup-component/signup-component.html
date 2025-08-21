@@ -7,24 +7,24 @@
         <span>I'm signing up as a: </span>
   
         <span class="customer-selector">
-          <input type="radio" name="signupType" id="customer" value="customer" formControlName="signupType">
+          <input type="radio" name="role" id="customer" value="customer" formControlName="role">
           <label class="label" for="customer">Customer</label>
         </span>
   
         <span class="stylist-selector">
-          <input type="radio" name="signupType" id="stylist" value="stylist" formControlName="signupType">
+          <input type="radio" name="role" id="stylist" value="stylist" formControlName="role">
           <label class="label" for="stylist">Stylist</label>
         </span>
       </div>
   
-      @if (selectedSignupType === 'stylist') {
+      @if (signUpForm.value.role === 'stylist') {
        <div class="field">
         <label for="shopName">Business Name</label> <br>
         <input class="form-input" type="text" name="shopName" id="shopName" formControlName="shopName" placeholder="Enter Business Name">
        </div>
        @if (sName.invalid && (sName.dirty || sName.touched)) {
         @if (sName.errors?.['required']) {
-          <small class="err">Shop Name is required</small>
+          <small class="err">Business Name is required</small>
         }
        }
       }
@@ -88,7 +88,7 @@
       </div>
   
   
-      @if (selectedSignupType === 'stylist') {
+      @if (signUpForm.value.role === 'stylist') {
       <div class="field">
         <label for="serviceType">Service Type</label> <br>
         <select name="serviceType" id="serviceType" formControlName="serviceType">

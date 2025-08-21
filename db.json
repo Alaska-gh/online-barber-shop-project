@@ -2,13 +2,12 @@
   "users": [
     {
       "id": 1,
-      "shopName": "Jackie Joe Barber Shop",
-      "fullName": "jackie joe",
-      "email": "jackie@gmail.com",
+      "fullName": "Yussif Bashiru",
+      "email": "bashiruyussif87@gmail.com",
       "password": "Alaskagh",
       "gender": "male",
-      "serviceType": "Beauty Salon Service",
-      "image": "images/staff-1.jpeg"
+      "role": "customer",
+      "image": "images/user-avatar.png"
     },
     {
       "id": 2,
@@ -18,16 +17,18 @@
       "password": "Alaskagh",
       "gender": "male",
       "serviceType": "Barber Salon Service",
+      "role": "stylist",
       "image": "images/last-1.jpeg"
     },
     {
       "id": 3,
-      "shopName": "Elite Beauty Bar W",
-      "fullName": "Bless Tulasi E",
-      "email": "yussifbash45@gmail.com",
+      "shopName": "Jackie Joe Barber Shop",
+      "fullName": "jackie joe",
+      "email": "jackie@gmail.com",
       "password": "Alaskagh",
       "gender": "male",
       "serviceType": "Unisex Salon Service",
+      "role": "stylist",
       "image": "images/unisex.png"
     }
   ]
