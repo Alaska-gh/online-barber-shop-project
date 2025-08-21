@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { User } from '../../../interfaces/interface';
-import { StylistAuthService } from '../../../services/stylist-auth-service';
+import { UserAuthService } from '../../../services/user-auth-service';
 import { TimeService } from '../../../services/timeOfDay.service';
 import { CalendarEvent, CalendarModule, CalendarUtils } from 'angular-calendar';
 
@@ -20,7 +20,7 @@ export class StylistDashboardComponent {
   currentStylist: User;
   greetingTime: string
 
-  authService = inject(StylistAuthService)
+  authService = inject(UserAuthService)
   timeService = inject(TimeService)
 
 

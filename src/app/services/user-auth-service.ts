@@ -8,7 +8,7 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StylistAuthService {
+export class UserAuthService {
   http: HttpClient = inject(HttpClient);
 
   private url = 'http://localhost:3000' 

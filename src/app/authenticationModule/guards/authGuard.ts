@@ -1,10 +1,10 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, CanDeactivateFn, Router } from '@angular/router';
-import { StylistAuthService } from '../../services/stylist-auth-service';
+import { UserAuthService } from '../../services/user-auth-service';
 import { IDeactivateComponent } from '../../interfaces/interface';
 
 export const authGuard: CanActivateFn = () => {
-  const authService = inject(StylistAuthService);
+  const authService = inject(UserAuthService);
   const router = inject(Router);
 
   const state = authService.logInState.value

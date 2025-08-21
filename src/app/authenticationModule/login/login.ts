@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { StylistAuthService } from '../../services/stylist-auth-service';
+import { UserAuthService } from '../../services/user-auth-service';
 
 
 @Component({
@@ -19,7 +19,7 @@ import { StylistAuthService } from '../../services/stylist-auth-service';
 export class Login implements OnInit{
   formBuilder: FormBuilder = inject(FormBuilder);
   router: Router = inject(Router);
-  authService: StylistAuthService = inject(StylistAuthService)
+  authService: UserAuthService = inject(UserAuthService)
   activeRoute = inject(ActivatedRoute)
 
 

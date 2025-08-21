@@ -3,7 +3,7 @@ import { Filter } from './filter/filter';
 import { User } from '../../../interfaces/interface';
 import { FilterService } from '../../../services/filter.service';
 import { RouterModule } from '@angular/router';
-import { StylistAuthService } from '../../../services/stylist-auth-service';
+import { UserAuthService } from '../../../services/user-auth-service';
 
 
 @Component({
@@ -17,7 +17,7 @@ export class StylistListComponent implements OnInit{
   listOfStylists: User[] = []
 
   filterService = inject(FilterService)
-  stylistService = inject(StylistAuthService)
+  stylistService = inject(UserAuthService)
 
 
   ngOnInit(): void {

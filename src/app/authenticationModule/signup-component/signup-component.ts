@@ -1,6 +1,6 @@
 import {  Component, inject  } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
-import {  StylistAuthService } from '../../services/stylist-auth-service';
+import {  UserAuthService } from '../../services/user-auth-service';
 import { User } from '../../interfaces/interface';
 import { Router, RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../../shared/password-match.directive';
@@ -19,7 +19,7 @@ export class SignupComponent{
 formBuilder: FormBuilder = inject(FormBuilder)
 
 router: Router = inject(Router)
- getStylistService = inject(StylistAuthService)
+ getStylistService = inject(UserAuthService)
 
 
  signUpForm = this.formBuilder.group({

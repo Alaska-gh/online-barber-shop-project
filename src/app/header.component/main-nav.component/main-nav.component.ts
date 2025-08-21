@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { IDeactivateComponent, User } from '../../interfaces/interface';
-import { StylistAuthService } from '../../services/stylist-auth-service';
+import { UserAuthService } from '../../services/user-auth-service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -16,7 +16,7 @@ export class MainNavComponent{
 isLoggedIn: boolean ;
 user: User;
 
-authService = inject(StylistAuthService)
+authService = inject(UserAuthService)
 router: Router = inject(Router)
 
 

@@ -3,7 +3,7 @@ import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay } from 'swiper/modules';
 import { User } from '../../../../interfaces/interface';
 import { ActivatedRoute, ParamMap } from '@angular/router';
-import { StylistAuthService } from '../../../../services/stylist-auth-service';
+import { UserAuthService } from '../../../../services/user-auth-service';
 import { Observable } from 'rxjs';
 
 
@@ -22,7 +22,7 @@ export class StylistDetailsComponent implements OnInit{
  
   stylists: User [];
 
-  stylistService : StylistAuthService = inject(StylistAuthService);
+  stylistService : UserAuthService = inject(UserAuthService);
 
   activeroute: ActivatedRoute = inject(ActivatedRoute);
   

@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { StylistAuthService } from '../../services/stylist-auth-service';
+import { UserAuthService } from '../../services/user-auth-service';
 import { IDeactivateComponent, User } from '../../interfaces/interface';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
@@ -15,7 +15,7 @@ export class StylistDashboardLayout{
   isLoggedIn: boolean;
   currentStylist: User;
 
-  authService = inject(StylistAuthService)
+  authService = inject(UserAuthService)
   router: Router = inject(Router)
 
   ngOnInit(): void {
