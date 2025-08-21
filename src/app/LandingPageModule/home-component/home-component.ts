@@ -8,6 +8,7 @@ import { StarredBarbersComponent } from './starred-barbers.component/starred-bar
 import { SubscribeComponent } from './subscribe.component/subscribe.component';
 import { ClientFeedbackComponent } from './client-feedback-component/client-feedback-component';
 import { BottomBannerComponent } from './bottom-banner-component/bottom-banner-component';
+import { IDeactivateComponent } from '../../interfaces/interface';
 
 @Component({
   selector: 'app-home-component',
@@ -27,4 +28,5 @@ import { BottomBannerComponent } from './bottom-banner-component/bottom-banner-c
 })
 export class HomeComponent {
 
+ 
 }

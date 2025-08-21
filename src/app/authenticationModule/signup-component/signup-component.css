@@ -1,6 +1,6 @@
 .container{
   width: 480px;
-  border: 1px solid #996515;
+  border: 1px solid rgb(10, 10, 36);
   background-color: #fff;
   border-radius: 2%;
   margin: 50px auto;
@@ -11,7 +11,7 @@ select{
   margin-bottom: 1rem;
   outline: none;
   border: none;
-  border-bottom: 1px solid #996515;
+  border-bottom: 1px solid rgb(10, 10, 36);
   font-size: 14px;
 }
 .container label{
@@ -21,7 +21,7 @@ select{
 }
 
 .sign-up-btn{
-  background-color: #996515;
+  background-color: rgb(10, 10, 36);
   padding: 0.3rem 2rem;
   cursor: pointer;
   color: #fff !important;

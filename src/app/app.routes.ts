@@ -6,7 +6,7 @@ import { WildCardComponent } from './wild-card-component/wild-card-component';
 import { StylistDetailsComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component';
 import { Login } from './authenticationModule/login/login';
 import { AppointmentsComponent } from './appointments-component/appointments-component';
-import { authGuard, } from './authenticationModule/guards/authGuard';
+import { authGuard, deactivateGuard, } from './authenticationModule/guards/authGuard';
 import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
 
 export const routes: Routes = [

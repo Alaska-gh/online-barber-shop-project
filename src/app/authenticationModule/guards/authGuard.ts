@@ -1,7 +1,7 @@
 import { inject } from '@angular/core';
-import { CanActivateFn, Router } from '@angular/router';
+import { CanActivateFn, CanDeactivateFn, Router } from '@angular/router';
 import { StylistAuthService } from '../../services/stylist-auth-service';
-import { map } from 'rxjs/operators';
+import { IDeactivateComponent } from '../../interfaces/interface';
 
 export const authGuard: CanActivateFn = () => {
   const authService = inject(StylistAuthService);
@@ -12,7 +12,14 @@ export const authGuard: CanActivateFn = () => {
   if(state){
     return true 
   }
-
   router.navigate(['login'])
   return false
 };
+
+
+
+export const deactivateGuard: CanDeactivateFn<IDeactivateComponent> 
+                                      = (component: IDeactivateComponent) =>{
+
+ return component.canExit()
+}

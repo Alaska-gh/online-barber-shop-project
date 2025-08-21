@@ -1,3 +1,5 @@
+import { Observable } from "rxjs";
+
 //the footer model
 export interface Footer{
   group: {
@@ -31,4 +33,8 @@ export interface User{
   gender: string;
   serviceType?: string;
   role: string
+ }
+
+ export interface IDeactivateComponent{
+  canExit(): boolean | Observable<boolean> | Promise<boolean>
  }

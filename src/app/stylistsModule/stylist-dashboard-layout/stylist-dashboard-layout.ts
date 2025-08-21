@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { StylistAuthService } from '../../services/stylist-auth-service';
-import { User } from '../../interfaces/interface';
+import { IDeactivateComponent, User } from '../../interfaces/interface';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
   templateUrl: './stylist-dashboard-layout.html',
   styleUrl: './stylist-dashboard-layout.css'
 })
-export class StylistDashboardLayout implements OnInit{
+export class StylistDashboardLayout{
   isLoggedIn: boolean;
   currentStylist: User;
 
@@ -32,4 +32,5 @@ export class StylistDashboardLayout implements OnInit{
     this.router.navigate(['login']);
     alert(`You are logged out`)
   }
+
 }

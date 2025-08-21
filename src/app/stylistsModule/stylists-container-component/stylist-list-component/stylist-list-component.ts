@@ -13,13 +13,10 @@ import { StylistAuthService } from '../../../services/stylist-auth-service';
   styleUrl: './stylist-list-component.css'
 })
 export class StylistListComponent implements OnInit{
-   
   selectedStylist: string = 'all';
-
   listOfStylists: User[] = []
 
   filterService = inject(FilterService)
-
   stylistService = inject(StylistAuthService)
 
 
@@ -28,12 +25,11 @@ export class StylistListComponent implements OnInit{
      this.stylistService.getUsers().subscribe((data) =>{
        this.listOfStylists = data.filter(user => user.role === 'stylist');
       console.log(this.listOfStylists);
-      
      });
-
     //  listening to the changes when the value of the radio button change
     this.filterService.selectedBtnEvent.subscribe((value) =>{
       this.selectedStylist = value; 
     })
   }
+  
 }

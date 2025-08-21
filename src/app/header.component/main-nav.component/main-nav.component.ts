@@ -1,8 +1,9 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
-import { User } from '../../interfaces/interface';
+import { IDeactivateComponent, User } from '../../interfaces/interface';
 import { StylistAuthService } from '../../services/stylist-auth-service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'main-nav',
@@ -11,7 +12,7 @@ import { StylistAuthService } from '../../services/stylist-auth-service';
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.css'
 })
-export class MainNavComponent {
+export class MainNavComponent{
 isLoggedIn: boolean ;
 user: User;
 
@@ -26,7 +27,6 @@ ngOnInit(): void {
   this.authService.currentUser.subscribe((currentUser) =>{
     this.user = currentUser
   });
-  
 }
 
 
@@ -36,4 +36,7 @@ onLogoutClicked(event: Event){
     this.router.navigate(['login']);
     alert(`You are logged out`)
 }
+
+
+
 }
