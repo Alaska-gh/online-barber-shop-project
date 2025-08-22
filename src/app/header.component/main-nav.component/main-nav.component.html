@@ -44,7 +44,7 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link " routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+            <a class="nav-link " 
               (click)="onLogoutClicked($event)">Signout</a>
           </li>
           
@@ -52,9 +52,6 @@
             <img [src]="user.image" alt="" >
           </div>
         }
-        
-     
-
     </ul>
     </div>
   </div>

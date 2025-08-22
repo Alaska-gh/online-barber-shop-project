@@ -1,8 +1,12 @@
 @if (dashboardLoaded  === false) {
-  <header-component></header-component>
+  <header-component (btnClickedEvent)="logoutBtnClicked($event)"></header-component>
 }
 
   <router-outlet></router-outlet>
+
+ @if (showConfirmLogout) {
+  <confirm-logout (confirmLogoutEvent)="confirmLogOut($event)"></confirm-logout>
+ }
   
  @if (dashboardLoaded === false) {
   <footer-component></footer-component>

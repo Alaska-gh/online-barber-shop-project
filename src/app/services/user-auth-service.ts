@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { User } from '../interfaces/interface';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
 
 // const allStylist: Stylist [] = JSON.parse(localStorage.getItem('stylist')) || []
 
@@ -65,8 +65,10 @@ export class UserAuthService {
 
 
    logoutStylist(){
-    this.logInState.next(false)
+   
+     this.logInState.next(false)
     localStorage.removeItem('user')
+   
   }
 
 }

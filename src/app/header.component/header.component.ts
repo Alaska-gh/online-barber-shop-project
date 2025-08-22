@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core';
 import { MainNavComponent } from './main-nav.component/main-nav.component';
 import { TopNavComponent } from "./top-nav.component/top-nav.component";
 import { ActivatedRoute, NavigationEnd, Route, Router } from '@angular/router';
@@ -22,5 +22,10 @@ export class HeaderComponent implements OnInit{
         this.currentRoute = event.urlAfterRedirects;
         
       })
+  }
+
+  @Output() btnClickedEvent = new EventEmitter<boolean>()
+  btnClicked(value){
+    this.btnClickedEvent.emit(value)
   }
 }

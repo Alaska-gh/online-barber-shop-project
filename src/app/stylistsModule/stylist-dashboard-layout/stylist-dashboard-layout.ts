@@ -4,16 +4,18 @@ import { IDeactivateComponent, User } from '../../interfaces/interface';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';
+import { ConfirmLogoutComponent } from '../../confirm-logout.component/confirm-logout.component';
 
 @Component({
   selector: 'stylist-dashboard-layout',
-  imports: [StylistDashboardComponent, RouterModule],
+  imports: [StylistDashboardComponent, RouterModule, ConfirmLogoutComponent],
   templateUrl: './stylist-dashboard-layout.html',
   styleUrl: './stylist-dashboard-layout.css'
 })
 export class StylistDashboardLayout{
   isLoggedIn: boolean;
   currentStylist: User;
+  showConfirmLogout: boolean = false
 
   authService = inject(UserAuthService)
   router: Router = inject(Router)
@@ -28,9 +30,15 @@ export class StylistDashboardLayout{
 
    onLogOutClicked(event: Event){
     event.preventDefault(); //preventing the default behaviur of the anchor element
-    this.authService.logoutStylist()
-    this.router.navigate(['login']);
-    alert(`You are logged out`)
+    this.showConfirmLogout = true
   }
 
+  confirmLogout(value: boolean){
+    this.showConfirmLogout = false
+
+    if(value){
+      this.authService.logoutStylist();
+      this.router.navigate(['login'])
+    }
+  }
 }
