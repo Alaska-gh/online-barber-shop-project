@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FooterService } from './footer-service';
-import { Footer } from '../interfaces/interface';
+import { Footer } from '../interfaces/footer.interface';
 
 @Component({
   selector: 'footer-component',

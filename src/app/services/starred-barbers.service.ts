@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CardDetails } from '../interfaces/interface';
+import { CardDetails } from '../interfaces/footer.interface';
 
 // hard coded values for the barbers information
  const cardItems: CardDetails[]= 

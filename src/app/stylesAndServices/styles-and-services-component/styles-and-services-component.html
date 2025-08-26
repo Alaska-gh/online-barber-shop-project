@@ -1,1 +1,24 @@
-<p>styles-and-services-component works!</p>
+<div class="services-container">
+  @for (service of listOfServices; track $index) {
+   <div class="row">
+    <div class="services-item mx-4">
+      <div class="wishlist-sale-container">
+        <div class="add--to--wishlist">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </div>
+        <div class="tag">75% OFF</div>
+      </div>
+      <div class="services--image">
+        <img [src]="service.image" class="services--image">
+      </div>
+      <div class="add--to--price">
+        {{service.price}}
+      </div>
+      <div class="services--name">{{service.name}}</div>
+      <div class="services--category">{{service.gender}} . {{service.category}} . {{service.brand}}</div>
+      <div class="services--desc">{{service.description}}</div>
+      <a href="">Choose Style</a>
+    </div>
+   </div>
+  }
+</div>

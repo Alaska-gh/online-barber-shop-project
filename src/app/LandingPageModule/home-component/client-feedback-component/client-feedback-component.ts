@@ -1,4 +1,4 @@
-import { CardDetails } from './../../../interfaces/interface';
+import { CardDetails } from '../../../interfaces/footer.interface';
 import { Component, AfterViewInit, OnInit, inject} from '@angular/core';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';

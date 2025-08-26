@@ -1,4 +1,4 @@
-import { CardDetails } from '../interfaces/interface';
+import { CardDetails } from '../interfaces/footer.interface';
 import { Injectable } from '@angular/core';
 
 const Card: CardDetails[] = [

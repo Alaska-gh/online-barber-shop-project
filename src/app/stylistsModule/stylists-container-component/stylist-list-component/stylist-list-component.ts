@@ -1,6 +1,6 @@
 import { Component, EventEmitter, inject, OnInit, Output} from '@angular/core';
 import { Filter } from './filter/filter';
-import { User } from '../../../interfaces/interface';
+import { User } from '../../../interfaces/footer.interface';
 import { FilterService } from '../../../services/filter.service';
 import { RouterModule } from '@angular/router';
 import { UserAuthService } from '../../../services/user-auth-service';

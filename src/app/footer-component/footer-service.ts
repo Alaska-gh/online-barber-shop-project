@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Footer } from '../interfaces/interface';
+import { Footer } from '../interfaces/footer.interface';
 
   const list: Footer []= [
     {

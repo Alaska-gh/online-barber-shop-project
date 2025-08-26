@@ -51,7 +51,7 @@ export class Login implements OnInit{
         alert('login successfully')
         this.redirectUser(stylist.role)
     } else {
-      console.log('Login failed');
+      alert('Login failed')
     }
   },
   error: (err) => {

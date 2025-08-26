@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
 import { StylesService } from '../../../services/styles.service';
-import { Styles } from '../../../interfaces/interface';
+import { Styles } from '../../../interfaces/footer.interface';
 
 Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 

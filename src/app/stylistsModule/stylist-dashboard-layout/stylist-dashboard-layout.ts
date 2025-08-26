@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { UserAuthService } from '../../services/user-auth-service';
-import { IDeactivateComponent, User } from '../../interfaces/interface';
+import {User } from '../../interfaces/footer.interface';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
 import { Observable } from 'rxjs';

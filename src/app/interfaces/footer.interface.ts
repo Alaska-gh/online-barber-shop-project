@@ -1,4 +1,3 @@
-import { Observable } from "rxjs";
 
 //the footer model
 export interface Footer{
@@ -39,6 +38,4 @@ export interface User{
   phone?:string
  }
 
- export interface IDeactivateComponent{
-  canExit(): boolean | Observable<boolean> | Promise<boolean>
- }
+ 

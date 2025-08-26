@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Styles } from '../interfaces/interface';
+import { Styles } from '../interfaces/footer.interface';
 
 
 // hard coded values for the styles array

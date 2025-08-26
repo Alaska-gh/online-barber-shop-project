@@ -8,6 +8,7 @@ import { Login } from './authenticationModule/login/login';
 import { AppointmentsComponent } from './appointments-component/appointments-component';
 import { authGuard, deactivateGuard, } from './authenticationModule/guards/authGuard';
 import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
+import { StylesAndServicesComponent } from './stylesAndServices/styles-and-services-component/styles-and-services-component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -22,6 +23,7 @@ export const routes: Routes = [
   {path: 'login', component: Login},
   {path: 'booking', component: AppointmentsComponent},
   {path: 'dashboard', component: StylistDashboardLayout, canActivate: [authGuard]},
+  {path: 'services', component: StylesAndServicesComponent},
   {path: '**', component: WildCardComponent},
   
 ];
