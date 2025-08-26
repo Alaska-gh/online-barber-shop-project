@@ -6,22 +6,22 @@
   
       <div class="field">
         <label for="email">Email</label> <br>
-        <input class="form-input" type="email" name="email" 
+        <input [ngClass]="{'form-input': true, 'custom-input-border': email.untouched || email.valid, 'invalid': email.invalid && email.touched}" type="email" name="email" 
         placeholder="Enter Email Address"
         id="email" formControlName="email" >
       </div>
 
       @if (email.invalid && (email.dirty || email.touched)) {
         @if (email.errors?.['required']) {
-          <small class="err">Email is required</small>
+          <small class="err">*Email is required</small>
         }@else if (email.errors?.['email']) {
-          <small class="err">Invalid Email</small>
+          <small class="err">*Invalid Email</small>
         }
       }
   
       <div class="field">
         <label for="password">Password</label> <br>
-        <input class="form-input" type="password" name="password" 
+        <input [ngClass]="{'form-input': true, 'custom-input-border': pwd.untouched || pwd.valid, 'invalid': pwd.invalid && pwd.touched}"  type="password" name="password" 
         id="password" formControlName="password"
         placeholder="Enter Password">
       </div>
@@ -29,9 +29,9 @@
         @if (pwd.invalid && (pwd.dirty || pwd.touched)) {
 
         @if (pwd.errors?.['required']) {
-        <small class="err">Password is required</small>
+        <small class="err">*Password is required</small>
         }@else if(pwd.errors?.['minlength']){
-          <small class="err">Password must be  at least {{pwd.errors?.['minlength'].requiredLength}}</small>
+          <small class="err">*Password must be  at least {{pwd.errors?.['minlength'].requiredLength}}</small>
         }
       }
 

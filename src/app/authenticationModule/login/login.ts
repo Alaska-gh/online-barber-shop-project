@@ -44,6 +44,7 @@ export class Login implements OnInit{
   onLoginClicked(){
   const email: string = this.loginForm.get('email')?.value;
   const password : string = this.loginForm.get('password')?.value;
+  
   this.authService.loginUser(email, password).subscribe({
   next: (stylist) => {
     if (stylist) {

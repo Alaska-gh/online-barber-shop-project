@@ -14,7 +14,8 @@ export class UserAuthService {
   private url = 'http://localhost:3000' 
   logInState = new BehaviorSubject<boolean>(!!localStorage.getItem('user'))
   currentUser = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('user')))
-  // user: User | null =  || null;
+  logoutBtnClickedEvent = new Subject<boolean>()
+ 
    
 
  getUsers(){
@@ -64,11 +65,14 @@ export class UserAuthService {
   }
 
 
+  logoutBtnCliked(){
+    this.logoutBtnClickedEvent.next(true)
+  }
+
+
    logoutStylist(){
-   
      this.logInState.next(false)
     localStorage.removeItem('user')
-   
   }
 
 }

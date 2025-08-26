@@ -2,7 +2,8 @@
   "users": [
     {
       "id": 1,
-      "fullName": "Yussif Bashiru",
+      "firstName": "Yussif",
+      "lastName": "Bashiru",
       "email": "bashiruyussif87@gmail.com",
       "password": "Alaskagh",
       "gender": "male",
@@ -11,24 +12,17 @@
     },
     {
       "id": 2,
-      "shopName": "Elite Beauty Bar",
-      "fullName": "Bless Tulasi",
+      "bussinessName": "Elite Beauty Bar",
+      "firstName": "Bless",
+      "lastName": "Tulasi",
       "email": "kayjay@gmail.com",
-      "password": "Alaskagh",
-      "gender": "male",
-      "serviceType": "Barber Salon Service",
-      "role": "stylist",
-      "image": "images/last-1.jpeg"
-    },
-    {
-      "id": 3,
-      "shopName": "Jackie Joe Barber Shop",
-      "fullName": "jackie joe",
-      "email": "jackie@gmail.com",
       "password": "Alaskagh",
       "gender": "male",
       "serviceType": "Unisex Salon Service",
       "role": "stylist",
+      "phone": 208999290,
+      "region": "Eastern",
+      "city": "Koforidua",
       "image": "images/unisex.png"
     }
   ]

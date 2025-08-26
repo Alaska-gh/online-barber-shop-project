@@ -1,9 +1,8 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import {  User } from '../../interfaces/interface';
 import { UserAuthService } from '../../services/user-auth-service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'main-nav',
@@ -29,15 +28,9 @@ ngOnInit(): void {
   });
 }
 
-@Output() btnClicked = new EventEmitter<boolean>()
 
 onLogoutClicked(event: Event){
-  this.btnClicked.emit(true)
+  this.authService.logoutBtnCliked()
     event.preventDefault(); //preventing the default behaviur of the anchor element
-    // this.authService.logoutStylist()
-    // this.router.navigate(['login']);
-    // alert(`You are logged out`)
 }
-
-
 }

@@ -11,7 +11,6 @@ import { filter } from 'rxjs';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent implements OnInit{
-
  currentRoute: string
  activeRoute: Router = inject(Router);
 
@@ -22,10 +21,5 @@ export class HeaderComponent implements OnInit{
         this.currentRoute = event.urlAfterRedirects;
         
       })
-  }
-
-  @Output() btnClickedEvent = new EventEmitter<boolean>()
-  btnClicked(value){
-    this.btnClickedEvent.emit(value)
   }
 }

@@ -16,21 +16,26 @@ import { passwordMatchValidator } from '../../shared/password-match.directive';
   styleUrl: './signup-component.css'
 })
 export class SignupComponent{  
+signupType: string;
+
 formBuilder: FormBuilder = inject(FormBuilder)
 
 router: Router = inject(Router)
  getStylistService = inject(UserAuthService)
 
-
  signUpForm = this.formBuilder.group({
   role:['customer', [Validators.required]],
-  fullName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)+$/)]],
+  firstName: ['', Validators.required],
+  lastName: ['', [Validators.required]],
   email: ['', [Validators.required, Validators.email]],
   password: ['', [Validators.required, Validators.minLength(8)]],
   confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
-  gender:['', Validators.required],
-  shopName: [''],
-  serviceType:['']
+  gender:['male', Validators.required],
+  businessName: [''],
+  serviceType:[''],
+  phone:[''],
+  region:[''],
+  city:['']
  },
  {
    validators: passwordMatchValidator
@@ -44,28 +49,35 @@ router: Router = inject(Router)
 
  signUp(){
   const formValues = this.signUpForm.value
-   const stylistData: User = {
+   const userData: User = {
     id: this.idCounter++,
-    shopName: formValues.shopName,
-    fullName: formValues.fullName,
+    bussinessName: formValues.businessName,
+    firstName: formValues.firstName,
+    lastName: formValues.lastName,
     email: formValues.email,
     password: formValues.password,
     confirmPassword: formValues.confirmPassword,
     gender: formValues.gender,
     serviceType: formValues.serviceType,
-    role: formValues.role
+    role: formValues.role,
+    phone: formValues.phone,
+    region: formValues.region,
+    city: formValues.city,
    }
 
-   if(stylistData.role !== 'stylist'){
-    delete stylistData.serviceType;
-    delete stylistData.shopName
+   if(userData.role !== 'stylist'){
+    delete userData.serviceType;
+    delete userData.bussinessName;
+    delete userData.city;
+    delete userData.phone;
+    delete userData.region
    }
 
-   delete stylistData.confirmPassword;
+   delete userData.confirmPassword;
     
-   console.log('Payload being sent:', JSON.stringify(stylistData, null, 2));
+   console.log('Payload being sent:', JSON.stringify(userData, null, 2));
    
-    this.getStylistService.registerUser(stylistData).subscribe(
+    this.getStylistService.registerUser(userData).subscribe(
       response => {
         alert('Acount created successfuly');
          this.router.navigate(['login'])
@@ -78,13 +90,23 @@ router: Router = inject(Router)
    
  }
 
+
+ onRoleChanged(){
+  this.signupType = this.signUpForm.controls['role'].value;
+  
+ }
+
+
 //  a getter method to get the formControls
 
- get sName(){
-  return this.signUpForm.controls['shopName']
+ get bussinessName(){
+  return this.signUpForm.controls['bussinesName']
  }
- get fName(){
-  return this.signUpForm.controls['fullName']
+ get firstName(){
+  return this.signUpForm.controls['firstName']
+ }
+ get lastName(){
+  return this.signUpForm.controls['lastName']
  }
  get password(){
   return this.signUpForm.controls['password']

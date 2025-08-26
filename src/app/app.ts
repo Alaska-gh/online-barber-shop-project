@@ -12,7 +12,6 @@ import { UserAuthService } from './services/user-auth-service';
 
 @Component({
   selector: 'app-root',
-  
   imports: [
     HeaderComponent,
     FooterComponent,
@@ -20,18 +19,16 @@ import { UserAuthService } from './services/user-auth-service';
     RouterOutlet,
     ConfirmLogoutComponent
   ],
-
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App implements OnInit{
-  router: Router = inject(Router)
-
   dashboardLoaded = false
   showConfirmLogout: boolean = false
 
-
   userAuthService = inject(UserAuthService)
+  router: Router = inject(Router)
+
 
   ngOnInit(): void {
     this.router.events
@@ -39,15 +36,14 @@ export class App implements OnInit{
       .subscribe((event: NavigationEnd) => {
         this.dashboardLoaded = event.urlAfterRedirects.includes('/dashboard');
       });
-
-      
+      this.userAuthService.logoutBtnClickedEvent.subscribe((value) =>{
+        this.showConfirmLogout= value
+      })
   }
-logoutBtnClicked(value){
- this.showConfirmLogout = value 
-}
+
+
  confirmLogOut(value){
   this.showConfirmLogout = false
-
   if(value){
     this.userAuthService.logoutStylist()
     this.router.navigate(['login'])
