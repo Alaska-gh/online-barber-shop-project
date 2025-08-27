@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
 import { StylesService } from '../../../services/styles.service';
-import { Styles } from '../../../interfaces/footer.interface';
+import { Services } from '../../../interfaces/services.interface';
 
 Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 
@@ -15,12 +15,12 @@ Swiper.use([Navigation, Pagination, Autoplay, Scrollbar])
 })
 export class StylesComponent implements OnInit{
 
-  styles: Styles[] = [];
+  styles: Services[] = [];
 
   stylesService = inject(StylesService)
 
    ngOnInit(): void {
-    this.styles = this.stylesService.getStyles(); // fetching the list of styles from the styles service
+    this.styles = this.stylesService.getServices(); // fetching the list of styles from the styles service
 
     // implementing swiper sliders
      new Swiper('.swiper-container', 

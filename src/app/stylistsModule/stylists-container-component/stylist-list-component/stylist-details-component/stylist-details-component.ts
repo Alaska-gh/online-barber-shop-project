@@ -1,10 +1,9 @@
 import { Component,  inject,  OnInit } from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay } from 'swiper/modules';
-import { User } from '../../../../interfaces/footer.interface';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute} from '@angular/router';
 import { UserAuthService } from '../../../../services/user-auth-service';
-import { Observable } from 'rxjs';
+import { User } from '../../../../interfaces/user.interface';
 
 
 @Component({

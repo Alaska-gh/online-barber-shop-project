@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit} from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
-import { CardDetails } from '../../../interfaces/footer.interface';
+import { CardDetails } from '../../../interfaces/cardDetails.interface';
 
 
 @Component({

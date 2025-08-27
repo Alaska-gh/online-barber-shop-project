@@ -1,24 +1,38 @@
+<div class="search--container">
+  <input type="search" name="search" id="search" #searchInput>
+  <button (click)="searchServices()"><i class="fas fa-search"></i></button>
+</div>
+  
 <div class="services-container">
+ @if (searchInput.value) {
+  <p style="width: 100%; margin-left: 100px;" class="fw-bold">Search Results For: <span class="ms-2 fw-normal">{{searchedKeyWord}}</span></p>
+ }
   @for (service of listOfServices; track $index) {
-   <div class="row">
-    <div class="services-item mx-4">
-      <div class="wishlist-sale-container">
-        <div class="add--to--wishlist">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+   @if (searchedKeyWord === '' || service.name.toLowerCase().includes(searchedKeyWord)) {
+    <div class="row">
+      <div class="services-item mx-4">
+        <div class="wishlist-sale-container">
+            <i class="fa-solid fa-eye text-white" title="view style"></i>
+        
+          <div class="tag">75% OFF</div>
         </div>
-        <div class="tag">75% OFF</div>
+        <div class="services--image">
+          <img [src]="service.image" class="services--image">
+        </div>
+        <div class="add--to--price ">
+          ghs <span class="ms-1">{{service.price}}</span>
+        </div>
+        <div class="services--name">{{service.name}}</div>
+        <div class="services--category">{{service.gender}} . {{service.category}} . {{service.brand}}</div>
+        <div class="services--desc">{{service.description}}</div>
+       <div class="cta-container">
+        <a href="">Choose Style</a>
+        <div class="add--to--wishlist">
+          <i class="fa-solid fa-heart text-danger"></i>
+        </div>
+       </div>
       </div>
-      <div class="services--image">
-        <img [src]="service.image" class="services--image">
-      </div>
-      <div class="add--to--price">
-        {{service.price}}
-      </div>
-      <div class="services--name">{{service.name}}</div>
-      <div class="services--category">{{service.gender}} . {{service.category}} . {{service.brand}}</div>
-      <div class="services--desc">{{service.description}}</div>
-      <a href="">Choose Style</a>
     </div>
-   </div>
+   }
   }
 </div>

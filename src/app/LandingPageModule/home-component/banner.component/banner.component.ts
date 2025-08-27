@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StylesService } from '../../../services/styles.service';
-import { Styles } from '../../../interfaces/footer.interface';
+import { Services } from '../../../interfaces/services.interface';
 @Component({
   selector: 'banner-component',
   imports: [CommonModule],
@@ -9,7 +9,7 @@ import { Styles } from '../../../interfaces/footer.interface';
   styleUrl: './banner.component.css'
 })
 export class BannerComponent implements OnInit{
- style: Styles[] = [];
+ style: Services[] = [];
 
 
  wrkHrs = [
@@ -30,6 +30,6 @@ export class BannerComponent implements OnInit{
  listOfStyles = inject(StylesService)
 
   ngOnInit(): void {
-    this.style = this.listOfStyles.getStyles()
+    this.style = this.listOfStyles.getServices()
   }
 }

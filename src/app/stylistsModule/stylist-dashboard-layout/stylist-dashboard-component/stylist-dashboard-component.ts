@@ -1,9 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { User } from '../../../interfaces/footer.interface';
 import { UserAuthService } from '../../../services/user-auth-service';
 import { TimeService } from '../../../services/timeOfDay.service';
 import { CalendarEvent, CalendarModule, CalendarUtils } from 'angular-calendar';
+import { User } from '../../../interfaces/user.interface';
 
 
 @Component({

@@ -1,7 +1,7 @@
 import {  Component, inject  } from '@angular/core';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import {  UserAuthService } from '../../services/user-auth-service';
-import { User } from '../../interfaces/footer.interface';
+import { User } from '../../interfaces/user.interface';
 import { Router, RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../../shared/password-match.directive';
 
