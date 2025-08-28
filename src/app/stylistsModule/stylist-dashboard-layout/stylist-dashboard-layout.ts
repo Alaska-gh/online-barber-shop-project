@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { UserAuthService } from '../../services/user-auth-service';
 import { StylistDashboardComponent } from './stylist-dashboard-component/stylist-dashboard-component';
 import { Router, RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
 import { ConfirmLogoutComponent } from '../../confirm-logout.component/confirm-logout.component';
 import { User } from '../../interfaces/user.interface';
 

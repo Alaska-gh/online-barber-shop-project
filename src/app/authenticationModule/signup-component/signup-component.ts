@@ -17,11 +17,12 @@ import { passwordMatchValidator } from '../../shared/password-match.directive';
 })
 export class SignupComponent{  
 signupType: string;
+//  this counter will be incremented upon creating a new user
+ private idCounter: number = 0;
 
 formBuilder: FormBuilder = inject(FormBuilder)
-
 router: Router = inject(Router)
- getStylistService = inject(UserAuthService)
+getStylistService = inject(UserAuthService)
 
  signUpForm = this.formBuilder.group({
   role:['customer', [Validators.required]],
@@ -41,10 +42,6 @@ router: Router = inject(Router)
    validators: passwordMatchValidator
   }
 )
-
-
-//  this counter will be incremented upon creating a new user
- private idCounter: number = 0;
 
 
  signUp(){
@@ -87,18 +84,17 @@ router: Router = inject(Router)
         
       }
     )
-   
+   this.resetForm()
  }
 
 
  onRoleChanged(){
   this.signupType = this.signUpForm.controls['role'].value;
-  
+  this.resetForm()
  }
 
 
 //  a getter method to get the formControls
-
  get bussinessName(){
   return this.signUpForm.controls['bussinesName']
  }
@@ -119,4 +115,15 @@ router: Router = inject(Router)
   return this.signUpForm.controls['confirmPassword']
  }
 
+ resetForm(){
+    this.signUpForm.reset()
+    this.signUpForm.patchValue({
+      role: this.signUpForm.value.role,
+      gender: this.signUpForm.value.gender,
+      serviceType: this.signUpForm.value.serviceType,
+    })
+    
+ }
+
+ 
 }

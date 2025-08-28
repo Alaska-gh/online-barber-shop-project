@@ -48,8 +48,9 @@
               (click)="onLogoutClicked($event)">Signout</a>
           </li>
           
-          <div class=".profile-pic ">
-            <img [src]="user.image" alt="" >
+          <div class="profile-pic ">
+            <!-- <img [src]="user.image" alt="profile pic" > -->
+             <p>{{user.firstName.slice(0, 1)}}{{user.lastName.slice(0, 1)}}</p>
           </div>
         }
     </ul>

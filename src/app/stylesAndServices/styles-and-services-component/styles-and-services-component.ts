@@ -1,5 +1,5 @@
 import { Component, ElementRef, inject, OnInit, ViewChild } from '@angular/core';
-import { StylesAndServicesService } from '../../services/stylesAndServices.service';
+import { StylesService } from '../../services/styles.service';
 
 @Component({
   selector: 'styles-and-services',
@@ -12,10 +12,10 @@ listOfServices = []
 searchedKeyWord: string = '';
 
 @ViewChild('searchInput') searchInputEl: ElementRef
-serviceService = inject(StylesAndServicesService)
+serviceService = inject(StylesService)
 
 ngOnInit(): void {
-  this.listOfServices = this.serviceService.services
+  this.listOfServices = this.serviceService.getServices()
 }
 
 searchServices(){

@@ -15,8 +15,10 @@
       </ul>
       <hr class="divider">
       <div class="d-flex align-items-center text-white text-decoration-none justify-content-between">
-        <div>
-          <img [src]="currentStylist.image" alt="" width="32" height="32" class="rounded-circle me-2">
+        <div class="d-flex align-items-center"> 
+          <div class="profile-pic">
+            <p>{{currentStylist.firstName.slice(0, 1)}}{{currentStylist.lastName.slice(0, 1)}}</p>
+          </div>
           <strong>{{currentStylist.firstName}} {{currentStylist.lastName}}</strong>
         </div>
         <a href="#" (click)="onLogOutClicked($event)"><i class="fas fa-sign-out-alt text-danger"></i></a>
