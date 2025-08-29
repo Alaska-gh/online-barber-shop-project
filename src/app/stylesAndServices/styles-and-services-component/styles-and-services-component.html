@@ -26,7 +26,7 @@
         <div class="services--category">{{service.gender}} . {{service.category}} . {{service.brand}}</div>
         <div class="services--desc">{{service.description}}</div>
        <div class="cta-container">
-        <a href="">Choose Style</a>
+        <a (click)="selectStyle(service)" class="choose-style-btn" #select>Choose Style</a>
         <div class="add--to--wishlist">
           <i class="fa-solid fa-heart text-danger"></i>
         </div>

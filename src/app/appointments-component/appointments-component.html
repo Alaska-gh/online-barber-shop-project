@@ -1,12 +1,113 @@
 
 <div class="main-container ">
   <h1 class="text-center">Book Your Appointment</h1>
+  <p class="text-center sub-title">Choose your stylist, service, and schedule time</p>
   <div class="container">
     <div class="row d-flex">
-      <div class="col-5 image"></div>
+      <div class="col-8 ">
+        <form [formGroup]="appointmentForm" (ngSubmit)="submitForm()" class="appointment-form" >
+        
+          <div class="customer-info">
+           <h3>Customer Details</h3>
+           <hr>
 
-      <div class="col-lg-5">
-        <h2 >Please Fill the Form Below to book your Appointment</h2>
+           <div class="field">
+            <label for="fullName">Full Name</label>
+            <input type="text" name="fullName" id="fullName" formControlName="fullName">
+           </div>
+           @if ( fname.invalid && (fname.touched || fname.dirty)) {
+            @if (fname.errors?.['required']) {
+              <small class="err">Please Enter Your Full Name</small>
+            }
+           }
+
+           <div class="field">
+            <label for="phoneNum">Phone Number</label>
+            <input type="text" name="phoneNum" id="phoneNum" formControlName="phoneNum">
+           </div>
+
+            @if ( phoneNum.invalid && (phoneNum.touched || phoneNum.dirty)) {
+            @if (phoneNum.errors?.['required']) {
+            <small class="err">Please Enter Your Phone Number</small>
+            }
+            }
+
+           <div class="field">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email"  formControlName="email">
+           </div>
+
+            @if ( email.invalid && (email.touched || email.dirty)) {
+            @if (email.errors?.['required']) {
+            <small class="err">Please Enter Your Email</small>
+            }
+            @if (email.errors?.['email']) {
+            <small class="err">The Email You Entered Is Invalid</small>
+            }
+            }
+
+          </div>
+          <h3>Appointment Details</h3>
+          <hr>
+          <div class="select-stylist mb-4 d-flex align-items-center field">
+            <input class="me-3 selection-label"  type="text" name="stylist" id="stylist" placeholder="Choose Stylist" formControlName="stylist">
+            <button type="button" routerLink="/stylists">Browse Stylists</button>
+          </div>
+
+          @if ( stylist.invalid && (stylist.touched || stylist.dirty)) {
+          @if (stylist.errors?.['required']) {
+          <small class="err">Please Choose A Stylist</small>
+          }
+          }
+
+          <div class="select-style mb-4 d-flex align-items-center field">
+            <input class="me-3 selection-label" type="text" name="service" id="service" placeholder="Choose Style / Service" formControlName="service">
+            <button  type="button" routerLink="/services">Browse Styles / Services</button>
+          </div>
+
+          @if ( service.invalid && (service.touched || service.dirty)) {
+          @if (service.errors?.['required']) {
+          <small class="err">Please Choose Your Style / Service</small>
+          }
+          }
+
+        <div class="field">
+            <label for="date">Date</label>
+            <input type="date" name="date" id="date" formControlName="date">
+        </div>
+
+        @if ( date.invalid && (date.touched || date.dirty)) {
+        @if (date.errors?.['required']) {
+        <small class="err">Please Select A Date For Your Appointment</small>
+        }
+        }
+
+         <div class="field">
+          <label for="time">Time</label>
+          <input type="time" name="time" id="time" formControlName="time">
+         </div>
+
+          @if ( time.invalid && (time.touched || time.dirty)) {
+          @if (time.errors?.['required']) {
+          <small class="err">Please Select A Time For Your Appointment</small>
+          }
+          }
+
+         <div class="field">
+          <label for="notes">Additional Notes</label>
+          <textarea name="notes" id="notes" formControlName="notes"></textarea>
+         </div>
+
+          <div class="agreement">
+            <input type="checkbox" name="agreement" id="agreement" formControlName="agreement">
+            <label for="agreement">I agree to the terms & policies</label>
+          </div>
+          
+          <button class="confirm-btn" type="submit" [disabled]="appointmentForm.invalid">Confirm Appointment</button>
+        </form>
+      </div>
+
+      <div class="col-4 details">
       </div>
 
     </div>

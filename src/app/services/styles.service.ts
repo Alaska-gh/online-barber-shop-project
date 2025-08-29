@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Services } from '../interfaces/services.interface';
+import { Subject } from 'rxjs';
 
   const services: Services[] = [
       {  
@@ -268,6 +269,7 @@ import { Services } from '../interfaces/services.interface';
   providedIn: 'root'
 })
 export class StylesService {
+
   getServices():Services[]{
     return services
   }

@@ -1,9 +1,10 @@
 import { Component, inject, OnInit} from '@angular/core';
 import { Filter } from './filter/filter';
 import { FilterService } from '../../../services/filter.service';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { UserAuthService } from '../../../services/user-auth-service';
 import { User } from '../../../interfaces/user.interface';
+import { BookingService } from '../../../services/booking.service';
 
 
 @Component({
@@ -18,7 +19,8 @@ export class StylistListComponent implements OnInit{
 
   filterService = inject(FilterService)
   stylistService = inject(UserAuthService)
-
+  bookingService = inject(BookingService)
+  router: Router = inject(Router)
 
   ngOnInit(): void {
     // retrieves list of stylist from the database
@@ -32,4 +34,8 @@ export class StylistListComponent implements OnInit{
     })
   }
   
+  chooseStylist(stylist: User){
+    this.bookingService.setStylist(stylist);
+    this.router.navigate(['/booking'])
+  }
 }
