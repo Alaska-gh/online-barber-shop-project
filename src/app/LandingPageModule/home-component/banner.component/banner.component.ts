@@ -2,9 +2,10 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StylesService } from '../../../services/styles.service';
 import { Services } from '../../../interfaces/services.interface';
+import { RouterModule } from '@angular/router';
 @Component({
   selector: 'banner-component',
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.css'
 })

@@ -8,4 +8,5 @@ export interface Services{
   description: string;
   brand: string;
   gender: string;
+  duration: number
 }

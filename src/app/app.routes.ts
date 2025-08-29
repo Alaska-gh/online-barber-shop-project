@@ -6,7 +6,7 @@ import { WildCardComponent } from './wild-card-component/wild-card-component';
 import { StylistDetailsComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component';
 import { Login } from './authenticationModule/login/login';
 import { AppointmentsComponent } from './appointments-component/appointments-component';
-import { authGuard, deactivateGuard, } from './authenticationModule/guards/authGuard';
+import { authGuard } from './authenticationModule/guards/authGuard';
 import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
 import { StylesAndServicesComponent } from './stylesAndServices/styles-and-services-component/styles-and-services-component';
 

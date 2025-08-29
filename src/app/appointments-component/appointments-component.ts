@@ -5,6 +5,7 @@ import { StylesService } from '../services/styles.service';
 import { BookingService } from '../services/booking.service';
 import { User } from '../interfaces/user.interface';
 import { Services } from '../interfaces/services.interface';
+import { Appointment } from '../interfaces/appointment.interface';
 
 @Component({
   selector: 'app-appointments-component',
@@ -15,6 +16,7 @@ import { Services } from '../interfaces/services.interface';
 export class AppointmentsComponent implements OnInit{
 selectedstylist: User;
 selectedStyle: Services;
+idCounter = 0
 
   formBuilder: FormBuilder = inject(FormBuilder)
 
@@ -24,7 +26,7 @@ selectedStyle: Services;
 
   appointmentForm = this.formBuilder.group({
     fullName: ['', Validators.required],
-    phoneNum: ['', Validators.required],
+    phoneNum: [null, Validators.required],
     email: ['', [Validators.required, Validators.email]],
     stylist: ['', Validators.required],
     service: ['', Validators.required],
@@ -34,7 +36,32 @@ selectedStyle: Services;
     agreement: ['', Validators.required]
   }
   )
+ngOnInit(): void {
+  this.selectedStyle = this.bookingservice.getStyle()
+  this.selectedstylist = this.bookingservice.getStylist()  
+  const saveddata = this.bookingservice.getFormData()
 
+
+  if(saveddata){
+    this.appointmentForm.patchValue(saveddata)
+  }
+
+  if(this.selectedstylist){
+    this.appointmentForm.patchValue({
+      stylist: this.selectedstylist.bussinessName
+    })
+  }
+
+  if(this.selectedStyle){
+    this.appointmentForm.patchValue({
+      service: this.selectedStyle.name
+    })
+  }
+
+  this.appointmentForm.valueChanges.subscribe((values) =>{
+    this.bookingservice.setFormData(values)
+  })
+}
 
   get fname(){
     return this.appointmentForm.controls['fullName']
@@ -68,25 +95,35 @@ selectedStyle: Services;
     return this.appointmentForm.controls['agreement']
   }
 
-ngOnInit(): void {
-  this.selectedStyle = this.bookingservice.getStyle()
-  this.selectedstylist = this.bookingservice.getStylist()  
 
-  if(this.selectedstylist){
-    this.appointmentForm.patchValue({
-      stylist: this.selectedstylist.bussinessName
-    })
-  }
 
-  if(this.selectedStyle){
-    this.appointmentForm.patchValue({
-      service: this.selectedStyle.name
-    })
-  }
-}
+
 
   submitForm(){
+   const formValues = this.appointmentForm.value;
+   const appointmentData: Appointment = {
+    id: this.idCounter++,
+    fullName: formValues.fullName,
+    phoneNum: formValues.phoneNum,
+    email: formValues.email,
+    date: formValues.date,
+    stylist: formValues.stylist,
+    service: formValues.service,
+    time: formValues.time,
+    notes: formValues.notes,
+   }
 
+   this.bookingservice.createAppointment(appointmentData).subscribe(
+     reponse =>{
+      console.log(reponse);
+      alert('Appointment Created Successfully')
+   },
+   error =>{
+    console.log(error);
+    
+   }
+   
+  )
   }
 
 }

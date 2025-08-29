@@ -11,7 +11,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/afro-mullet-high-fade-haircut.jpg",    
+        image: "images/men-haircuts/afro-mullet-high-fade-haircut.jpg",   
+        duration: 45 
       },
       {  
         id: 2,
@@ -21,7 +22,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/braid-haircut.jpeg",    
+        image: "images/men-haircuts/braid-haircut.jpeg",   
+        duration: 60 
       },
       {  
         id: 3,
@@ -31,7 +33,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/Fade-with-Line-Up.jpg",    
+        image: "images/men-haircuts/Fade-with-Line-Up.jpg",   
+        duration: 45 
       },
       {  
         id: 4,
@@ -41,7 +44,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/long-taper-fade.jpg",    
+        image: "images/men-haircuts/long-taper-fade.jpg",   
+        duration: 45 
       },
       {  
         id: 5,
@@ -51,7 +55,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/low-taper-fade-cropped-afro.webp",    
+        image: "images/men-haircuts/low-taper-fade-cropped-afro.webp", 
+        duration: 45   
       },
       {  
         id: 6,
@@ -61,7 +66,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/mid-fade-haircut-curly-hair.jpg",    
+        image: "images/men-haircuts/mid-fade-haircut-curly-hair.jpg",  
+        duration: 45  
       },
       {  
         id: 7,
@@ -71,7 +77,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/mid-zero-fade.jpg",    
+        image: "images/men-haircuts/mid-zero-fade.jpg",   
+        duration: 45 
       },
       {  
         id: 8,
@@ -81,7 +88,8 @@ import { Subject } from 'rxjs';
         gender: "MEN",
         category: "MEN HAIR STYLE",
         price: 250,
-        image: "images/men-haircuts/side-cut.jpg",    
+        image: "images/men-haircuts/side-cut.jpg",   
+        duration: 45 
       },
       {  
         id: 9,
@@ -91,7 +99,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/1-black-cornrows-with-crown-bun.webp",    
+        image: "images/women-hairstyles/1-black-cornrows-with-crown-bun.webp", 
+        duration: 120   
       },
       {  
         id: 10,
@@ -101,7 +110,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/2-braids.jpg",    
+        image: "images/women-hairstyles/2-braids.jpg", 
+        duration: 120   
       },
       {  
         id: 11,
@@ -111,8 +121,10 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/2-large-cornrow-braids.jpg",    
+        image: "images/women-hairstyles/2-large-cornrow-braids.jpg",   
+        duration: 120 
       },
+      
       {  
         id: 12,
         name: "Cornrow",
@@ -121,7 +133,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/cornrow.jpg",    
+        image: "images/women-hairstyles/cornrow.jpg", 
+        duration: 120   
       },
       {  
         id: 13,
@@ -131,7 +144,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/7-side-swept-knotless-braids.webp",    
+        image: "images/women-hairstyles/7-side-swept-knotless-braids.webp",   
+        duration: 120 
       },
       {  
         id: 14,
@@ -141,7 +155,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/flat-loose-twist.jpg",    
+        image: "images/women-hairstyles/flat-loose-twist.jpg",
+        duration: 120    
       },
       {  
         id: 15,
@@ -151,7 +166,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/Fulani_Braids_with_curls.jpg",    
+        image: "images/women-hairstyles/Fulani_Braids_with_curls.jpg", 
+        duration: 120   
       },
       {  
         id: 16,
@@ -161,7 +177,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/fulani-braids.jpg",    
+        image: "images/women-hairstyles/fulani-braids.jpg", 
+        duration: 120   
       },
       {  
         id: 17,
@@ -171,7 +188,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/knotless-gypsy-braids.jpg",    
+        image: "images/women-hairstyles/knotless-gypsy-braids.jpg", 
+        duration: 120   
       },
       {  
         id: 18,
@@ -181,7 +199,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/locks.jpg",    
+        image: "images/women-hairstyles/locks.jpg", 
+        duration: 120   
       },
       {  
         id: 19,
@@ -191,7 +210,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/long-fish-tail.jpg",    
+        image: "images/women-hairstyles/long-fish-tail.jpg",  
+        duration: 120  
       },
       {  
         id: 20,
@@ -201,7 +221,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/Passion-Twist.webp",    
+        image: "images/women-hairstyles/Passion-Twist.webp", 
+        duration: 120   
       },
       {  
         id: 21,
@@ -211,7 +232,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/short-braids.jpg",    
+        image: "images/women-hairstyles/short-braids.jpg", 
+        duration: 120   
       },
       {  
         id: 22,
@@ -221,7 +243,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/side.jpeg",    
+        image: "images/women-hairstyles/side.jpeg", 
+        duration: 120   
       },
       {  
         id: 23,
@@ -231,7 +254,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/stitch-braids-hero-scaled.jpg",    
+        image: "images/women-hairstyles/stitch-braids-hero-scaled.jpg", 
+        duration: 120   
       },
       {  
         id: 24,
@@ -241,7 +265,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/swidish-style.jpg",    
+        image: "images/women-hairstyles/swidish-style.jpg",
+        duration:120    
       },
       {  
         id: 25,
@@ -251,7 +276,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/twist_box_braids.webp",    
+        image: "images/women-hairstyles/twist_box_braids.webp", 
+        duration: 120   
       },
       {  
         id: 26,
@@ -261,7 +287,8 @@ import { Subject } from 'rxjs';
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
         price: 250,
-        image: "images/women-hairstyles/twist.jpeg",    
+        image: "images/women-hairstyles/twist.jpeg", 
+        duration: 120   
       },
     ]
 

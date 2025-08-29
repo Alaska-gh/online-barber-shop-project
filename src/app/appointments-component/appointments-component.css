@@ -17,7 +17,8 @@ h1{
 
 .details{
     background-color: rgba(10, 10, 36, 0.1);
-    max-height: 400px;
+    max-height: 350px;
+    padding: 20px;
 }
 .field input, textarea{
   width: 100%;
@@ -46,7 +47,7 @@ button{
   padding: 8px;
 }
 
-.confirm-btn{
+.confirm-btn, .book-btn{
   width: 100%;
 }
 .selection-label{
@@ -58,4 +59,10 @@ button{
 .confirm-btn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
+}
+
+
+.summary{
+  background-color: #fff;
+  padding: 20px;
 }

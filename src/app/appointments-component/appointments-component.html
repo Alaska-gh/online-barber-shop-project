@@ -5,7 +5,7 @@
   <div class="container">
     <div class="row d-flex">
       <div class="col-8 ">
-        <form [formGroup]="appointmentForm" (ngSubmit)="submitForm()" class="appointment-form" >
+        <form [formGroup]="appointmentForm" (ngSubmit)="submitForm()" class="appointment-form">
         
           <div class="customer-info">
            <h3>Customer Details</h3>
@@ -23,7 +23,7 @@
 
            <div class="field">
             <label for="phoneNum">Phone Number</label>
-            <input type="text" name="phoneNum" id="phoneNum" formControlName="phoneNum">
+            <input type="number" name="phoneNum" id="phoneNum" formControlName="phoneNum">
            </div>
 
             @if ( phoneNum.invalid && (phoneNum.touched || phoneNum.dirty)) {
@@ -107,8 +107,26 @@
         </form>
       </div>
 
-      <div class="col-4 details">
-      </div>
+  
+        <div class="col-4 details">
+          <h3 class="text-center">Booking Summary</h3>
+         @if (appointmentForm.valid) {
+          <div class="summary">
+            <p>Stylist: {{stylist.value}}</p>
+            <p>Service(s): {{service.value}}</p>
+            <p>Date & Time: {{date.value}}, {{time.value}}</p>
+            <p>Duration: {{selectedStyle.duration}}mins</p>
+            <p>Total: ghs{{selectedStyle.price}}</p>
+          </div>
+          <button class="book-btn">Book Now</button>
+         }@else {
+          <div class="summary">
+            <p>Summary of your appointments wil be shown here</p>
+            <i class="fas fa-arrow-down"></i>
+          </div>
+         }
+        </div>
+    
 
     </div>
   </div>

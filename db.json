@@ -26,5 +26,17 @@
       "image": "images/unisex.png"
     }
   ],
-  "appointment":[]
+  "appointment": [
+    {
+      "id": 1,
+      "fullName": "Yussif Bashiru",
+      "phoneNum": 208999290,
+      "email": "bashiruyussif87@gmail.com",
+      "date": "2025-08-29",
+      "stylist": "Elite Beauty Bar",
+      "service": "Afro mullet High Fade",
+      "time": "15:59",
+      "notes": ""
+    }
+  ]
 }
