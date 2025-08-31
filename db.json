@@ -29,14 +29,29 @@
   "appointment": [
     {
       "id": 1,
+      "fullName": "Bless Tulasi",
+      "phoneNum": 208999290,
+      "email": "kayjay@gmail.com",
+      "date": "2025-08-30",
+      "stylist": "Elite Beauty Bar",
+      "service": "Low Taper Fade",
+      "time": "12:30",
+      "notes": "",
+      "duration": 45,
+      "status": "pending"
+    },
+    {
+      "id": 2,
       "fullName": "Yussif Bashiru",
       "phoneNum": 208999290,
       "email": "bashiruyussif87@gmail.com",
-      "date": "2025-08-29",
+      "date": "2025-08-30",
       "stylist": "Elite Beauty Bar",
-      "service": "Afro mullet High Fade",
-      "time": "15:59",
-      "notes": ""
+      "service": "Mid Fade Curly",
+      "time": "13:15",
+      "notes": "",
+      "duration": 45,
+      "status": "pending"
     }
   ]
 }

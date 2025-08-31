@@ -34,7 +34,7 @@ getStylistService = inject(UserAuthService)
   gender:['male', Validators.required],
   businessName: [''],
   serviceType:[''],
-  phone:[''],
+  phone:[],
   region:[''],
   city:['']
  },

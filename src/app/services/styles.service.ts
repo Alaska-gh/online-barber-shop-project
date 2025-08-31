@@ -10,7 +10,7 @@ import { Subject } from 'rxjs';
         brand: "AFRO",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 50,
         image: "images/men-haircuts/afro-mullet-high-fade-haircut.jpg",   
         duration: 45 
       },
@@ -21,7 +21,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 50,
         image: "images/men-haircuts/braid-haircut.jpeg",   
         duration: 60 
       },
@@ -32,7 +32,7 @@ import { Subject } from 'rxjs';
         brand: "FADE",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 30,
         image: "images/men-haircuts/Fade-with-Line-Up.jpg",   
         duration: 45 
       },
@@ -43,7 +43,7 @@ import { Subject } from 'rxjs';
         brand: "FADE",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 30,
         image: "images/men-haircuts/long-taper-fade.jpg",   
         duration: 45 
       },
@@ -54,7 +54,7 @@ import { Subject } from 'rxjs';
         brand: "AFRO",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 50,
         image: "images/men-haircuts/low-taper-fade-cropped-afro.webp", 
         duration: 45   
       },
@@ -65,7 +65,7 @@ import { Subject } from 'rxjs';
         brand: "FADE",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 50,
         image: "images/men-haircuts/mid-fade-haircut-curly-hair.jpg",  
         duration: 45  
       },
@@ -76,7 +76,7 @@ import { Subject } from 'rxjs';
         brand: "FADE",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 30,
         image: "images/men-haircuts/mid-zero-fade.jpg",   
         duration: 45 
       },
@@ -87,7 +87,7 @@ import { Subject } from 'rxjs';
         brand: "FADE",
         gender: "MEN",
         category: "MEN HAIR STYLE",
-        price: 250,
+        price: 30,
         image: "images/men-haircuts/side-cut.jpg",   
         duration: 45 
       },
@@ -98,7 +98,7 @@ import { Subject } from 'rxjs';
         brand: "CORNROW",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/1-black-cornrows-with-crown-bun.webp", 
         duration: 120   
       },
@@ -109,7 +109,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 100,
         image: "images/women-hairstyles/2-braids.jpg", 
         duration: 120   
       },
@@ -120,7 +120,7 @@ import { Subject } from 'rxjs';
         brand: "CORNROW",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 120,
         image: "images/women-hairstyles/2-large-cornrow-braids.jpg",   
         duration: 120 
       },
@@ -132,7 +132,7 @@ import { Subject } from 'rxjs';
         brand: "CORNROW",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/cornrow.jpg", 
         duration: 120   
       },
@@ -143,7 +143,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 120,
         image: "images/women-hairstyles/7-side-swept-knotless-braids.webp",   
         duration: 120 
       },
@@ -154,7 +154,7 @@ import { Subject } from 'rxjs';
         brand: "TWIST",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 120,
         image: "images/women-hairstyles/flat-loose-twist.jpg",
         duration: 120    
       },
@@ -165,7 +165,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 100,
         image: "images/women-hairstyles/Fulani_Braids_with_curls.jpg", 
         duration: 120   
       },
@@ -176,7 +176,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/fulani-braids.jpg", 
         duration: 120   
       },
@@ -187,7 +187,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/knotless-gypsy-braids.jpg", 
         duration: 120   
       },
@@ -209,7 +209,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/long-fish-tail.jpg",  
         duration: 120  
       },
@@ -220,7 +220,7 @@ import { Subject } from 'rxjs';
         brand: "TWIST",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/Passion-Twist.webp", 
         duration: 120   
       },
@@ -231,7 +231,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 100,
         image: "images/women-hairstyles/short-braids.jpg", 
         duration: 120   
       },
@@ -242,7 +242,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 100,
         image: "images/women-hairstyles/side.jpeg", 
         duration: 120   
       },
@@ -253,7 +253,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/stitch-braids-hero-scaled.jpg", 
         duration: 120   
       },
@@ -264,7 +264,7 @@ import { Subject } from 'rxjs';
         brand: "BRAIDS",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/swidish-style.jpg",
         duration:120    
       },
@@ -275,7 +275,7 @@ import { Subject } from 'rxjs';
         brand: "TWIST",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/twist_box_braids.webp", 
         duration: 120   
       },
@@ -286,7 +286,7 @@ import { Subject } from 'rxjs';
         brand: "TWIST",
         gender: "WOMEN",
         category: "LADIES HAIR STYLE",
-        price: 250,
+        price: 150,
         image: "images/women-hairstyles/twist.jpeg", 
         duration: 120   
       },

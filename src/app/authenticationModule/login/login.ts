@@ -63,7 +63,7 @@ export class Login implements OnInit{
 
   redirectUser(role: string){
     if (role === 'stylist') {
-        this.router.navigate(['dashboard']);
+        this.router.navigate(['dashboard/summary']);
       } else if (role === 'customer') {
         this.router.navigate(['home']);
       } else {

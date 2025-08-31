@@ -6,40 +6,33 @@ import { BookingService } from '../services/booking.service';
 import { User } from '../interfaces/user.interface';
 import { Services } from '../interfaces/services.interface';
 import { Appointment } from '../interfaces/appointment.interface';
+import { DatePipe } from '@angular/common';
+import { UserAuthService } from '../services/user-auth-service';
 
 @Component({
   selector: 'app-appointments-component',
-  imports: [RouterModule, ReactiveFormsModule, FormsModule],
+  imports: [RouterModule, ReactiveFormsModule, FormsModule, DatePipe],
   templateUrl: './appointments-component.html',
   styleUrl: './appointments-component.css'
 })
 export class AppointmentsComponent implements OnInit{
-selectedstylist: User;
-selectedStyle: Services;
-idCounter = 0
+  selectedstylist: User;
+  selectedStyle: Services;
+  idCounter = 0
+  bookedSlots: {start: Date, end: Date}[] = []
+  loggedInUser: User = null;
 
   formBuilder: FormBuilder = inject(FormBuilder)
 
   servicesservice = inject(StylesService)
   bookingservice = inject(BookingService)
+  authservice = inject(UserAuthService)
 
 
-  appointmentForm = this.formBuilder.group({
-    fullName: ['', Validators.required],
-    phoneNum: [null, Validators.required],
-    email: ['', [Validators.required, Validators.email]],
-    stylist: ['', Validators.required],
-    service: ['', Validators.required],
-    date: ['', Validators.required],
-    time: ['', Validators.required],
-    notes: [''],
-    agreement: ['', Validators.required]
-  }
-  )
-ngOnInit(): void {
+  ngOnInit(): void {
   this.selectedStyle = this.bookingservice.getStyle()
-  this.selectedstylist = this.bookingservice.getStylist()  
-  const saveddata = this.bookingservice.getFormData()
+  this.selectedstylist = this.bookingservice.getStylist() 
+  const saveddata = this.bookingservice.getFormData()  
 
 
   if(saveddata){
@@ -61,7 +54,26 @@ ngOnInit(): void {
   this.appointmentForm.valueChanges.subscribe((values) =>{
     this.bookingservice.setFormData(values)
   })
+
+   this.authservice.currentUser .subscribe(user => {
+    this.loggedInUser = user
+   })
 }
+
+
+  appointmentForm = this.formBuilder.group({
+    fullName: ['', Validators.required],
+    phoneNum: [null, Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    stylist: ['', Validators.required],
+    service: ['', Validators.required],
+    date: ['', Validators.required],
+    time: ['', Validators.required],
+    notes: [''],
+    agreement: ['', Validators.required]
+  }
+  )
+
 
   get fname(){
     return this.appointmentForm.controls['fullName']
@@ -94,10 +106,38 @@ ngOnInit(): void {
   get agreement(){
     return this.appointmentForm.controls['agreement']
   }
+  onDateOrStylistChanged(){
+    const stylist = this.appointmentForm.value.stylist;
+    const date = this.appointmentForm.value.date;
 
+    if(stylist && date){
+      this.bookingservice.getAppointmentsForStylist(stylist, date).subscribe(appointments=>{
+        this.bookedSlots = appointments.map(appointment => {
+          const start = new Date(`${appointment.date}T${appointment.time}`)
+          const end = new Date(start.getTime() + appointment.duration * 60000);
+          return {start, end}
+        })
+      })
+    }
+  }
 
+  onTimeChange(event: Event) {
+  const time = (event.target as HTMLInputElement).value;
+  if (!time) return;
 
+  const newStart = new Date(`${this.appointmentForm.value.date}T${time}`);
+  const newEnd = new Date(newStart.getTime() + this.selectedStyle.duration * 60000); 
 
+  const conflict = this.bookedSlots.find(slot =>
+    newStart < slot.end && slot.start < newEnd
+  );
+
+  if (conflict) {
+    this.appointmentForm.get('time')?.setErrors({ conflict: true });
+  } else {
+    this.appointmentForm.get('time')?.setErrors(null);
+  }
+}
 
   submitForm(){
    const formValues = this.appointmentForm.value;
@@ -111,16 +151,14 @@ ngOnInit(): void {
     service: formValues.service,
     time: formValues.time,
     notes: formValues.notes,
+    duration: this.selectedStyle.duration,
+    status: 'pending'
    }
 
    this.bookingservice.createAppointment(appointmentData).subscribe(
-     reponse =>{
-      console.log(reponse);
-      alert('Appointment Created Successfully')
-   },
-   error =>{
-    console.log(error);
-    
+   {
+    next: response => alert(response.message),
+    error: err => alert(err.message)
    }
    
   )

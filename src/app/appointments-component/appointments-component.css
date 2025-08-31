@@ -61,8 +61,25 @@ button{
   opacity: 0.5;
 }
 
+label{
+  font-weight: 600;
+}
 
 .summary{
   background-color: #fff;
   padding: 20px;
+}
+
+span {
+  font-weight: 700;
+}
+
+.booked-slots, li{
+  color: red;
+}
+
+li{
+  font-size: 14px;
+  display: inline-flex;
+  margin-right: 20px;
 }

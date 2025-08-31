@@ -9,6 +9,12 @@ import { AppointmentsComponent } from './appointments-component/appointments-com
 import { authGuard } from './authenticationModule/guards/authGuard';
 import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
 import { StylesAndServicesComponent } from './stylesAndServices/styles-and-services-component/styles-and-services-component';
+import { StylistAppointmentComponent } from './stylistsModule/stylist-dashboard-layout/stylist-appointment-component/stylist-appointment-component';
+import { StylistCustomersComponent } from './stylistsModule/stylist-dashboard-layout/stylist-customers-component/stylist-customers-component';
+import { StylistSettingsComponent } from './stylistsModule/stylist-dashboard-layout/stylist-settings-component/stylist-settings-component';
+import { StylistDashboardComponent } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-component/stylist-dashboard-component';
+import { StylistProfileComponent } from './stylistsModule/stylist-dashboard-layout/stylist-profile-component/stylist-profile-component';
+import { CustomerAppointmentsComponent } from './customerModule/customer-appointments-component/customer-appointments-component';
 
 export const routes: Routes = [
   {path: '', redirectTo: 'home', pathMatch: 'full'},
@@ -21,11 +27,19 @@ export const routes: Routes = [
     }
   ]},
   {path: 'login', component: Login},
-  {path: 'booking', component: AppointmentsComponent},
-  {path: 'dashboard', component: StylistDashboardLayout, canActivate: [authGuard]},
+  {path: 'booking', component: AppointmentsComponent, canActivate: [authGuard]},
+  {path: 'dashboard', component: StylistDashboardLayout, canActivate: [authGuard],
+    children:[
+      {path: 'summary', component: StylistDashboardComponent},
+      {path: 'appointments', component: StylistAppointmentComponent},
+      {path: 'customers', component: StylistCustomersComponent},
+      {path: 'settings', component: StylistSettingsComponent},
+      {path: 'profile', component: StylistProfileComponent}
+    ]
+  },
+  {path: 'customer/appointments', component: CustomerAppointmentsComponent},
   {path: 'services', component: StylesAndServicesComponent},
   {path: '**', component: WildCardComponent},
-  
 ];
 
 

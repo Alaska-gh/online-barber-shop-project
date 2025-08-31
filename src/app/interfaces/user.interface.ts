@@ -13,5 +13,5 @@ export interface User{
   role: string
   region?: string
   city?:string
-  phone?:string
+  phone?:number
  }

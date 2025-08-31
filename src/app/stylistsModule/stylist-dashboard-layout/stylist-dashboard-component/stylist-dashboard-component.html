@@ -1,84 +1,50 @@
 <div class="container">
-  <h5>Good {{greetingTime}}, {{currentStylist.firstName}}</h5>
-  <p class="my-4">You Have 8 appointments today</p>
+  <h5>Good {{greetingTime}}, {{currentStylist.firstName}} {{currentStylist.lastName}}</h5>
+  <p class="my-4">You Have {{appointments.length}} appointments today</p>
 
   <div class="d-flex ">
     <div class="myCard">
       <p>Total Appointments</p>
-      <h4 class="bold-text">8</h4>
+      <h4 class="bold-text">{{appointments.length}}</h4>
     </div>
     <div class=" myCard">
       <p><i class="fas fa-check text-success me-2"></i>Confirmed</p>
-      <h4 class="bold-text">8</h4>
+      <h4 class="bold-text">{{cornfirmedAppointments.length}}</h4>
+
     </div>
     <div class=" myCard">
       <p><i class="fas fa-hourglass-half me-2 text-warning"></i>Pending</p>
-      <h4 class="bold-text">0</h4>
+      <h4 class="bold-text">{{pendingAppointments.length}}</h4>
     </div>
     <div class=" myCard">
       <p> <i class="fas fa-times text-danger me-2"></i>Cancelled</p>
-      <h4 class="bold-text">0</h4>
+      <h4 class="bold-text">{{rejectedAppointments.length}}</h4>
     </div>
     
   </div>
 
   <div class="row mt-4">
-    <div class="col-7  appointments-container">
-      <h6 class="bold-text">Today's Appointments</h6>
-      <div>
-
-      <div class="appointments">
-          <div class="d-flex justify-content-between">
-            <p class="top-text">Emma Thompson</p>
-            <p class="top-text">9:40 AM</p>
+    <div class="col-7">
+     <div class="appointments-container">
+        <h6 class="bold-text">Today's Appointments</h6>
+        <div>
+          @for (appt of appointments; track $index) {
+          <div class="appointments">
+            <div class="d-flex justify-content-between">
+              <p class="top-text">{{appt.fullName}}</p>
+              <p class="top-text">{{appt.time}}</p>
+            </div>
+            <div class="d-flex justify-content-between bottom-text">
+              <p class="style-name">{{appt.service}}</p>
+              <p
+                [ngClass]="{'status': true, 'confirmed': appt.status === 'confirmed', 'pending': appt.status === 'pending', 'cancelled': appt.status === 'rejected'}">
+                {{appt.status}}</p>
+            </div>
           </div>
-          <div class="d-flex justify-content-between bottom-text">
-            <p class="style-name">Afro twist</p>
-            <p class="confirmed">Confirmed</p>
-          </div>
-      </div>
-      <div class="appointments">
-          <div class="d-flex justify-content-between">
-            <p class="top-text">Emma Thompson</p>
-            <p class="top-text">9:40 AM</p>
-          </div>
-          <div class="d-flex justify-content-between bottom-text">
-            <p class="style-name">Afro twist</p>
-            <p class="confirmed">Confirmed</p>
-          </div>
-      </div>
-      <div class="appointments">
-          <div class="d-flex justify-content-between">
-            <p class="top-text">Emma Thompson</p>
-            <p class="top-text">9:40 AM</p>
-          </div>
-          <div class="d-flex justify-content-between bottom-text">
-            <p class="style-name">Afro twist</p>
-            <p class="confirmed">Confirmed</p>
-          </div>
-      </div>
-      <div class="appointments">
-          <div class="d-flex justify-content-between">
-            <p class="top-text">Emma Thompson</p>
-            <p class="top-text">9:40 AM</p>
-          </div>
-          <div class="d-flex justify-content-between bottom-text">
-            <p class="style-name">Afro twist</p>
-            <p class="confirmed">Confirmed</p>
-          </div>
-      </div>
-      <div class="appointments">
-          <div class="d-flex justify-content-between">
-            <p class="top-text">Emma Thompson</p>
-            <p class="top-text">9:40 AM</p>
-          </div>
-          <div class="d-flex justify-content-between bottom-text">
-            <p class="style-name">Afro twist</p>
-            <p class="confirmed">Confirmed</p>
-          </div>
-      </div>
+          }
         
-      </div>
+        </div>
+     </div>
     </div>
     <div class="col-4 calender-container">
      <div class="calender-wrapper">
