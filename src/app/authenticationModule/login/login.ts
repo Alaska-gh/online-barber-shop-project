@@ -3,6 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserAuthService } from '../../services/user-auth-service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -17,12 +18,15 @@ import { UserAuthService } from '../../services/user-auth-service';
   styleUrl: './login.css'
 })
 export class Login implements OnInit{
+
   formBuilder: FormBuilder = inject(FormBuilder);
   router: Router = inject(Router);
   authService: UserAuthService = inject(UserAuthService)
   activeRoute = inject(ActivatedRoute)
 
+  constructor(private toastr: ToastrService){
 
+  }
   loginForm = this.formBuilder.group({
     email: ['', Validators.required, Validators.email],
     password:['', [Validators.required, Validators.minLength(8)
@@ -30,6 +34,7 @@ export class Login implements OnInit{
   })
 
  ngOnInit(): void {
+  
  }
 
  get email(){
@@ -46,16 +51,16 @@ export class Login implements OnInit{
   const password : string = this.loginForm.get('password')?.value;
   
   this.authService.loginUser(email, password).subscribe({
-  next: (stylist) => {
-    if (stylist) {
-        alert('login successfully')
-        this.redirectUser(stylist.role)
-    } else {
-      alert('Login failed')
+  next: (user) => {
+    if (user) {
+       this.toastr.success('Logged In Successfully', 'Welcome !!!')
+        this.redirectUser(user.role)
+    } else{
+      this.toastr.error('Invalid Credentials', 'Login Failed !!!')
     }
   },
-  error: (err) => {
-    console.error('Login error:', err);
+  error:(err) => {
+    this.toastr.error(`Couldn't Login at this time ${err}`)
   }
 });
   }

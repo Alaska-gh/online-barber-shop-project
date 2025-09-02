@@ -5,6 +5,7 @@ import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import {provideToastr} from 'ngx-toastr'
 
 
 export const appConfig: ApplicationConfig = {
@@ -24,14 +25,25 @@ export const appConfig: ApplicationConfig = {
         provide: DateAdapter,
         useFactory: adapterFactory,
       })
-    )
+ 
+    ),
+      provideToastr({
+        timeOut: 3000,
+        positionClass: 'toast-top-right',
+        preventDuplicates: true,
+        progressBar: true,
+        easeTime: 0,
+        enableHtml: true,
+        disableTimeOut: false,
+        extendedTimeOut: 0,
+}) 
 ]
  
   
 };
 
 
-function withScrollPositionRestoration(arg0: string): import("@angular/router").RouterFeatures {
-  throw new Error('Function not implemented.');
-}
+
+
+
 

@@ -8,6 +8,7 @@ import { Services } from '../interfaces/services.interface';
 import { Appointment } from '../interfaces/appointment.interface';
 import { DatePipe } from '@angular/common';
 import { UserAuthService } from '../services/user-auth-service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-appointments-component',
@@ -27,6 +28,7 @@ export class AppointmentsComponent implements OnInit{
   servicesservice = inject(StylesService)
   bookingservice = inject(BookingService)
   authservice = inject(UserAuthService)
+  toastr = inject(ToastrService)
 
 
   ngOnInit(): void {
@@ -157,11 +159,12 @@ export class AppointmentsComponent implements OnInit{
 
    this.bookingservice.createAppointment(appointmentData).subscribe(
    {
-    next: response => alert(response.message),
-    error: err => alert(err.message)
+    next: () => this.toastr.success('Appointment Booked Successfully', 'Thank You'),
+    error: () => this.toastr.error(`Couldn't Book Your Appointment At This Time`, 'Try Again')
    }
    
   )
+  this.appointmentForm.reset()
   }
 
 }

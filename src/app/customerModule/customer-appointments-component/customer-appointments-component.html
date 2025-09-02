@@ -1,1 +1,177 @@
-<p>customer-appointments-component works!</p>
+<div class="container">
+  <h2 class="title">Pending Appointments</h2>
+  <div [ngStyle]="{'background-color': pendingAppointments.length === 0 ? '#fff' : 'rgb(180, 120, 9)'} "
+    class="main-admin-container">
+    <!--HEADER WITH LOGO AND FILTER DROPDOWN-->
+    @if (pendingAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <!--TABLE HRADER-->
+        <tr>
+          <th>ID</th>
+          <th>Stylist</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Message</th>
+          <th>status</th>
+  
+        </tr>
+        <!--TABLE HEADER ENDS-->
+        <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
+        @for (appt of pendingAppointments; track $index) {
+        <tr>
+          <td>{{ appt.id }}</td>
+          <td>{{ appt.stylist }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.notes }}</td>
+          <td> {{appt.status}}</td>
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Pending Appointments</p>
+    </div>
+    }
+  </div>
+  
+  <h2 class="title">Confirmed Appointments</h2>
+  <div [ngStyle]="{'background-color': confirmedAppointments.length === 0 ? '#fff' : 'darkgreen'}"
+    class="main-admin-container">
+    @if (confirmedAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <!--TABLE HRADER-->
+        <tr>
+          <th>ID</th>
+          <th>Stylist</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Message</th>
+          <th>Status</th>
+  
+        </tr>
+        <!--TABLE HEADER ENDS-->
+        <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
+        @for (appt of confirmedAppointments; track $index) {
+        <tr>
+          <td>{{ appt.id }}</td>
+          <td>{{ appt.stylist }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.notes }}</td>
+          <td>
+            {{appt.status}}
+          </td>
+  
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Confirmed Appointments</p>
+    </div>
+    }
+  
+  </div>
+  
+  <h2 class="title">Cancelled Appointments</h2>
+  <div [ngStyle]="{'background-color': rejectedAppointments.length === 0 ? '#fff' : 'darkred'}" class="main-admin-container">
+    <!--HEADER WITH LOGO AND FILTER DROPDOWN-->
+    @if (rejectedAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <!--TABLE HRADER-->
+        <tr>
+          <th>ID</th>
+          <th>Stylist</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Message</th>
+          <th>Status</th>
+  
+        </tr>
+        <!--TABLE HEADER ENDS-->
+        <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
+        @for (appt of rejectedAppointments; track $index) {
+        <tr>
+          <td>{{ appt.id }}</td>
+          <td>{{ appt.stylist }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.notes }}</td>
+          <td>
+            {{appt.status}}
+          </td>
+  
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Cancelled Appointments</p>
+    </div>
+    }
+  </div>
+  
+  <h2 class="title">Appointments History</h2>
+  <div [ngStyle]="{'background-color': pastAppointments.length === 0 ? '#fff' : 'grey'}" class="main-admin-container">
+    <!--HEADER WITH LOGO AND FILTER DROPDOWN-->
+    @if (pastAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <!--TABLE HRADER-->
+        <tr>
+          <th>ID</th>
+          <th>Stylist</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Message</th>
+          <th>Status</th>
+  
+        </tr>
+        <!--TABLE HEADER ENDS-->
+        <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
+        @for (appt of pastAppointments; track $index) {
+        <tr>
+          <td>{{ appt.id }}</td>
+          <td>{{ appt.stylist }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ appt.time }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.notes }}</td>
+          <td>
+            {{appt.status}}
+          </td>
+  
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Appointments History</p>
+    </div>
+    }
+  </div>
+
+</div>

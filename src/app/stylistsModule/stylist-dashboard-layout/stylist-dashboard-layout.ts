@@ -9,7 +9,7 @@ import { Appointment } from '../../interfaces/appointment.interface';
 
 @Component({
   selector: 'stylist-dashboard-layout',
-  imports: [StylistDashboardComponent, RouterModule, ConfirmLogoutComponent],
+  imports: [RouterModule, ConfirmLogoutComponent],
   templateUrl: './stylist-dashboard-layout.html',
   styleUrl: './stylist-dashboard-layout.css'
 })
@@ -28,7 +28,6 @@ export class StylistDashboardLayout{
   // methods
   ngOnInit(): void {
    this.isLoggedIn = this.authService.logInState.value
-   console.log(this.isLoggedIn);
    this.authService.currentUser.subscribe((currentUser) => {
     this.currentStylist = currentUser
    })    
@@ -54,5 +53,9 @@ export class StylistDashboardLayout{
       this.authService.logoutStylist();
       this.router.navigate(['login'])
     }
+  }
+
+  get pendingAppointments(){
+    return this.appointments.filter(appt => appt.status === 'pending')
   }
 }

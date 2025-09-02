@@ -4,7 +4,7 @@
 }
 h1{
   margin-bottom: 20px;
-  background-color: rgba(10, 10, 36, 0.1);
+  background-color: rgba(10, 10, 36, 0.02);
   padding: 10px;
 }
 .sub-title{
@@ -12,24 +12,38 @@ h1{
 }
 .appointment-form{
   padding: 20px;
-  background-color: rgba(10, 10, 36, 0.1);
+  background-color: rgba(10, 10, 36, 0.02);
 }
 
-.details{
-    background-color: rgba(10, 10, 36, 0.1);
-    max-height: 350px;
-    padding: 20px;
+.appointment-form .column{
+  display: flex;
+  gap: 15px;
+  width: 100%;
 }
+
 .field input, textarea{
   width: 100%;
   padding: 8px;
   margin-bottom: 20px;
   border: none;
-  border-bottom: 1px solid rgb(10, 10, 36);
+  border-bottom: 1px solid rgba(10, 10, 36, 0.2);
   background-color: rgba(255, 255, 255, 0.473);
 }
 textarea{
-  height: 150px;
+  height: 50px;
+}
+
+.field button{
+  font-size: 12px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.field{
+  flex: 1;
+}
+.field .select{
+  display: flex;
+  justify-content: space-evenly;
 }
 .agreement{
   display: flex;
@@ -44,14 +58,14 @@ button{
   border: none;
   background-color: rgb(10, 10, 36);
   color: #fff;
-  padding: 8px;
 }
 
 .confirm-btn, .book-btn{
   width: 100%;
+  padding: 5px;
 }
 .selection-label{
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   max-width: 300px;
 }
@@ -64,7 +78,15 @@ button{
 label{
   font-weight: 600;
 }
-
+.details {
+ 
+  max-height: 350px;
+  padding: 20px;
+}
+.summary-container{
+  background-color: rgba(10, 10, 36, 0.02);
+  padding: 10px;
+}
 .summary{
   background-color: #fff;
   padding: 20px;
@@ -76,10 +98,24 @@ span {
 
 .booked-slots, li{
   color: red;
+
 }
 
 li{
   font-size: 14px;
   display: inline-flex;
   margin-right: 20px;
+ 
+}
+ul{
+  margin-top: -15px;
+  margin-left: -30px;
+}
+@media screen and (max-width: 480px) {
+  .appointment-form .column {
+      display: block;
+    }
+}
+input.ng-invalid.ng-touched{
+  border-bottom: red 1px solid !important;
 }

@@ -36,8 +36,8 @@ ngOnInit(): void {
 
 loadAppointments(){
   this.bookingService.getAppointmentsByCustomer(this.user.email).subscribe(data => {
-    this.appointments = data
-     console.log(this.appointments);
+    const today = new Date()
+    this.appointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
   })
  
   
@@ -47,4 +47,5 @@ onLogoutClicked(event: Event){
   this.authService.logoutBtnCliked()
     event.preventDefault(); //preventing the default behaviur of the anchor element
 }
+
 }

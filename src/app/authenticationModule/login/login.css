@@ -1,24 +1,25 @@
 
-.container {
-  width: 480px;
-  border: 1px solid rgb(10, 10, 36);
+.form {
+  border: 1px solid rgba(10, 10, 36, 0.1);
   background-color: #fff;
   border-radius: 2%;
   margin: 50px auto;
-  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19);
+  padding: 20px;
 }
 
 .container .form-input {
   width: 100%;
   margin-bottom: 1rem;
   font-size: 14px;
+  border: none;
+  border-bottom: 1px solid rgba(10, 10, 36, 0.1);
 }
 
-.custom-input-border{
+.container .form-input:focus{
   outline: none;
-    border: none;
-    border-bottom: 1px solid rgb(10, 10, 36);
 }
+
 .container label {
   color: #996515;
   font-weight: 800;
@@ -38,27 +39,7 @@
   cursor: not-allowed;
   opacity: 0.5;
 }
-.invalid{
-  outline: none;
-  border: none;
-  border-bottom: red 1px solid !important;
-}
-.err{
-  color: red;
-  text-align: center;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 10px;
-  padding: 5px;
-  width: 100%;
-}
-.success{
-  color: #fff;
-  text-align: center;
-  margin-bottom: 10px;
-  font-size: 12px;
-  padding: 5px;
-}
+
 .signup-link{
   cursor: pointer;
   color: #996515;
@@ -67,11 +48,7 @@ h1{
   text-decoration: underline;
 }
 
-.toast{
-  position: absolute;
-  top: 10%;
-  right: 5%;
-  background-color: rgba(7, 252, 7, 0.397);
-  color: #fff;
+input.ng-invalid.ng-touched{
+  border-bottom: 1px solid red !important;
 }
 

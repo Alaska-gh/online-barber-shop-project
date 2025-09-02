@@ -5,9 +5,12 @@
   <label for="all">All</label>
 
   <input type="radio" name="filter" id="barber" value="barber" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="barber">Barber Services</label>
+  <label for="barber">Barbers</label>
 
   <input type="radio" name="filter" id="beauty" value="beauty" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="beauty">Beauty Services</label>
+  <label for="beauty">Hairdressers</label>
+
+  <input type="radio" name="filter" id="unisex" value="unisex" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
+  <label for="unisex">Unisex</label>
 
 </div>

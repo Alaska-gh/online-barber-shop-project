@@ -8,6 +8,7 @@ import { NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import { filter } from 'rxjs';
 import { ConfirmLogoutComponent } from './confirm-logout.component/confirm-logout.component';
 import { UserAuthService } from './services/user-auth-service';
+import { ToastrService } from 'ngx-toastr';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class App implements OnInit{
 
   userAuthService = inject(UserAuthService)
   router: Router = inject(Router)
+  toastr = inject(ToastrService)
 
 
   ngOnInit(): void {
@@ -39,6 +41,8 @@ export class App implements OnInit{
       this.userAuthService.logoutBtnClickedEvent.subscribe((value) =>{
         this.showConfirmLogout= value
       })
+    
+
   }
 
 

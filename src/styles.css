@@ -25,3 +25,106 @@ a{
   padding: 5px;
   width: 100%;
 }
+.badge {
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  padding: 4px 7px;
+  margin-left: 8px;
+  vertical-align: middle;
+}
+
+/* Base container */
+.toast-container {
+  position: fixed !important;
+  /* z-index: 99999 !important; */
+  pointer-events: none;
+  /* clicks pass through container */
+  font-family: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+}
+
+/* Toast card */
+.ngx-toastr {
+  display: flex !important;
+  align-items: center !important;
+  min-width: 280px !important;
+  max-width: 360px !important;
+  padding: 1rem !important;
+  border-radius: 0.75rem !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  color: #fff !important;
+  margin-bottom: 0.75rem !important;
+  font-size: 0.95rem !important;
+  font-weight: 500 !important;
+  pointer-events: auto !important;
+  /* allow interaction inside toast */
+  backdrop-filter: blur(10px) !important;
+  animation: fadeInUp 0.3s ease, fadeOut 0.3s ease 2.7s forwards !important;
+}
+
+/* Toast types */
+.toast-success {
+  background: linear-gradient(135deg, #28a745, #218838) !important;
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #dc3545, #c82333) !important;
+}
+
+.toast-info {
+  background: linear-gradient(135deg, #17a2b8, #138496) !important;
+}
+
+.toast-warning {
+  background: linear-gradient(135deg, #ffc107, #e0a800) !important;
+  color: #212529 !important;
+}
+
+/* Title */
+.toast-title {
+  font-weight: 600 !important;
+  margin-right: 0.35rem !important;
+}
+
+/* Message */
+.toast-message {
+  line-height: 1.4 !important;
+}
+
+/* Close button */
+.toast-close-button {
+  font-size: 1.2rem !important;
+  opacity: 0.8  !important;
+  margin-left: auto !important;
+  color: inherit !important;
+  transition: opacity 0.2s ease !important;
+}
+.toast-top-right {
+  top: 7rem !important;
+  right: 1rem !important;
+}
+
+.toast-close-button:hover {
+  opacity: 1 !important;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}

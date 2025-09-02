@@ -2,90 +2,92 @@
 <section class="container">
   <header>Registration Form</header>
 
-  <form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
-      <div class="gender-box">
-        <h3>Signup Type</h3>
-        <div class="gender-option">
-          <div class="gender">
-            <input type="radio" value="customer" id="customer" name="role" formControlName="role" (change)="onRoleChanged()"/>
-            <label for="customer">Customer</label>
-          </div>
-          <div class="gender">
-            <input type="radio" value="stylist" id="stylist" name="role" formControlName="role" (change)="onRoleChanged()"/>
-            <label for="stylist">Stylist</label>
-          </div>
-          <div class="gender">
-            <input type="radio" value="admin" id="admin" name="role"  formControlName="role" (change)="onRoleChanged()"/>
-            <label for="admin">Admin</label>
-          </div>
+  <form class="form col-lg-12" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+    <div class="gender-box">
+      <h3>Signup Type</h3>
+      <div class="gender-option">
+        <div class="gender">
+          <input type="radio" value="customer" id="customer" name="role" formControlName="role"
+            (change)="onRoleChanged()" />
+          <label for="customer">Customer</label>
+        </div>
+        <div class="gender">
+          <input type="radio" value="stylist" id="stylist" name="role" formControlName="role"
+            (change)="onRoleChanged()" />
+          <label for="stylist">Stylist</label>
+        </div>
+        <div class="gender">
+          <input type="radio" value="admin" id="admin" name="role" formControlName="role" (change)="onRoleChanged()" />
+          <label for="admin">Admin</label>
         </div>
       </div>
+    </div>
     <div class="column">
       <div class="input-box">
         <input class="form-input" type="text" name="firstName" id="firstName" formControlName="firstName"
           placeholder="First Name">
-            @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
-            @if (firstName.errors?.['required']) {
-            <small class="err">*Full Name is required</small>
-            }@else if (firstName.errors?.['pattern']) {
-            <small class="err">*Full Name format error</small>
-            }
-            }
+        @if (firstName.invalid && (firstName.dirty || firstName.touched)) {
+        @if (firstName.errors?.['required']) {
+        <small class="err">*Full Name is required</small>
+        }@else if (firstName.errors?.['pattern']) {
+        <small class="err">*Full Name format error</small>
+        }
+        }
       </div>
       <div class="input-box">
         <input class="form-input" type="text" name="lastName" id="lastName" formControlName="lastName"
           placeholder="Last Name">
-          @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
-          @if (lastName.errors?.['required']) {
-          <small class="err">*Business Name is required</small>
-          }
-          }
-          
+        @if (lastName.invalid && (lastName.dirty || lastName.touched)) {
+        @if (lastName.errors?.['required']) {
+        <small class="err">*Business Name is required</small>
+        }
+        }
+
       </div>
     </div>
 
     <div class="input-box">
-        <input class="form-input" type="text" name="email" id="email" formControlName="email" placeholder=" Email">
-          @if (email.invalid && (email.dirty || email.touched)) {
-          @if (email.errors?.['required']) {
-          <small class="err">*Email is required</small>
-          }@else if (email.errors?.['email']) {
-          <small class="err">*Invalid Email</small>
-          }
-          }
+      <input class="form-input" type="text" name="email" id="email" formControlName="email" placeholder=" Email">
+      @if (email.invalid && (email.dirty || email.touched)) {
+      @if (email.errors?.['required']) {
+      <small class="err">*Email is required</small>
+      }@else if (email.errors?.['email']) {
+      <small class="err">*Invalid Email</small>
+      }
+      }
     </div>
 
     <div class="column">
       <div class="input-box">
         <input class="form-input" type="password" name="password" id="password" formControlName="password"
           placeholder="Password">
-            @if (password.invalid && (password.dirty || password.touched)) {
-            @if (password.errors?.['required']) {
-            <small class="err">*password is required</small>
-            }@else if (password.errors?.['minlength']) {
-            <small class="err">*Password must be at least {{password.errors?.['minlength'].requiredLength}}</small>
-            }
-            }
+        @if (password.invalid && (password.dirty || password.touched)) {
+        @if (password.errors?.['required']) {
+        <small class="err">*password is required</small>
+        }@else if (password.errors?.['minlength']) {
+        <small class="err">*Password must be at least {{password.errors?.['minlength'].requiredLength}}</small>
+        }
+        }
 
       </div>
       <div class="input-box">
-                <input class="form-input" type="password" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword"
-                  placeholder="Confirm Password">
+        <input class="form-input" type="password" name="confirmPassword" id="confirmPassword"
+          formControlName="confirmPassword" placeholder="Confirm Password">
 
-                    @if (cPassword.invalid && (cPassword.dirty || cPassword.touched)) {
-                    @if (cPassword.errors?.['required']) {
-                    <small class="err">Password is required</small>
-                    }@else if (cPassword.errors?.['minlength']) {
-                    <small class="err">*Password must be at least {{cPassword.errors?.['minlength'].requiredLength}}</small>
-                    }
-                    }
-                    @if (signUpForm.errors?.['passwardMismatch'] && cPassword.valid && password.valid) {
-                    <small class="err">*Passwords should match</small>
-                    }
+        @if (cPassword.invalid && (cPassword.dirty || cPassword.touched)) {
+        @if (cPassword.errors?.['required']) {
+        <small class="err">Password is required</small>
+        }@else if (cPassword.errors?.['minlength']) {
+        <small class="err">*Password must be at least {{cPassword.errors?.['minlength'].requiredLength}}</small>
+        }
+        }
+        @if (signUpForm.errors?.['passwardMismatch'] && cPassword.valid && password.valid) {
+        <small class="err">*Passwords should match</small>
+        }
 
       </div>
     </div>
-    
+
     <div class="input-box">
       <input class="form-input" type="number" placeholder="Phone Number" formControlName="phone" />
     </div>
@@ -94,21 +96,21 @@
       <h3>Gender</h3>
       <div class="gender-option">
         <div class="gender">
-          <input type="radio" value="male" id="check-male" name="gender" formControlName="gender"/>
+          <input type="radio" value="male" id="check-male" name="gender" formControlName="gender" />
           <label for="check-male">Male</label>
         </div>
         <div class="gender">
-          <input type="radio" value="female" id="check-female" name="gender" formControlName="gender"/>
+          <input type="radio" value="female" id="check-female" name="gender" formControlName="gender" />
           <label for="check-female">Female</label>
         </div>
         <div class="gender">
-          <input type="radio" value="other" id="check-other" name="gender" formControlName="gender"/>
+          <input type="radio" value="other" id="check-other" name="gender" formControlName="gender" />
           <label for="check-other">Prefer not to say</label>
         </div>
       </div>
     </div>
- 
-   @if (signupType === 'stylist') {
+
+    @if (signupType === 'stylist') {
     <hr>
     <div class="input-box address">
       <label>Bussiness Details</label>
@@ -127,12 +129,13 @@
         <input class="form-input" type="text" placeholder="Region" formControlName="region" />
       </div>
     </div>
-   }
+    }
 
     <input type="submit" value="Submit" class="sign-up-btn mt-4" [disabled]="signUpForm.invalid">
     <!-- [disabled]="!reactiveForm.valid" -->
 
-      <div class="mt-3 ms-auto text-center">
-        Already Registered? <a routerLink="/login" class="signin-link">Login</a>
-      </div>
+    <div class="mt-3 ms-auto text-center">
+      Already Registered? <a routerLink="/login" class="signin-link">Login</a>
+    </div>
   </form>
+</section>

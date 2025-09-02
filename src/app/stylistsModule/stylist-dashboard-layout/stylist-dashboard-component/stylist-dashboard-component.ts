@@ -52,7 +52,7 @@ export class StylistDashboardComponent {
 
     this.loadAppointment()
 
-    this.pollSub = interval(10000).subscribe(() =>{
+    this.pollSub = interval(1000).subscribe(() =>{
       this.loadAppointment()
     })
 }
@@ -71,8 +71,12 @@ ngOnDestroy(){
 
   loadAppointment(){
     this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe( data => {
-      this.appointments = data
+      const today = new Date()
+      this.appointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
+      
     })
+   
+    
   }
 
 
@@ -86,17 +90,6 @@ ngOnDestroy(){
 
   get rejectedAppointments(){
     return this.appointments.filter(appt => appt.status === 'rejected')
-  }
-
-  confirmAppointment(id: number){
-    this.bookingService.updateAppointmentStatus(id, 'confirmed');
-    this.loadAppointment()
-  }
-
-
-  rejectAppointment(id: number){
-    this.bookingService.updateAppointmentStatus(id, 'rejected');
-    this.loadAppointment()
   }
 
 }

@@ -1,108 +1,119 @@
 
 <div class="main-container ">
   <h1 class="text-center">Book Your Appointment</h1>
-  <p class="text-center sub-title">Choose your stylist, service, and schedule time</p>
   <div class="container">
     <div class="row d-flex">
-      <div class="col-8 ">
+      <div class="col-lg-8 col-md-12 ">
         <form [formGroup]="appointmentForm" (ngSubmit)="submitForm()" class="appointment-form">
         
           <div class="customer-info">
-           <h3>Customer Details</h3>
+           <h5>Customer Details</h5>
            <hr>
 
-           <div class="field">
-            <label for="fullName">Full Name</label>
-            <input type="text" name="fullName" id="fullName" formControlName="fullName">
-           </div>
-           @if ( fname.invalid && (fname.touched || fname.dirty)) {
-            @if (fname.errors?.['required']) {
-              <small class="err">Please Enter Your Full Name</small>
-            }
-           }
+           <div class="column">
+            <div class="field">
+              <!-- <label for="fullName">Full Name</label> -->
+              <input type="text" name="fullName" id="fullName" formControlName="fullName" placeholder="Full Name">
 
-           <div class="field">
-            <label for="phoneNum">Phone Number</label>
-            <input type="number" name="phoneNum" id="phoneNum" formControlName="phoneNum">
-           </div>
-
-            @if ( phoneNum.invalid && (phoneNum.touched || phoneNum.dirty)) {
-            @if (phoneNum.errors?.['required']) {
-            <small class="err">Please Enter Your Phone Number</small>
-            }
-            }
-
-           <div class="field">
-            <label for="email">Email</label>
-            <input type="email" name="email" id="email"  formControlName="email">
-           </div>
-
-            @if ( email.invalid && (email.touched || email.dirty)) {
-            @if (email.errors?.['required']) {
-            <small class="err">Please Enter Your Email</small>
-            }
-            @if (email.errors?.['email']) {
-            <small class="err">The Email You Entered Is Invalid</small>
-            }
-            }
-
-          </div>
-          <h3>Appointment Details</h3>
-          <hr>
-          <div class="select-stylist mb-4 d-flex align-items-center field">
-            <input class="me-3 selection-label"  type="text" name="stylist" id="stylist" placeholder="Choose Stylist" formControlName="stylist" (change)="onDateOrStylistChanged()">
-            <button type="button" routerLink="/stylists">Browse Stylists</button>
-          </div>
-
-          @if ( stylist.invalid && (stylist.touched || stylist.dirty)) {
-          @if (stylist.errors?.['required']) {
-          <small class="err">Please Choose A Stylist</small>
-          }
-          }
-
-          <div class="select-style mb-4 d-flex align-items-center field">
-            <input class="me-3 selection-label" type="text" name="service" id="service" placeholder="Choose Style / Service" formControlName="service">
-            <button  type="button" routerLink="/services">Browse Styles / Services</button>
-          </div>
-
-          @if ( service.invalid && (service.touched || service.dirty)) {
-          @if (service.errors?.['required']) {
-          <small class="err">Please Choose Your Style / Service</small>
-          }
-          }
-
-        <div class="field">
-            <label for="date">Date</label>
-            <input type="date" name="date" id="date" formControlName="date" (change)="onDateOrStylistChanged()">
-        </div>
-
-        @if ( date.invalid && (date.touched || date.dirty)) {
-        @if (date.errors?.['required']) {
-        <small class="err">Please Select A Date For Your Appointment</small>
-        }
-        }
-
-         <div class="field">
-          <label for="time">Time</label>
-          <input type="time" name="time" id="time" formControlName="time" (change)="onTimeChange($event)">
-         </div>
-
-          @if ( time.invalid && (time.touched || time.dirty)) {
-          @if (time.errors?.['required']) {
-          <small class="err">Please Select A Time For Your Appointment</small>
-          }
-          @if (time.errors?.['conflict']) {
-            <small class="err">This time slot is already booked.</small>
-          }
-          }
-
-          @if (bookedSlots.length > 0) {
-            <p class="booked-slots"><strong>Unavailable slots for today</strong></p>
-            <ul>
-              @for (slot of bookedSlots; track $index) {
-                <li > ( {{slot.start | date:'shortTime'}} - {{slot.end | date:'shortTime'}} )</li>
+                @if ( fname.invalid && (fname.touched || fname.dirty)) {
+                @if (fname.errors?.['required']) {
+                <small class="err">Please Enter Your Full Name</small>
+                }
+                }
+            </div>
+          
+            
+            <div class="field">
+              <!-- <label for="phoneNum">Phone Number</label> -->
+              <input type="number" name="phoneNum" id="phoneNum" formControlName="phoneNum" placeholder="Phone Number">
+              @if ( phoneNum.invalid && (phoneNum.touched || phoneNum.dirty)) {
+              @if (phoneNum.errors?.['required']) {
+              <small class="err">Please Enter Your Phone Number</small>
               }
-            </ul>
+              }
+            </div>
+            
+            <div class="field">
+              <!-- <label for="email">Email</label> -->
+              <input type="email" name="email" id="email" formControlName="email" placeholder="Email">
+              @if ( email.invalid && (email.touched || email.dirty)) {
+              @if (email.errors?.['required']) {
+              <small class="err">Please Enter Your Email</small>
+              }
+              @if (email.errors?.['email']) {
+              <small class="err">The Email You Entered Is Invalid</small>
+              }
+              }
+            </div>
+           </div>
+           
+
+           
+
+          </div>
+          <h5>Appointment Details</h5>
+          <hr>
+         <div class="column">
+            <div class="field">
+              <div class="select">
+                <input class="me-3 selection-label" type="text" name="stylist" id="stylist" placeholder="Choose Stylist"
+                  formControlName="stylist" (change)="onDateOrStylistChanged()">
+                <button type="button" routerLink="/stylists">Browse Stylists</button>
+              </div>
+              @if ( stylist.invalid && (stylist.touched || stylist.dirty)) {
+              @if (stylist.errors?.['required']) {
+              <small class="err">Please Choose A Stylist</small>
+              }
+              }
+            </div>
+          
+            
+            <div class="field">
+             <div class="select">
+              <input class="me-3 selection-label" type="text" name="service" id="service" placeholder="Choose Style / Service"
+                formControlName="service">
+              <button type="button" routerLink="/services">Browse Styles / Services</button>
+             </div>
+              @if ( service.invalid && (service.touched || service.dirty)) {
+              @if (service.errors?.['required']) {
+              <small class="err">Please Choose Your Style / Service</small>
+              }
+              }
+            </div>
+           
+         </div>
+         <div class="column">
+              <div class="field">
+                <label for="date">Date</label>
+                <input type="date" name="date" id="date" formControlName="date" (change)="onDateOrStylistChanged()">
+                    @if ( date.invalid && (date.touched || date.dirty)) {
+                    @if (date.errors?.['required']) {
+                    <small class="err">Please Select A Date For Your Appointment</small>
+                    }
+                    }
+              </div>
+         
+              
+              <div class="field">
+                <label for="time">Time</label>
+                <input type="time" name="time" id="time" formControlName="time" (change)="onTimeChange($event)">
+                @if ( time.invalid && (time.touched || time.dirty)) {
+                @if (time.errors?.['required']) {
+                <small class="err">Please Select A Time For Your Appointment</small>
+                }
+                @if (time.errors?.['conflict']) {
+                <small class="err">This time slot is already booked.</small>
+                }
+                }
+              </div>
+         </div>
+          @if (bookedSlots.length > 0) {
+          <p class="booked-slots"><strong>Unavailable slots for today</strong></p>
+          <ul>
+            @for (slot of bookedSlots; track $index) {
+            <li> ( {{slot.start | date:'shortTime'}} - {{slot.end | date:'shortTime'}} )</li>
+            }
+          </ul>
           }
          <div class="field">
           <label for="notes">Additional Notes</label>
@@ -119,9 +130,10 @@
       </div>
 
   
-        <div class="col-4 details">
-          <h3 class="text-center">Booking Summary</h3>
+        <div class="col-lg-4 col-md-12 details">
+          <h5 class="text-center">Booking Summary</h5>
          @if (appointmentForm.valid) {
+         <div class="summary-container">
           <div class="summary">
             <p><span>Stylist:</span> {{stylist.value}}</p>
             <p><span>Service(s):</span> {{service.value}}</p>
@@ -129,12 +141,14 @@
             <p><span>Duration:</span> {{selectedStyle.duration}}mins</p>
             <p><span>Total:</span> ghs{{selectedStyle.price}}</p>
           </div>
+         </div>
           <button class="book-btn">Book Now</button>
          }@else {
+         <div class="summary-container">
           <div class="summary">
             <p>Summary of your appointments wil be shown here <i class="fas fa-arrow-down"></i></p>
-            
           </div>
+         </div>
          }
         </div>
     

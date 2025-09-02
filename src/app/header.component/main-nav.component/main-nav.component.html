@@ -32,15 +32,20 @@
     
         @if (!isLoggedIn) {
           <li class="nav-item">
-            <a class="nav-link " routerLink="signup" routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}">Signup</a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Signin</a>
           </li>
+          <li class="nav-item ">
+            <a class="nav-link signup-btn" routerLink="signup" routerLinkActive="active"
+              [routerLinkActiveOptions]="{exact: true}">Get Started</a>
+          </li>
+         
         }@else {
           <li class="nav-item">
-            <a class="nav-link " routerLink="customer/appointments" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Appointments( {{appointments.length}} )</a>
+            <a class="nav-link " routerLink="customer/appointments" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My Appointments
+              @if (appointments.length >0) {
+                <span class="badge">{{appointments.length}}</span>
+              }
+            </a>
           </li>
 
           <li class="nav-item">
@@ -49,7 +54,6 @@
           </li>
           
           <div class="profile-pic ">
-            <!-- <img [src]="user.image" alt="profile pic" > -->
              <p>{{user.firstName.slice(0, 1)}}{{user.lastName.slice(0, 1)}}</p>
           </div>
         }

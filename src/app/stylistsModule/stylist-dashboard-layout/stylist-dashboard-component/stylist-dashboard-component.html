@@ -1,7 +1,10 @@
 <div class="container">
-  <h5>Good {{greetingTime}}, {{currentStylist.firstName}} {{currentStylist.lastName}}</h5>
-  <p class="my-4">You Have {{appointments.length}} appointments today</p>
-
+  <h5>Good {{greetingTime}}, {{currentStylist.firstName}}</h5>
+  @if (appointments.length > 0) {
+      <p class="my-4">You Have {{appointments.length}} appointments today</p>
+  }@else {
+    <p class="my-4">You do not have any appointments today !!!</p>
+  }
   <div class="d-flex ">
     <div class="myCard">
       <p>Total Appointments</p>

@@ -4,7 +4,8 @@
 
 .sidebar {
   background-color: rgb(10, 10, 36);
-
+position: fixed;
+left: 0;top: 0;bottom: 0;
 }
 .sidebar a.active{
   background-color: #996515;
@@ -30,3 +31,7 @@
   margin: auto;
   font-weight: bolder;
 }
+.main{
+  margin-left: 20%;
+}
+

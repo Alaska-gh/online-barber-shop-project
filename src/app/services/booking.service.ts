@@ -12,7 +12,6 @@ export class BookingService{
   private stylist: User = null;
   private style: Services = null;
   private formData: any = null
-
   private http: HttpClient = inject(HttpClient);
   private url = 'http://localhost:3000/appointment'
 

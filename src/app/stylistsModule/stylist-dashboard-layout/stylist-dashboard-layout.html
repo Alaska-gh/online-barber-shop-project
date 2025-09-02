@@ -1,15 +1,19 @@
 
   <div class="d-flex min-vh-100 justify-content-center">
-    <div class="sidebar text-white p-3 t" style="width: 280px;">
+    <div class="sidebar text-white p-3 t me-4" style="width: 20%;">
       <span class="fs-4 offcanvas-title">{{currentStylist.bussinessName}}</span>
       <hr>
       <ul class="nav nav-pills flex-column mb-auto ">
         <li class="nav-item">
           <a routerLink="summary" routerLinkActive="active" class="nav-link text-white">Dashboard</a>
         </li>
-        <li><a routerLink="appointments" routerLinkActive="active" class="nav-link text-white">Appointments ( {{appointments.length}} )</a></li>
+        <li><a routerLink="appointments" routerLinkActive="active" class="nav-link text-white">Appointments 
+          @if (pendingAppointments.length > 0) {
+            <span class="badge">{{ pendingAppointments.length}}</span>
+          }
+        </a></li>
         <li><a routerLink="customers" routerLinkActive="active" class="nav-link text-white">Customers</a></li>
-        <li><a routerLink="profile" class="nav-link text-white">Profile</a></li>
+        <li><a routerLink="profile" routerLinkActive="active" class="nav-link text-white">Profile</a></li>
         <li><a routerLink="settings" routerLinkActive="active" class="nav-link text-white">Settings</a></li>
       </ul>
       <hr class="divider">
@@ -25,7 +29,7 @@
     </div>
   
     <!-- Main Content -->
-    <div class="flex-grow-1 p-4">
+    <div class="flex-grow-1 p-4 main">
       <router-outlet></router-outlet>
     </div>
   </div>

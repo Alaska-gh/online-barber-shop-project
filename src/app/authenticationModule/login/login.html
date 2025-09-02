@@ -1,12 +1,12 @@
 
 <form action="" [formGroup]="loginForm" (ngSubmit)="onLoginClicked()">
   <div class="container ">
-    <div class="col-10 mx-auto my-4">
+    <div class="col-lg-5 mx-auto my-4 form">
       <h1 class="text-center">LogIn</h1>
   
       <div class="field">
         <label for="email">Email</label> <br>
-        <input [ngClass]="{'form-input': true, 'custom-input-border': email.untouched || email.valid, 'invalid': email.invalid && email.touched}" type="email" name="email" 
+        <input class="form-input" type="email" name="email" 
         placeholder="Enter Email Address"
         id="email" formControlName="email" >
       </div>
@@ -21,7 +21,7 @@
   
       <div class="field">
         <label for="password">Password</label> <br>
-        <input [ngClass]="{'form-input': true, 'custom-input-border': pwd.untouched || pwd.valid, 'invalid': pwd.invalid && pwd.touched}"  type="password" name="password" 
+        <input class="form-input"  type="password" name="password" 
         id="password" formControlName="password"
         placeholder="Enter Password">
       </div>

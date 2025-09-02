@@ -1,0 +1,114 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.main-admin-container {
+  color: #fff;
+  height: 300px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  margin-bottom: 50px;
+  border-radius: 10px;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+
+.admin-header {
+  padding-top: 20px;
+  /* border-bottom: #343434 3px solid; */
+  color: #FFF;
+  display: flex;
+  
+}
+
+.title {
+  font-size: 24px;
+  text-align: center;
+  margin: auto;
+  color: rgb(10, 10, 36);
+  margin-bottom: 15px;
+}
+
+
+.admin-content {
+  padding: 30px;
+  width: 100%;
+  /* box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px; */
+}
+
+.main-admin-container::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.main-admin-container::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px grey;
+  border-radius: 10px;
+}
+
+/* Handle */
+.main-admin-container::-webkit-scrollbar-thumb {
+  background: gainsboro;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+.main-admin-container::-webkit-scrollbar-thumb:hover {
+  background: grey;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  
+}
+
+th,
+td {
+  padding: 10px 10px;
+  color: white;
+}
+
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  text-transform: uppercase;
+}
+.confirm-btn,
+.cancel-btn {
+  padding: 5px 5px;
+  border: none;
+  font-weight: bold;
+  background-color: transparent;
+  border-radius: 20px;
+  color: #fff;
+}
+.cancel-btn{
+  background-color: darkred;
+}
+.cancel-btn:hover{
+  background-color: rgb(184, 3, 3);
+}
+.confirm-btn{
+  background-color: darkgreen;
+}
+.confirm-btn:hover{
+  background-color: rgb(5, 148, 5);
+}
+.no-appt{
+  margin-top: 20%;
+}
+.status-confirmed{
+ color: green;
+}
+.no-pending{
+ padding: 100px 0;
+ color: #343434;
+}

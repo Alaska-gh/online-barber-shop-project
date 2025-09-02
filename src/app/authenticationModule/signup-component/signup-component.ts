@@ -4,6 +4,7 @@ import {  UserAuthService } from '../../services/user-auth-service';
 import { User } from '../../interfaces/user.interface';
 import { Router, RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../../shared/password-match.directive';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'signup-component',
@@ -23,6 +24,7 @@ signupType: string;
 formBuilder: FormBuilder = inject(FormBuilder)
 router: Router = inject(Router)
 getStylistService = inject(UserAuthService)
+toastr = inject(ToastrService)
 
  signUpForm = this.formBuilder.group({
   role:['customer', [Validators.required]],
@@ -76,21 +78,21 @@ getStylistService = inject(UserAuthService)
    
     this.getStylistService.registerUser(userData).subscribe(
       response => {
-        alert('Acount created successfuly');
+        this.toastr.success('Account Created Successfully', 'Welcome')
          this.router.navigate(['login'])
       },
       error =>{
-        console.log(error);
+       this.toastr.error(`Couldn't create account ${error}`)
         
       }
     )
-   this.resetForm()
+    this.resetForm()
  }
 
 
  onRoleChanged(){
-  this.signupType = this.signUpForm.controls['role'].value;
-  this.resetForm()
+  this.signupType = this.signUpForm.controls['role'].value; 
+  this.resetForm() 
  }
 
 
@@ -118,12 +120,8 @@ getStylistService = inject(UserAuthService)
  resetForm(){
     this.signUpForm.reset()
     this.signUpForm.patchValue({
-      role: this.signUpForm.value.role,
-      gender: this.signUpForm.value.gender,
-      serviceType: this.signUpForm.value.serviceType,
+      role: this.signupType,
+      gender: 'male'
     })
-    
  }
-
- 
 }
