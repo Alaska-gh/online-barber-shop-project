@@ -6,6 +6,7 @@ import { ConfirmLogoutComponent } from '../../confirm-logout.component/confirm-l
 import { User } from '../../interfaces/user.interface';
 import { BookingService } from '../../services/booking.service';
 import { Appointment } from '../../interfaces/appointment.interface';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'stylist-dashboard-layout',
@@ -24,6 +25,7 @@ export class StylistDashboardLayout{
   authService = inject(UserAuthService)
   router: Router = inject(Router)
   bookingService = inject(BookingService)
+  pollSub: Subscription
 
   // methods
   ngOnInit(): void {
@@ -32,13 +34,15 @@ export class StylistDashboardLayout{
     this.currentStylist = currentUser
    })    
    
-   this.loadAppointments()
+   this.pollSub = interval(1000).subscribe(()=>{
+    this.loadAppointments()
+   })
   }
 
 
   loadAppointments(){
-    this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(data => {
-      this.appointments = data
+    this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(appts => {
+      this.appointments = appts
     })
   }
    onLogOutClicked(event: Event){

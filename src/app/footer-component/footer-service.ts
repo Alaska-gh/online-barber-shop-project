@@ -4,7 +4,7 @@ import { Footer } from '../interfaces/footer.interface';
   const list: Footer []= [
     {
       group: {
-        title: 'Link',
+        title: 'Links',
         items: [
           'Services',
           'Book Apointment',

@@ -50,7 +50,6 @@ export class StylistDashboardComponent {
       this.updateTimeOfDay() //updating the time every 1 minute
     }, 60000);
 
-    this.loadAppointment()
 
     this.pollSub = interval(1000).subscribe(() =>{
       this.loadAppointment()
@@ -70,10 +69,10 @@ ngOnDestroy(){
 
 
   loadAppointment(){
-    this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe( data => {
-      const today = new Date()
-      this.appointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
-      
+    this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe( appts => {
+      const now = new Date();
+      const today = now.toISOString().split('T')[0];
+      this.appointments = appts.filter(appt => appt.date === today)
     })
    
     

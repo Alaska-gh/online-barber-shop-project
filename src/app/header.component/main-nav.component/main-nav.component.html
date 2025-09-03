@@ -14,9 +14,7 @@
     <!-- navigation link -->
     <ul class="navbar-nav ms-auto ">
        <!-- BOOK AN APPOINTMENT BUTTON -->
-    <li class="nav-item text-center">
-        <a class="nav-link appointment"  routerLink="booking" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Book An Appointment</a>
-    </li>
+    
     <li class="nav-item">
       <a class="nav-link " routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
     </li>
@@ -42,8 +40,8 @@
         }@else {
           <li class="nav-item">
             <a class="nav-link " routerLink="customer/appointments" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My Appointments
-              @if (appointments.length >0) {
-                <span class="badge">{{appointments.length}}</span>
+              @if (ongoingAppointments.length >0) {
+                <span class="badge">{{ongoingAppointments.length}}</span>
               }
             </a>
           </li>

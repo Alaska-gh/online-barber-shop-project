@@ -5,6 +5,7 @@ import { User } from '../../interfaces/user.interface';
 import { UserAuthService } from '../../services/user-auth-service';
 import { BookingService } from '../../services/booking.service';
 import { Appointment } from '../../interfaces/appointment.interface';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'main-nav',
@@ -16,12 +17,13 @@ import { Appointment } from '../../interfaces/appointment.interface';
 export class MainNavComponent{
 isLoggedIn: boolean ;
 user: User;
-appointments: Appointment[] = []
+ongoingAppointments: Appointment[] = []
 
 
 authService = inject(UserAuthService)
 router: Router = inject(Router)
 bookingService = inject(BookingService)
+pollSub: Subscription
 
 ngOnInit(): void {
   this.authService.logInState.subscribe((loggedIn) =>{
@@ -30,14 +32,16 @@ ngOnInit(): void {
   this.authService.currentUser.subscribe((currentUser) =>{
     this.user = currentUser
   });
-
-  this.loadAppointments()
+  
+  this.pollSub = interval(1000).subscribe(()=>{
+    this.loadAppointments()
+  })
 }
 
 loadAppointments(){
-  this.bookingService.getAppointmentsByCustomer(this.user.email).subscribe(data => {
+  this.bookingService.getAppointmentsByCustomer(this.user.email).subscribe(appts => {
     const today = new Date()
-    this.appointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
+    this.ongoingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= today && !this.bookingService.apptHasEnded(appt))
   })
  
   

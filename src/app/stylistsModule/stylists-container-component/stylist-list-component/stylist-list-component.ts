@@ -26,7 +26,6 @@ export class StylistListComponent implements OnInit{
     // retrieves list of stylist from the database
      this.stylistService.getUsers().subscribe((data) =>{
        this.listOfStylists = data.filter(user => user.role === 'stylist');
-      console.log(this.listOfStylists);
      });
     //  listening to the changes when the value of the radio button change
     this.filterService.selectedBtnEvent.subscribe((value) =>{

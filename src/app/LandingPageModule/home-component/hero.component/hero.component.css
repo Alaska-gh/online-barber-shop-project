@@ -50,6 +50,9 @@
     text-decoration: none;
     color: #fff;
 }
+li{
+    list-style-type: none;
+}
 
 .intro a:hover{
     background: transparent;

@@ -40,11 +40,11 @@ export class StylistAppointmentComponent implements OnInit{
     this.pollSub.unsubscribe()
   }
  loadAppointments(){
-  this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(data =>{
+  this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(appts =>{
     const today = new Date()
-    this.pastAppointments = data.filter(date => new Date(`${date.date}T${date.time}`)< today)
-    this.upcommingAppointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
-    this.appointments = data
+    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < today && this.bookingService.apptHasEnded(appt))
+    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= today && this.bookingService.apptHasEnded(appt))
+    this.appointments = appts
   })
  }
 
@@ -78,16 +78,17 @@ export class StylistAppointmentComponent implements OnInit{
       
   }
 
+ 
   
   get cornfirmedAppointments(){
-    return this.upcommingAppointments.filter(appt => appt.status === 'confirmed')
+    return this.appointments.filter(appt => appt.status === 'confirmed')
   }
 
   get pendingAppointments(){
-    return this.upcommingAppointments.filter(appt => appt.status === 'pending')
+    return this.appointments.filter(appt => appt.status === 'pending')
   }
 
   get rejectedAppointments(){
-    return this.upcommingAppointments.filter(appt => appt.status === 'rejected')
+    return this.appointments.filter(appt => appt.status === 'rejected')
   }
 }

@@ -1,10 +1,10 @@
   <footer>
-     <div class="container py-5">
+     <div class="container py-3">
         <div class="row">
             <!-- DYNAMICALLY GENERATING THE CONTENT WITH NGFOR DIRECTIVE -->
              @for (title of listOfTitles; track $index) {
                 <div class="col-lg-3" >
-                <h6 class="my-style">{{title.group.title}}</h6>
+                <h6 class="my-style text-start title">{{title.group.title}}</h6>
                 @for (list of title.group.items; track $index) {
                   <ul>
                      <li>

@@ -89,6 +89,12 @@ export class BookingService{
 
 
   }
+
+   apptHasEnded(appt: Appointment){
+    const start = new Date(`${appt.date}T${appt.time}`)
+    const end = new Date(start.getTime() + (appt.duration) * 60000)
+    return end < new Date()
+  }
 }
 
 function timesOverlap(start1: Date, end1: Date, start2:Date, end2:Date){

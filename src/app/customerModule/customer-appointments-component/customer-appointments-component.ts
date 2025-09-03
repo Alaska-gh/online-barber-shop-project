@@ -24,7 +24,6 @@ export class CustomerAppointmentsComponent implements OnInit{
 
 ngOnInit(): void {
   this.currentUser = this.authService.currentUser.value
-  this.loadAppointments()
 
   this.pollSub = interval(1000).subscribe(()=>{
     this.loadAppointments()
@@ -36,24 +35,22 @@ ngOnDestroy(){
 }
 
  loadAppointments(){
-  this.bookingService.getAppointmentsByCustomer(this.currentUser.email).subscribe(data => {
+  this.bookingService.getAppointmentsByCustomer(this.currentUser.email).subscribe(appts => {
     const today = new Date()
-    this.appointments = data
-    this.pastAppointments = data.filter(date => new Date(`${date.date}T${date.time}`) < today)
-    this.upcommingAppointments = data.filter(date => new Date(`${date.date}T${date.time}`) >= today)
-  })
-  console.log(this.appointments);
-  console.log(this.currentUser);
- }
+    this.appointments = appts
+    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < today && this.bookingService.apptHasEnded(appt))
+    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= today && this.bookingService.apptHasEnded(appt))
 
+  })
+ }
 
  get confirmedAppointments(){
-   return this.upcommingAppointments.filter(appt => appt.status === 'confirmed')
+   return this.appointments.filter(appt => appt.status === 'confirmed')
  }
  get rejectedAppointments(){
-   return this.upcommingAppointments.filter(appt => appt.status === 'rejected')
+   return this.appointments.filter(appt => appt.status === 'rejected')
  }
  get pendingAppointments(){
-   return this.upcommingAppointments.filter(appt => appt.status === 'pending')
+   return this.appointments.filter(appt => appt.status === 'pending')
  }
 }

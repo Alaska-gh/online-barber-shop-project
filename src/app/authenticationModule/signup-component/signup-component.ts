@@ -74,7 +74,6 @@ toastr = inject(ToastrService)
 
    delete userData.confirmPassword;
     
-   console.log('Payload being sent:', JSON.stringify(userData, null, 2));
    
     this.getStylistService.registerUser(userData).subscribe(
       response => {
@@ -121,7 +120,8 @@ toastr = inject(ToastrService)
     this.signUpForm.reset()
     this.signUpForm.patchValue({
       role: this.signupType,
-      gender: 'male'
+      gender: 'male',
+      serviceType: ''
     })
  }
 }
