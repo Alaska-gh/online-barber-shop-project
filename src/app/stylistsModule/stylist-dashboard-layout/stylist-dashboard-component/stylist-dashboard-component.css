@@ -86,7 +86,7 @@ h4{
       margin-right: -10px;
 }
 .confirmed{
-  background-color: rgba(12, 167, 12, 0.438);
+  background-color: darkgreen;
   
   
 }
@@ -97,7 +97,7 @@ h4{
 }
 
 .cancelled {
-  background-color: red;
+  background-color: darkred;
 }
 .bold-text{
   font-weight: bold;

@@ -22,6 +22,7 @@ export class AppointmentsComponent implements OnInit{
   idCounter = 0
   bookedSlots: {start: Date, end: Date}[] = []
   loggedInUser: User = null;
+  currentTime = new Date().toISOString().split('T')[0]
 
   formBuilder: FormBuilder = inject(FormBuilder)
 
@@ -124,17 +125,22 @@ export class AppointmentsComponent implements OnInit{
   }
 
   onTimeChange(event: Event) {
+  const now = new Date();
   const time = (event.target as HTMLInputElement).value;
   if (!time) return;
-
+ 
   const newStart = new Date(`${this.appointmentForm.value.date}T${time}`);
   const newEnd = new Date(newStart.getTime() + this.selectedStyle.duration * 60000); 
+
+  if(newStart < now){
+    this.appointmentForm.get('time')?.setErrors({ pastTime: true })
+  }
 
   const conflict = this.bookedSlots.find(slot =>
     newStart < slot.end && slot.start < newEnd
   );
 
-  if (conflict) {
+  if (conflict ) {
     this.appointmentForm.get('time')?.setErrors({ conflict: true });
   } else {
     this.appointmentForm.get('time')?.setErrors(null);
@@ -143,6 +149,13 @@ export class AppointmentsComponent implements OnInit{
 
   submitForm(){
    const formValues = this.appointmentForm.value;
+
+   const start = new Date(`${formValues.date}T${formValues.time}`)
+
+   if(start < new Date()){
+    this.toastr.error("You can't book an appointment in the past", 'Invalid Time');
+    return
+   }
    const appointmentData: Appointment = {
     id: this.idCounter++,
     fullName: formValues.fullName,

@@ -18,6 +18,7 @@ export class CustomerAppointmentsComponent implements OnInit{
  upcommingAppointments: Appointment[] =[]
  currentUser: User;
  pollSub: Subscription
+button:string = 'Pending'
 
  bookingService: BookingService = inject(BookingService)
  authService: UserAuthService = inject(UserAuthService)
@@ -36,12 +37,20 @@ ngOnDestroy(){
 
  loadAppointments(){
   this.bookingService.getAppointmentsByCustomer(this.currentUser.email).subscribe(appts => {
-    const today = new Date()
-    this.appointments = appts
-    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < today && this.bookingService.apptHasEnded(appt))
-    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= today && this.bookingService.apptHasEnded(appt))
+    const now = new Date()
+    const today = now.toISOString().split('T')[0];
+    this.appointments = appts.filter(appt => appt.date === today)
+    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < now && this.bookingService.apptHasEnded(appt))
+    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= now && this.bookingService.apptHasEnded(appt))
 
   })
+ }
+
+ 
+ switchTo(event: Event){
+  const btn = event.target as HTMLButtonElement
+  this.button = btn.innerText
+  
  }
 
  get confirmedAppointments(){

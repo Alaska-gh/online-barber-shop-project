@@ -128,3 +128,30 @@ a{
     transform: translateY(-20px);
   }
 }
+
+.display-btn-container {
+  width: 50%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.pending-btn,
+.confirmed-btn,
+.cancelled-btn,
+.history-btn {
+  margin-top: 30px;
+  font-size: 80%;
+  background-color: rgb(10, 10, 36);
+  color: #FFF;
+  padding: 5px 20px !important;
+  border-radius: 10px;
+  font-weight: bolder;
+  border: none;
+}
+
+.pending-btn:hover, .confirmed-btn:hover, .cancelled-btn:hover, .history-btn:hover{
+  background-color: rgb(3, 3, 78);
+  border: none;
+}

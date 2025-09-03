@@ -18,6 +18,7 @@ export class StylistAppointmentComponent implements OnInit{
   appointments: Appointment[] = []
   upcommingAppointments: Appointment[]=[];
   pastAppointments: Appointment[] = [];
+  button: string = 'Pending';
   private pollSub: Subscription
 
 
@@ -62,8 +63,6 @@ export class StylistAppointmentComponent implements OnInit{
     )
   
   }
-
-
   rejectAppointment(id: number){
     this.bookingService.updateAppointmentStatus(id, 'rejected').subscribe(
       {
@@ -78,7 +77,11 @@ export class StylistAppointmentComponent implements OnInit{
       
   }
 
- 
+ switchTo(event: Event){
+  const btn = event.target as HTMLButtonElement
+  this.button = btn.innerText
+  
+ }
   
   get cornfirmedAppointments(){
     return this.appointments.filter(appt => appt.status === 'confirmed')

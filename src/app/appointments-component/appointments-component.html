@@ -85,7 +85,7 @@
          <div class="column">
               <div class="field">
                 <label for="date">Date</label>
-                <input type="date" name="date" id="date" formControlName="date" (change)="onDateOrStylistChanged()">
+                <input type="date" name="date" id="date" formControlName="date" [min]="currentTime" (change)="onDateOrStylistChanged()">
                     @if ( date.invalid && (date.touched || date.dirty)) {
                     @if (date.errors?.['required']) {
                     <small class="err">*Please Select A Date For Your Appointment</small>
@@ -103,6 +103,9 @@
                 }
                 @if (time.errors?.['conflict']) {
                 <small class="err">*This time slot is already booked.</small>
+                }
+                @if (time.errors?.['pastTime']) {
+                    <small class="err">*The time you selected is past.</small>
                 }
                 }
               </div>
