@@ -1,22 +1,23 @@
 
 <section class="container">
-  <header>Registration Form</header>
+  
 
   <form class="form col-lg-12" [formGroup]="signUpForm" (ngSubmit)="signUp()">
-    <div class="gender-box">
-      <h3>Signup Type</h3>
-      <div class="gender-option">
-        <div class="gender">
+    <header>Registration Form</header>
+    <div class="signup-type-box">
+      <h3>Signup Type: </h3>
+      <div class="signup-type-option">
+        <div class="signup-type">
           <input type="radio" value="customer" id="customer" name="role" formControlName="role"
             (change)="onRoleChanged()" />
           <label for="customer">Customer</label>
         </div>
-        <div class="gender">
+        <div class="signup-type">
           <input type="radio" value="stylist" id="stylist" name="role" formControlName="role"
             (change)="onRoleChanged()" />
           <label for="stylist">Stylist</label>
         </div>
-        <div class="gender">
+        <div class="signup-type">
           <input type="radio" value="admin" id="admin" name="role" formControlName="role" (change)="onRoleChanged()" />
           <label for="admin">Admin</label>
         </div>
@@ -76,7 +77,7 @@
 
         @if (cPassword.invalid && (cPassword.dirty || cPassword.touched)) {
         @if (cPassword.errors?.['required']) {
-        <small class="err">Password is required</small>
+        <small class="err">*Password is required</small>
         }@else if (cPassword.errors?.['minlength']) {
         <small class="err">*Password must be at least {{cPassword.errors?.['minlength'].requiredLength}}</small>
         }

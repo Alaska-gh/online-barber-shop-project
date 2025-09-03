@@ -5,7 +5,7 @@
   }@else {
     <p class="my-4">You do not have any appointments today !!!</p>
   }
-  <div class="d-flex ">
+  <div class="d-flex flex-wrap">
     <div class="myCard">
       <p>Total Appointments</p>
       <h4 class="bold-text">{{appointments.length}}</h4>
@@ -26,10 +26,10 @@
     
   </div>
 
-  <div class="row mt-4">
-    <div class="col-7">
+  <div class="row mt-4 gy-4">
+    <div class="col-lg-7 col-md-12 ">
      <div class="appointments-container">
-        <h6 class="bold-text">Today's Appointments</h6>
+        <h6 class="bold-text">Today's Appointmnts</h6>
         <div>
           @for (appt of appointments; track $index) {
           <div class="appointments">
@@ -49,7 +49,7 @@
         </div>
      </div>
     </div>
-    <div class="col-4 calender-container">
+    <div class="col-lg-4 col-md-12 calender-container">
      <div class="calender-wrapper">
       <h6 class="bold-text cal-title">Calender</h6>
       @switch (view) {

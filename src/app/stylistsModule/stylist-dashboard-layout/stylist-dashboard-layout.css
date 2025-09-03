@@ -3,9 +3,10 @@
 }
 
 .sidebar {
-  background-color: rgb(10, 10, 36);
+background-color: rgb(10, 10, 36);
 position: fixed;
 left: 0;top: 0;bottom: 0;
+width: 20%;
 }
 .sidebar a.active{
   background-color: #996515;
@@ -33,5 +34,6 @@ left: 0;top: 0;bottom: 0;
 }
 .main{
   margin-left: 20%;
+  width: 80%;
 }
 

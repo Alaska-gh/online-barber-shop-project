@@ -35,20 +35,7 @@ select{
   cursor: not-allowed;
   opacity: 0.5;
 }
-.signup-type-selector{
-  display: inline-flex;
-  gap: 20px;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.signup-type-selector .label{
-  margin-left: 5px;
-}
-.stylist-selector, .customer-selector{
-  display: flex;
-  align-items: center;
-}
+ 
 
 h1{
   margin: 30px;
@@ -116,37 +103,37 @@ select{
   column-gap: 15px;
 }
 
-.form .gender-box {
+.form .gender-box, .form .signup-type-box {
   margin-top: 20px;
 }
 
-.gender-box h3 {
+.gender-box h3, .signup-type-box h3{
   color: #333;
   font-size: 1rem;
   font-weight: 400;
   margin-bottom: 8px;
 }
 
-.form :where(.gender-option, .gender) {
+.form :where(.gender-option, .gender, .signup-type-option, .signup-type) {
   display: flex;
   align-items: center;
   column-gap: 50px;
   flex-wrap: wrap;
 }
 
-.form .gender {
+.form .gender, .form .signup-type{
   column-gap: 5px;
 }
 
-.gender input {
+.gender input, .signup-type input {
   accent-color: rgb(130, 106, 251);
 }
 
-.form :where(.gender input, .gender label) {
+.form :where(.gender input, .gender label, .signup-type input, .signup-type label) {
   cursor: pointer;
 }
 
-.gender label {
+.gender label, .signup-type label{
   color: #707070;
 }
 

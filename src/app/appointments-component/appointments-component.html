@@ -17,7 +17,7 @@
 
                 @if ( fname.invalid && (fname.touched || fname.dirty)) {
                 @if (fname.errors?.['required']) {
-                <small class="err">Please Enter Your Full Name</small>
+                <small class="err">*Please Enter Your Full Name</small>
                 }
                 }
             </div>
@@ -28,7 +28,7 @@
               <input type="number" name="phoneNum" id="phoneNum" formControlName="phoneNum" placeholder="Phone Number">
               @if ( phoneNum.invalid && (phoneNum.touched || phoneNum.dirty)) {
               @if (phoneNum.errors?.['required']) {
-              <small class="err">Please Enter Your Phone Number</small>
+              <small class="err">*Please Enter Your Phone Number</small>
               }
               }
             </div>
@@ -38,10 +38,10 @@
               <input type="email" name="email" id="email" formControlName="email" placeholder="Email">
               @if ( email.invalid && (email.touched || email.dirty)) {
               @if (email.errors?.['required']) {
-              <small class="err">Please Enter Your Email</small>
+              <small class="err">*Please Enter Your Email</small>
               }
               @if (email.errors?.['email']) {
-              <small class="err">The Email You Entered Is Invalid</small>
+              <small class="err">*The Email You Entered Is Invalid</small>
               }
               }
             </div>
@@ -62,7 +62,7 @@
               </div>
               @if ( stylist.invalid && (stylist.touched || stylist.dirty)) {
               @if (stylist.errors?.['required']) {
-              <small class="err">Please Choose A Stylist</small>
+              <small class="err">*Please Choose A Stylist</small>
               }
               }
             </div>
@@ -76,7 +76,7 @@
              </div>
               @if ( service.invalid && (service.touched || service.dirty)) {
               @if (service.errors?.['required']) {
-              <small class="err">Please Choose Your Style / Service</small>
+              <small class="err">*Please Choose Your Style / Service</small>
               }
               }
             </div>
@@ -88,7 +88,7 @@
                 <input type="date" name="date" id="date" formControlName="date" (change)="onDateOrStylistChanged()">
                     @if ( date.invalid && (date.touched || date.dirty)) {
                     @if (date.errors?.['required']) {
-                    <small class="err">Please Select A Date For Your Appointment</small>
+                    <small class="err">*Please Select A Date For Your Appointment</small>
                     }
                     }
               </div>
@@ -99,10 +99,10 @@
                 <input type="time" name="time" id="time" formControlName="time" (change)="onTimeChange($event)">
                 @if ( time.invalid && (time.touched || time.dirty)) {
                 @if (time.errors?.['required']) {
-                <small class="err">Please Select A Time For Your Appointment</small>
+                <small class="err">*Please Select A Time For Your Appointment</small>
                 }
                 @if (time.errors?.['conflict']) {
-                <small class="err">This time slot is already booked.</small>
+                <small class="err">*This time slot is already booked.</small>
                 }
                 }
               </div>
