@@ -68,7 +68,6 @@ table {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  
 }
 
 th,
@@ -83,6 +82,7 @@ th {
   padding-bottom: 12px;
   text-align: left;
   text-transform: uppercase;
+ 
 }
 .confirm-btn,
 .cancel-btn {

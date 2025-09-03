@@ -50,6 +50,7 @@ select{
 .signin-link {
   cursor: pointer;
   color: #996515;
+  font-weight: bolder;
 }
 
 .container {

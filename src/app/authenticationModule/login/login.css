@@ -25,24 +25,50 @@
   font-weight: 800;
 
 }
-
-.login-btn{
-  background-color: rgb(10, 10, 36);
+.login-btn, .appple-login-btn, .google-login-btn{
   padding: 0.3rem 2rem;
   cursor: pointer;
-  color: #fff !important;
   width: 100%;
   margin-top: 10px;
+  border: none;
+  font-weight: 600;
+}
+.login-btn{
+    background-color: rgb(10, 10, 36);
+    color: #fff !important;
+}
+.appple-login-btn{
+  background-color: black;
+  color: #fff !important;
+  transition: all 0.3s ease;
+}
+.appple-login-btn:hover{
+  border: 1px solid black;
+  background-color: #fff;
+  color: black !important;
+}
+
+.google-login-btn{
+  border: 1px solid rgba(10, 10, 36, 0.2);
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+.google-login-btn:hover{
+  background-color: black;
+  color: #fff;
+}
+i{
+  margin-right: 0.5rem;
 }
 .login-btn:disabled{
   /* pointer-events: none; */
   cursor: not-allowed;
   opacity: 0.5;
 }
-
 .signup-link{
   cursor: pointer;
   color: #996515;
+  font-weight: bolder;
 } 
 .container header {
   font-size: 1.5rem;
@@ -50,8 +76,12 @@
   font-weight: 500;
   text-align: center;
 }
-
 input.ng-invalid.ng-touched{
   border-bottom: 1px solid red !important;
+}
+.reset-passwaord{
+  font-size: 14px;
+  opacity: 0.7;
+  cursor: pointer;
 }
 

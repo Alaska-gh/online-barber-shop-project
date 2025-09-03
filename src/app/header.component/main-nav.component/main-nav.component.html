@@ -30,7 +30,7 @@
         <a class="nav-link" routerLink="stylists"  routerLinkActive="active" >Stylists</a>
       </li>
     
-        @if (!isLoggedIn) {
+        @if (!isLoggedIn || user.role !== 'customer') {
           <li class="nav-item">
             <a class="nav-link" routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Signin</a>
           </li>

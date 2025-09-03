@@ -155,7 +155,7 @@
         <!--TABLE HEADER ENDS-->
         <!--DISPLAY ALL STUDENTS FROM STUDENTS ARRAY-->
         @for (appt of pastAppointments; track $index) {
-        <tr>
+        <tr class="headers">
           <td>{{ appt.id }}</td>
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>

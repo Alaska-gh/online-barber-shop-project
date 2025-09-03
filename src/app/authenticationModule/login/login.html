@@ -27,19 +27,20 @@
       </div>
 
         @if (pwd.invalid && (pwd.dirty || pwd.touched)) {
-
         @if (pwd.errors?.['required']) {
         <small class="err">*Password is required</small>
         }@else if(pwd.errors?.['minlength']){
           <small class="err">*Password must be  at least {{pwd.errors?.['minlength'].requiredLength}}</small>
         }
       }
-
-      <button [disabled]="loginForm.invalid" type="submit"  class="login-btn">Login</button>
+      <p class="reset-passwaord text-end">Forgot Password?</p>
+      <button [disabled]="loginForm.invalid" type="submit"  class="login-btn">Log in</button>
       
       <div class="mt-3 ms-auto text-center">
-        Not Registered? <a routerLink="/signup" class="signup-link">Sign Up</a>
+        Don't have an account? <a routerLink="/signup" class="signup-link">Sign Up</a>
       </div>
+        <button type="submit" class="appple-login-btn"><i class="fab fa-apple text-white"></i>Log in with Apple</button>
+        <button type="submit" class="google-login-btn"><i class="fab fa-google"></i>Log in with Google</button>
     </div>
   
   </div>

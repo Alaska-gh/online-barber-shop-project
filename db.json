@@ -66,19 +66,7 @@
       "duration": 45,
       "status": "confirmed"
     },
-    {
-      "id": 4,
-      "fullName": "esther fool",
-      "phoneNum": 208999290,
-      "email": "jhon23@gmail.com",
-      "date": "2025-09-01",
-      "stylist": "Elite Beauty Bar",
-      "service": "Braids",
-      "time": "23:23",
-      "notes": "",
-      "duration": 120,
-      "status": "confirmed"
-    },
+   
     {
       "id": 5,
       "fullName": "Bless Tulasi E",
@@ -131,19 +119,7 @@
       "duration": 120,
       "status": "confirmed"
     },
-    {
-      "id": 9,
-      "fullName": "esther fool",
-      "phoneNum": 208999290,
-      "email": "jhon23@gmail.com",
-      "date": "2025-09-01",
-      "stylist": "Elite Beauty Bar",
-      "service": "Side Swept Knotles Braids",
-      "time": "17:32",
-      "notes": null,
-      "duration": 120,
-      "status": "confirmed"
-    },
+  
     {
       "id": 10,
       "fullName": "jackie joe",

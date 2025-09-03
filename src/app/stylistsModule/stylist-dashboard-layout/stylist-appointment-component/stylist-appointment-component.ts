@@ -84,10 +84,10 @@ export class StylistAppointmentComponent implements OnInit{
   }
 
   get pendingAppointments(){
-    return this.appointments.filter(appt => appt.status === 'pending')
+    return this.upcommingAppointments.filter(appt => appt.status === 'pending')
   }
 
   get rejectedAppointments(){
-    return this.appointments.filter(appt => appt.status === 'rejected')
+    return this.upcommingAppointments.filter(appt => appt.status === 'rejected')
   }
 }
