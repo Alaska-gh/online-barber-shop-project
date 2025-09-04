@@ -18,7 +18,7 @@ export class CustomerAppointmentsComponent implements OnInit{
  currentAppointments: Appointment[] =[]
  currentUser: User;
  pollSub: Subscription
- button:string = 'Pending'
+ button:string = 'pending'
 
  bookingService: BookingService = inject(BookingService)
  authService: UserAuthService = inject(UserAuthService)
@@ -49,9 +49,7 @@ ngOnDestroy(){
  
  switchTo(event: Event){
   const btn = event.target as HTMLButtonElement
-  this.button = btn.innerText
-  console.log(this.button);
-  
+  this.button = btn.value  
  }
 
  get confirmedAppointments(){

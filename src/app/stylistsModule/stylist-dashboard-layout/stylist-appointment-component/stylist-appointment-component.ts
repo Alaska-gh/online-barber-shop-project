@@ -18,7 +18,7 @@ export class StylistAppointmentComponent implements OnInit{
   todaysAppointment: Appointment[] = []
   currentAppointments: Appointment[]=[];
   pastAppointments: Appointment[] = [];
-  button: string = 'Pending';
+  button: string = 'pending';
   private pollSub: Subscription
 
 
@@ -80,8 +80,7 @@ export class StylistAppointmentComponent implements OnInit{
 
  switchTo(event: Event){
   const btn = event.target as HTMLButtonElement
-  this.button = btn.innerText
-  
+  this.button = btn.value
  }
   
   get cornfirmedAppointments(){

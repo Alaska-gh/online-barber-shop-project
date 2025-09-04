@@ -1,27 +1,26 @@
-footer{
-    background: linear-gradient(rgba(10, 10, 36, 0.877), 
-    rgba(10, 10, 36, 0.932)), 
+footer {
+  background: linear-gradient(rgba(10, 10, 36, 0.877), rgba(10, 10, 36, 0.932)),
     url(../../../public/images/bg-2.jpg);
-    background-position: center;
-    color: #fff;
-    padding-bottom: 32px;
+  background-position: center;
+  color: #fff;
+  padding-bottom: 32px;
 }
-footer ul{
-    list-style-type: none;
-    font-size: 12px;
-}
-
-li{
-    cursor: pointer;
-    transition: all 300ms ease;
-    text-align: start;
+footer ul {
+  list-style-type: none;
+  font-size: 12px;
 }
 
-li:hover{
-    background: transparent;
-    color: #996515 !important;
+li {
+  cursor: pointer;
+  transition: all 300ms ease;
+  text-align: start;
 }
 
-.title{
-    margin-left: 30px;
+li:hover {
+  background: transparent;
+  color: #996515 !important;
+}
+
+.title {
+  margin-left: 30px;
 }

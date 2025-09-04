@@ -6,6 +6,7 @@
     margin: 0;
     box-sizing: border-box;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -151,10 +152,9 @@ a{
   border: none;
 }
 
- /* .switch-btn:hover{
-  background-color: rgb(3, 3, 78);
-  border: none;
-} */
+ .switch-btn:hover{
+  opacity: 0.8;
+}
 
 
 .cancelled-btn-selected{
