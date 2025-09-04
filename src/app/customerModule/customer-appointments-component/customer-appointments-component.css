@@ -116,11 +116,6 @@ th {
 .no-appt {
   margin-top: 20%;
 }
-
-.status-confirmed {
-  color: green;
-}
-
 .no-pending {
   padding: 100px;
   color: #343434;

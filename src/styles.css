@@ -136,14 +136,11 @@ a{
   width: 50%;
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: space-between;
 }
 
-.pending-btn,
-.confirmed-btn,
-.cancelled-btn,
-.history-btn {
+
+.switch-btn {
   margin-top: 30px;
   font-size: 80%;
   background-color: rgb(10, 10, 36);
@@ -154,7 +151,27 @@ a{
   border: none;
 }
 
-.pending-btn:hover, .confirmed-btn:hover, .cancelled-btn:hover, .history-btn:hover{
+ /* .switch-btn:hover{
   background-color: rgb(3, 3, 78);
   border: none;
+} */
+
+
+.cancelled-btn-selected{
+  background-color: darkred;
+}
+
+.pending-btn-selected{
+  background-color: rgb(180, 120, 9);
+}
+
+.confirmed-btn-selected{
+  background-color: darkgreen;
+}
+
+.history-btn-selected{
+  background-color: grey;
+}
+i{
+  font-weight: 700;
 }

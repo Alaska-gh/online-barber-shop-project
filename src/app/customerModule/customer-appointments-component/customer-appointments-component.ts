@@ -18,7 +18,7 @@ export class CustomerAppointmentsComponent implements OnInit{
  currentAppointments: Appointment[] =[]
  currentUser: User;
  pollSub: Subscription
-button:string = 'Pending'
+ button:string = 'Pending'
 
  bookingService: BookingService = inject(BookingService)
  authService: UserAuthService = inject(UserAuthService)
@@ -43,13 +43,14 @@ ngOnDestroy(){
     this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < now && this.bookingService.apptHasEnded(appt))
     this.currentAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= now && this.bookingService.apptHasEnded(appt))
 
-  })
+  }) 
  }
 
  
  switchTo(event: Event){
   const btn = event.target as HTMLButtonElement
   this.button = btn.innerText
+  console.log(this.button);
   
  }
 

@@ -1,9 +1,12 @@
 <div class="container">
   <div class="display-btn-container">
-    <button class="pending-btn" (click)="switchTo($event)">Pending</button>
-    <button class="confirmed-btn" (click)="switchTo($event)">Confirmed</button>
-    <button class="cancelled-btn" (click)="switchTo($event)">Cancelled</button>
-    <button class="history-btn" (click)="switchTo($event)">History</button>
+    <button [ngClass]="{'pending-btn-selected':  button === 'Pending', 'switch-btn': true}" (click)="switchTo($event)" ><i class="fas fa-hourglass-half me-2 text-warning"></i>Pending</button>
+
+    <button [ngClass]="{'confirmed-btn-selected':  button === 'Confirmed', 'switch-btn': true}"  (click)="switchTo($event)"><i class="fas fa-check text-success me-2"></i>Confirmed</button>
+
+    <button [ngClass]="{'cancelled-btn-selected':  button === 'Cancelled', 'switch-btn': true}"  (click)="switchTo($event)"><i class="fas fa-times text-danger me-2"></i>Cancelled</button>
+
+    <button [ngClass]="{'history-btn-selected':  button === 'History', 'switch-btn': true}"  (click)="switchTo($event)"><i class="fas fa-clock text-light me-2"></i>History</button>
   </div>
   
   @if (button === 'Pending') {
@@ -191,5 +194,4 @@
     </div>
   }
   
- 
 </div>

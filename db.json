@@ -68,6 +68,34 @@
       "duration": 45,
       "price": 50,
       "status": "confirmed"
+    },
+    {
+      "id": 4,
+      "fullName": "Yussif Bashiru",
+      "phoneNum": 208999290,
+      "email": "bashiruyussif87@gmail.com",
+      "date": "2025-09-04",
+      "stylist": "Bashiru Barber Salon",
+      "service": "Low Taper Fade",
+      "time": "13:00",
+      "notes": "",
+      "duration": 45,
+      "price": 50,
+      "status": "confirmed"
+    },
+    {
+      "id": 5,
+      "fullName": "Yussif Bashiru",
+      "phoneNum": 208999290,
+      "email": "bashiruyussif87@gmail.com",
+      "date": "2025-09-04",
+      "stylist": "Bashiru Barber Salon",
+      "service": "Low Taper Fade",
+      "time": "13:45",
+      "notes": null,
+      "duration": 45,
+      "price": 50,
+      "status": "rejected"
     }
   ]
 }
