@@ -167,6 +167,7 @@ export class AppointmentsComponent implements OnInit{
     time: formValues.time,
     notes: formValues.notes,
     duration: this.selectedStyle.duration,
+    price: this.selectedStyle.price,
     status: 'pending'
    }
 

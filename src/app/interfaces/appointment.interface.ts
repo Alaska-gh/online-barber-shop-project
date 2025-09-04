@@ -9,5 +9,6 @@ export interface Appointment{
   time: string;
   duration: number
   notes?: string
+  price: number
   status?: 'pending' | 'confirmed' | 'rejected'
 }

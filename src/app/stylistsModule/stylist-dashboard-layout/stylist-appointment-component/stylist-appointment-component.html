@@ -20,6 +20,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Duration</th>
+            <th>Price</th>
             <th>Confirm</th>
             <th>Cancel</th>
           </tr>
@@ -32,6 +33,7 @@
             <td>{{ appt.date }}</td>
             <td>{{ appt.time }}</td>
             <td>{{ appt.duration }}mins</td>
+            <td> {{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
             <td>
               <button class="confirm-btn" (click)="confirmAppointment(appt.id)">
                 Confirm<i class="fa fa-check" aria-hidden="true"></i>
@@ -68,6 +70,7 @@
               <th>Date</th>
               <th>Time</th>
               <th>Duration</th>
+              <th>Price</th>
               <th>Status</th>
     
             </tr>
@@ -80,6 +83,7 @@
               <td>{{ appt.date }}</td>
               <td>{{ appt.time }}</td>
               <td>{{ appt.duration }}mins</td>
+              <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
               <td>
                 {{appt.status}}
               </td>
@@ -112,6 +116,7 @@
           <th>Date</th>
           <th>Time</th>
           <th>Duration</th>
+          <th>Price</th>
           <th>Status</th>
   
         </tr>
@@ -124,6 +129,7 @@
           <td>{{ appt.date }}</td>
           <td>{{ appt.time }}</td>
           <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
           <td>
             {{appt.status}}
           </td>
@@ -155,6 +161,7 @@
             <th>Date</th>
             <th>Time</th>
             <th>Duration</th>
+            <th>Price</th>
             <th>Status</th>
     
           </tr>
@@ -167,6 +174,7 @@
             <td>{{ appt.date }}</td>
             <td>{{ appt.time }}</td>
             <td>{{ appt.duration }}mins</td>
+            <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
             <td>
               {{appt.status}}
             </td>
