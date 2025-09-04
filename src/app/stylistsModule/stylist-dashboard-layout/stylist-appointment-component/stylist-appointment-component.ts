@@ -15,8 +15,8 @@ import { interval, Subscription } from 'rxjs';
 })
 export class StylistAppointmentComponent implements OnInit{
   currentStylist: User;
-  appointments: Appointment[] = []
-  upcommingAppointments: Appointment[]=[];
+  todaysAppointment: Appointment[] = []
+  currentAppointments: Appointment[]=[];
   pastAppointments: Appointment[] = [];
   button: string = 'Pending';
   private pollSub: Subscription
@@ -42,10 +42,11 @@ export class StylistAppointmentComponent implements OnInit{
   }
  loadAppointments(){
   this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(appts =>{
-    const today = new Date()
-    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < today && this.bookingService.apptHasEnded(appt))
-    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= today && this.bookingService.apptHasEnded(appt))
-    this.appointments = appts
+    const now = new Date()
+    const today = now.toISOString().split('T')[0]
+    this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < now && this.bookingService.apptHasEnded(appt))
+    this.currentAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= now && this.bookingService.apptHasEnded(appt))
+    this.todaysAppointment = appts.filter(appt => appt.date === today)
   })
  }
 
@@ -84,14 +85,14 @@ export class StylistAppointmentComponent implements OnInit{
  }
   
   get cornfirmedAppointments(){
-    return this.appointments.filter(appt => appt.status === 'confirmed')
+    return this.todaysAppointment.filter(appt => appt.status === 'confirmed')
   }
 
   get pendingAppointments(){
-    return this.appointments.filter(appt => appt.status === 'pending')
+    return this.todaysAppointment.filter(appt => appt.status === 'pending')
   }
 
   get rejectedAppointments(){
-    return this.appointments.filter(appt => appt.status === 'rejected')
+    return this.todaysAppointment.filter(appt => appt.status === 'rejected')
   }
 }

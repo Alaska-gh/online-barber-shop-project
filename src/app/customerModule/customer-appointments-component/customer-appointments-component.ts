@@ -13,9 +13,9 @@ import { interval, Subscription } from 'rxjs';
   styleUrl: './customer-appointments-component.css'
 })
 export class CustomerAppointmentsComponent implements OnInit{
- appointments: Appointment[] = []
+ todysAppointments: Appointment[] = []
  pastAppointments: Appointment[] = []
- upcommingAppointments: Appointment[] =[]
+ currentAppointments: Appointment[] =[]
  currentUser: User;
  pollSub: Subscription
 button:string = 'Pending'
@@ -39,9 +39,9 @@ ngOnDestroy(){
   this.bookingService.getAppointmentsByCustomer(this.currentUser.email).subscribe(appts => {
     const now = new Date()
     const today = now.toISOString().split('T')[0];
-    this.appointments = appts.filter(appt => appt.date === today)
+    this.todysAppointments = appts.filter(appt => appt.date === today)
     this.pastAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) < now && this.bookingService.apptHasEnded(appt))
-    this.upcommingAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= now && this.bookingService.apptHasEnded(appt))
+    this.currentAppointments = appts.filter(appt => new Date(`${appt.date}T${appt.time}`) >= now && this.bookingService.apptHasEnded(appt))
 
   })
  }
@@ -54,12 +54,12 @@ ngOnDestroy(){
  }
 
  get confirmedAppointments(){
-   return this.appointments.filter(appt => appt.status === 'confirmed')
+   return this.todysAppointments.filter(appt => appt.status === 'confirmed')
  }
  get rejectedAppointments(){
-   return this.appointments.filter(appt => appt.status === 'rejected')
+   return this.todysAppointments.filter(appt => appt.status === 'rejected')
  }
  get pendingAppointments(){
-   return this.appointments.filter(appt => appt.status === 'pending')
+   return this.todysAppointments.filter(appt => appt.status === 'pending')
  }
 }
