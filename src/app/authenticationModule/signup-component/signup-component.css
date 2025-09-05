@@ -1,5 +1,4 @@
-
-.form{
+.form {
   border: 1px solid rgba(10, 10, 36, 0.1);
   background-color: #fff;
   border-radius: 2%;
@@ -7,23 +6,22 @@
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2), 0 0px 2px 0 rgba(0, 0, 0, 0.19);
   padding: 20px;
 }
-  
-.container .form-input, 
-select{
+
+.container .form-input,
+select {
   width: 100%;
   margin-bottom: 1rem;
   outline: none;
   border: none;
-  border-bottom: 1px solid rgba(10, 10, 36, 0.1);
+  border-bottom: 1px solid rgba(10, 10, 36, 0.5);
   font-size: 14px;
 }
-.container label{
+.container label {
   color: #996515;
   font-weight: 800;
- 
 }
 
-.sign-up-btn{
+.sign-up-btn {
   background-color: rgb(10, 10, 36);
   padding: 0.3rem 2rem;
   cursor: pointer;
@@ -31,19 +29,18 @@ select{
   width: 100%;
 }
 
-.sign-up-btn:disabled{
+.sign-up-btn:disabled {
   cursor: not-allowed;
   opacity: 0.5;
 }
- 
 
-h1{
+h1 {
   margin: 30px;
   font-weight: bold;
   text-decoration: underline;
 }
 
-select{
+select {
   font-size: 14px;
 }
 
@@ -104,11 +101,13 @@ select{
   column-gap: 15px;
 }
 
-.form .gender-box, .form .signup-type-box {
+.form .gender-box,
+.form .signup-type-box {
   margin-top: 20px;
 }
 
-.gender-box h3, .signup-type-box h3{
+.gender-box h3,
+.signup-type-box h3 {
   color: #333;
   font-size: 1rem;
   font-weight: 400;
@@ -122,31 +121,29 @@ select{
   flex-wrap: wrap;
 }
 
-.form .gender, .form .signup-type{
+.form .gender,
+.form .signup-type {
   column-gap: 5px;
 }
 
-.gender input, .signup-type input {
+.gender input,
+.signup-type input {
   accent-color: rgb(130, 106, 251);
 }
 
-.form :where(.gender input, .gender label, .signup-type input, .signup-type label) {
+.form
+  :where(.gender input, .gender label, .signup-type input, .signup-type label) {
   cursor: pointer;
 }
 
-.gender label, .signup-type label{
+.gender label,
+.signup-type label {
   color: #707070;
 }
 
 .address :where(input, .select-box) {
   margin-top: 15px;
 }
-
-
-
-
-
-
 
 /*Responsive*/
 @media screen and (max-width: 500px) {
@@ -163,7 +160,6 @@ select{
   box-shadow: rgba(187, 185, 185, 0.35) 0px 5px 15px;
 }
 
-
-input.ng-invalid.ng-touched{
+input.ng-invalid.ng-touched {
   border-bottom: red 1px solid !important;
 }

@@ -96,6 +96,20 @@
       "duration": 45,
       "price": 50,
       "status": "rejected"
+    },
+    {
+      "id": 6,
+      "fullName": "Bless Tulasi E",
+      "phoneNum": 208999290,
+      "email": "bashiruyussif87@gmail.com",
+      "date": "2025-09-05",
+      "stylist": "Bashiru Barber Salon",
+      "service": "Side Cut",
+      "time": "12:00",
+      "notes": "",
+      "duration": 45,
+      "price": 30,
+      "status": "confirmed"
     }
   ]
 }

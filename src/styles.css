@@ -1,19 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
-@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css");
 
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
 }
-.my-style{
+.my-style {
   color: #996515;
 }
-a{
+a {
   color: #fff;
   text-decoration: none;
 }
@@ -54,7 +54,7 @@ a{
   min-width: 300px !important;
   max-width: 400px;
   min-height: 80px;
-  padding: 0.5rem 1.5rem!important;
+  padding: 0.5rem 1.5rem !important;
   /* border-radius: 0.75rem !important; */
   /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important; */
   color: #fff !important;
@@ -99,7 +99,7 @@ a{
 /* Close button */
 .toast-close-button {
   font-size: 1.2rem !important;
-  opacity: 1  !important;
+  opacity: 1 !important;
   margin-left: auto !important;
   color: #fff !important;
   transition: opacity 0.2s ease !important;
@@ -140,38 +140,52 @@ a{
   justify-content: space-between;
 }
 
-
 .switch-btn {
   margin-top: 30px;
   font-size: 80%;
   background-color: rgb(10, 10, 36);
-  color: #FFF;
+  color: #fff;
   padding: 5px 20px !important;
   border-radius: 10px;
   font-weight: bolder;
   border: none;
 }
 
- .switch-btn:hover{
+.switch-btn:hover {
   opacity: 0.8;
 }
 
-
-.cancelled-btn-selected{
+.cancelled-btn-selected {
   background-color: darkred;
 }
 
-.pending-btn-selected{
+.pending-btn-selected {
   background-color: rgb(180, 120, 9);
 }
 
-.confirmed-btn-selected{
+.confirmed-btn-selected {
   background-color: darkgreen;
 }
 
-.history-btn-selected{
+.history-btn-selected {
   background-color: grey;
 }
-i{
+i {
   font-weight: 700;
+}
+
+.pending-container {
+  border-top: 10px solid rgb(180, 120, 9);
+}
+
+.confirmed-container {
+  border-top: 10px solid darkgreen;
+}
+
+.cancelled-container {
+  border-top: 10px solid darkred;
+}
+
+.history-container {
+  border-top: 10px solid gray;
 }

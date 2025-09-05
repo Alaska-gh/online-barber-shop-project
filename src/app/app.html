@@ -1,14 +1,10 @@
-@if (dashboardLoaded  === false) {
-  <header-component></header-component>
+@if (dashboardLoaded === false) {
+<header-component></header-component>
 }
+<router-outlet></router-outlet>
 
-  <router-outlet></router-outlet>
-
- @if (showConfirmLogout) {
-  <confirm-logout (confirmLogoutEvent)="confirmLogOut($event)"></confirm-logout>
- }
-  
- @if (dashboardLoaded === false) {
-  <footer-component></footer-component>
- }
-
+@if (showConfirmLogout) {
+<confirm-logout (confirmLogoutEvent)="confirmLogOut($event)"></confirm-logout>
+} @if (dashboardLoaded === false) {
+<footer-component></footer-component>
+}

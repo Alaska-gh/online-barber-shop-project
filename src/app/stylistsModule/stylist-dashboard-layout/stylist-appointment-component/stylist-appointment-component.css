@@ -5,10 +5,10 @@
   padding: 0px;
   box-sizing: border-box;
 }
-.container{
+.container {
   margin: auto;
-    margin-top: 30px;
-    max-width: 90%;
+  margin-top: 30px;
+  max-width: 90%;
 }
 .main-admin-container {
   color: #fff;
@@ -22,9 +22,8 @@
 .admin-header {
   padding-top: 20px;
   /* border-bottom: #343434 3px solid; */
-  color: #FFF;
+  color: #fff;
   display: flex;
-  
 }
 
 .title {
@@ -35,7 +34,6 @@
   margin-bottom: 15px;
   margin-top: 30px;
 }
-
 
 .admin-content {
   padding: 30px;
@@ -74,16 +72,14 @@ table {
 th,
 td {
   padding: 10px 10px;
-  color: white;
+  color: rgb(10, 10, 36);
 }
-
 
 th {
   padding-top: 12px;
   padding-bottom: 12px;
   text-align: left;
   text-transform: uppercase;
- 
 }
 .confirm-btn,
 .cancel-btn {
@@ -94,31 +90,25 @@ th {
   border-radius: 20px;
   color: #fff;
 }
-.cancel-btn{
+.cancel-btn {
   background-color: darkred;
 }
-.cancel-btn:hover{
+.cancel-btn:hover {
   background-color: rgb(184, 3, 3);
 }
-.confirm-btn{
+.confirm-btn {
   background-color: darkgreen;
 }
-.confirm-btn:hover{
+.confirm-btn:hover {
   background-color: rgb(5, 148, 5);
 }
-.no-appt{
+.no-appt {
   margin-top: 20%;
 }
-.status-confirmed{
- color: green;
+.status-confirmed {
+  color: green;
 }
-.no-pending{
- padding: 100px 0;
- color: #343434;
+.no-pending {
+  padding: 100px 0;
+  color: #343434;
 }
-
-
-
-
-
-

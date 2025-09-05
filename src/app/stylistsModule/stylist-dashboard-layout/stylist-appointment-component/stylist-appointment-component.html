@@ -1,142 +1,161 @@
 <div class="container">
   <div class="display-btn-container">
-    <button [ngClass]="{'pending-btn-selected':  button === 'pending', 'switch-btn': true}" (click)="switchTo($event)" value="pending"><i class="fas fa-hourglass-half me-2 text-warning"></i>Pending</button>
+    <button
+      [ngClass]="{
+        'pending-btn-selected': button === 'pending',
+        'switch-btn': true
+      }"
+      (click)="switchTo($event)"
+      value="pending"
+    >
+      <i class="fas fa-hourglass-half me-2 text-warning"></i>Pending
+    </button>
 
-    <button [ngClass]="{'confirmed-btn-selected':  button === 'confirmed', 'switch-btn': true}"  (click)="switchTo($event)" value="confirmed"><i class="fas fa-check text-success me-2"></i>Confirmed</button>
+    <button
+      [ngClass]="{
+        'confirmed-btn-selected': button === 'confirmed',
+        'switch-btn': true
+      }"
+      (click)="switchTo($event)"
+      value="confirmed"
+    >
+      <i class="fas fa-check text-success me-2"></i>Confirmed
+    </button>
 
-    <button [ngClass]="{'cancelled-btn-selected':  button === 'cancelled', 'switch-btn': true}"  (click)="switchTo($event)" value="cancelled"><i class="fas fa-times text-danger me-2"></i>Cancelled</button>
+    <button
+      [ngClass]="{
+        'cancelled-btn-selected': button === 'cancelled',
+        'switch-btn': true
+      }"
+      (click)="switchTo($event)"
+      value="cancelled"
+    >
+      <i class="fas fa-times text-danger me-2"></i>Cancelled
+    </button>
 
-    <button [ngClass]="{'history-btn-selected':  button === 'history', 'switch-btn': true}"  (click)="switchTo($event)" value="history"><i class="fas fa-clock text-light me-2"></i>History</button>
+    <button
+      [ngClass]="{
+        'history-btn-selected': button === 'history',
+        'switch-btn': true
+      }"
+      (click)="switchTo($event)"
+      value="history"
+    >
+      <i class="fas fa-clock text-light me-2"></i>History
+    </button>
   </div>
-  
+
   @if (button === 'pending') {
-    <h2 class="title">Pending Appointments</h2>
-    <div [ngStyle]="{'background-color': pendingAppointments.length === 0 ? '#fff' : 'rgb(180, 120, 9)'} "
-      class="main-admin-container">
-      @if (pendingAppointments.length >0) {
-      <div class="admin-content">
-        <table>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Style</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Duration</th>
-            <th>Price</th>
-            <th>Confirm</th>
-            <th>Cancel</th>
-          </tr>
-    
-          @for (appt of pendingAppointments; track $index) {
-          <tr>
-            <td>{{ appt.id }}</td>
-            <td>{{ appt.fullName }}</td>
-            <td>{{ appt.service }}</td>
-            <td>{{ appt.date }}</td>
-            <td>{{ appt.time }}</td>
-            <td>{{ appt.duration }}mins</td>
-            <td> {{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
-            <td>
-              <button class="confirm-btn" (click)="confirmAppointment(appt.id)">
-                Confirm<i class="fa fa-check" aria-hidden="true"></i>
-              </button>
-            </td>
-            <td>
-              <button class="cancel-btn" (click)="rejectAppointment(appt.id)">
-                Cancel<i class="fa fa-close" aria-hidden="true"></i>
-              </button>
-            </td>
-          </tr>
-          }
-        </table>
-      </div>
-      }@else {
-      <div class="no-pending">
-        <p class="text-center fw-bold">No Pending Appointments</p>
-      </div>
-      }
-    </div>
-  }
-  
-  @if (button === 'confirmed') {
-    <h2 class="title">Confirmed Appointments</h2>
-    <div [ngStyle]="{'background-color': cornfirmedAppointments.length === 0 ? '#fff' : 'darkgreen'}">
-      <div class="main-admin-container">
-        @if (cornfirmedAppointments.length >0) {
-        <div class="admin-content">
-          <table>
-            <tr class="header">
-              <th>ID</th>
-              <th>Name</th>
-              <th>Style</th>
-              <th>Date</th>
-              <th>Time</th>
-              <th>Duration</th>
-              <th>Price</th>
-              <th>Status</th>
-    
-            </tr>
-    
-            @for (appt of cornfirmedAppointments; track $index) {
-            <tr>
-              <td>{{ appt.id }}</td>
-              <td>{{ appt.fullName }}</td>
-              <td>{{ appt.service }}</td>
-              <td>{{ appt.date }}</td>
-              <td>{{ appt.time }}</td>
-              <td>{{ appt.duration }}mins</td>
-              <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
-              <td>
-                {{appt.status}}
-              </td>
-    
-            </tr>
-            }
-          </table>
-        </div>
-        }@else {
-        <div class="no-pending">
-          <p class="text-center fw-bold">No Confirmed Appointments</p>
-        </div>
-        }
-      </div>
-    
-    </div>
-  }
-  
- @if (button === 'cancelled') {
-  <h2 class="title">Cancelled Appointments</h2>
-  <div [ngStyle]="{'background-color': rejectedAppointments.length === 0 ? '#fff' : 'darkred'}"
-    class="main-admin-container">
-    @if (rejectedAppointments.length >0) {
+  <h2 class="title">Pending Appointments</h2>
+  <div class="main-admin-container pending-container">
+    @if (pendingAppointments.length >0) {
     <div class="admin-content">
       <table>
         <tr>
-          <th>ID</th>
-          <th>Name</th>
+          <th>Customer</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Confirm</th>
+          <th>Cancel</th>
+        </tr>
+
+        @for (appt of pendingAppointments; track $index) {
+        <tr>
+          <td>{{ appt.fullName }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
+          <td>
+            <button class="confirm-btn" (click)="confirmAppointment(appt.id)">
+              Confirm<i class="fa fa-check" aria-hidden="true"></i>
+            </button>
+          </td>
+          <td>
+            <button class="cancel-btn" (click)="rejectAppointment(appt.id)">
+              Cancel<i class="fa fa-close" aria-hidden="true"></i>
+            </button>
+          </td>
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Pending Appointments</p>
+    </div>
+    }
+  </div>
+
+  } @if (button === 'confirmed') {
+  <h2 class="title">Confirmed Appointments</h2>
+  <div class="main-admin-container confirmed-container">
+    @if (cornfirmedAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <tr class="header">
+          <th>Customer</th>
           <th>Style</th>
           <th>Date</th>
           <th>Time</th>
           <th>Duration</th>
           <th>Price</th>
           <th>Status</th>
-  
         </tr>
-  
-        @for (appt of rejectedAppointments; track $index) {
+
+        @for (appt of cornfirmedAppointments; track $index) {
         <tr>
-          <td>{{ appt.id }}</td>
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>
           <td>{{ appt.date }}</td>
-          <td>{{ appt.time }}</td>
+          <td>{{ formatTime(appt.date, appt.time) }}</td>
           <td>{{ appt.duration }}mins</td>
-          <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
+          <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
           <td>
-            {{appt.status}}
+            {{ appt.status }}
           </td>
-  
+        </tr>
+        }
+      </table>
+    </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Confirmed Appointments</p>
+    </div>
+    }
+  </div>
+
+  } @if (button === 'cancelled') {
+  <h2 class="title">Cancelled Appointments</h2>
+  <div class="main-admin-container cancelled-container">
+    @if (rejectedAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <tr>
+          <th>Customer</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Status</th>
+        </tr>
+
+        @for (appt of rejectedAppointments; track $index) {
+        <tr>
+          <td>{{ appt.fullName }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
+          <td>
+            {{ appt.status }}
+          </td>
         </tr>
         }
       </table>
@@ -147,51 +166,45 @@
     </div>
     }
   </div>
- }
-  
-  @if (button === 'history') {
-    <h2 class="title">Appointments History</h2>
-    <div [ngStyle]="{'background-color': pastAppointments.length === 0 ? '#fff' : 'grey'}" class="main-admin-container">
-      <!--HEADER WITH LOGO AND FILTER DROPDOWN-->
-      @if (pastAppointments.length >0) {
-      <div class="admin-content">
-        <table>
-          <!--TABLE HRADER-->
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Style</th>
-            <th>Date</th>
-            <th>Time</th>
-            <th>Duration</th>
-            <th>Price</th>
-            <th>Status</th>
-    
-          </tr>
- 
-          @for (appt of pastAppointments; track $index) {
-          <tr class="headers">
-            <td>{{ appt.id }}</td>
-            <td>{{ appt.fullName }}</td>
-            <td>{{ appt.service }}</td>
-            <td>{{ appt.date }}</td>
-            <td>{{ appt.time }}</td>
-            <td>{{ appt.duration }}mins</td>
-            <td>{{ appt.price | currency: 'GHS' : 'symbol-narrow'}}</td>
-            <td>
-              {{appt.status}}
-            </td>
-    
-          </tr>
-          }
-        </table>
-      </div>
-      }@else {
-      <div class="no-pending">
-        <p class="text-center fw-bold">No Appointments History</p>
-      </div>
-      }
+
+  } @if (button === 'history') {
+  <h2 class="title">Appointments History</h2>
+  <div class="main-admin-container history-container">
+    <!--HEADER WITH LOGO AND FILTER DROPDOWN-->
+    @if (pastAppointments.length >0) {
+    <div class="admin-content">
+      <table>
+        <!--TABLE HRADER-->
+        <tr>
+          <th>Customer</th>
+          <th>Style</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Duration</th>
+          <th>Price</th>
+          <th>Status</th>
+        </tr>
+
+        @for (appt of pastAppointments; track $index) {
+        <tr class="headers">
+          <td>{{ appt.fullName }}</td>
+          <td>{{ appt.service }}</td>
+          <td>{{ appt.date }}</td>
+          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.duration }}mins</td>
+          <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
+          <td>
+            {{ appt.status }}
+          </td>
+        </tr>
+        }
+      </table>
     </div>
+    }@else {
+    <div class="no-pending">
+      <p class="text-center fw-bold">No Appointments History</p>
+    </div>
+    }
+  </div>
   }
-  
 </div>
