@@ -11,13 +11,19 @@ import { BookingService } from '../services/booking.service';
 import { User } from '../interfaces/user.interface';
 import { Services } from '../interfaces/services.interface';
 import { Appointment } from '../interfaces/appointment.interface';
-import { DatePipe } from '@angular/common';
+import { DatePipe, CurrencyPipe } from '@angular/common';
 import { UserAuthService } from '../services/user-auth-service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-appointments-component',
-  imports: [RouterModule, ReactiveFormsModule, FormsModule, DatePipe],
+  imports: [
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+    DatePipe,
+    CurrencyPipe,
+  ],
   templateUrl: './appointments-component.html',
   styleUrl: './appointments-component.css',
 })
@@ -30,7 +36,6 @@ export class AppointmentsComponent implements OnInit {
   currentTime = new Date().toISOString().split('T')[0];
 
   formBuilder: FormBuilder = inject(FormBuilder);
-
   servicesservice = inject(StylesService);
   bookingservice = inject(BookingService);
   authservice = inject(UserAuthService);
@@ -78,6 +83,7 @@ export class AppointmentsComponent implements OnInit {
     agreement: ['', Validators.required],
   });
 
+  // getter methods for the formControls
   get fname() {
     return this.appointmentForm.controls['fullName'];
   }
@@ -110,6 +116,7 @@ export class AppointmentsComponent implements OnInit {
     return this.appointmentForm.controls['agreement'];
   }
 
+  // fetch all appointments for a stylist on a particular day
   onDateOrStylistChanged() {
     const stylist = this.appointmentForm.value.stylist;
     const date = this.appointmentForm.value.date;
@@ -128,7 +135,7 @@ export class AppointmentsComponent implements OnInit {
         });
     }
   }
-
+  // checks to make sure the start of a new appointment is not before the end of the existing one
   onTimeChange(event: Event) {
     const now = new Date();
     const time = (event.target as HTMLInputElement).value;
