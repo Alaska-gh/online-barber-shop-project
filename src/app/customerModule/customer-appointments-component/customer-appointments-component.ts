@@ -3,13 +3,13 @@ import { Appointment } from '../../interfaces/appointment.interface';
 import { BookingService } from '../../services/booking.service';
 import { UserAuthService } from '../../services/user-auth-service';
 import { User } from '../../interfaces/user.interface';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
+import { TimeFormatter } from '../../services/format-time.service';
 
 @Component({
   selector: 'app-customer-appointments-component',
   imports: [CommonModule],
-  providers: [DatePipe],
   templateUrl: './customer-appointments-component.html',
   styleUrl: './customer-appointments-component.css',
 })
@@ -23,7 +23,7 @@ export class CustomerAppointmentsComponent implements OnInit {
 
   bookingService: BookingService = inject(BookingService);
   authService: UserAuthService = inject(UserAuthService);
-  datePipe = inject(DatePipe);
+  timeFormatService = inject(TimeFormatter);
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser.value;
@@ -63,11 +63,7 @@ export class CustomerAppointmentsComponent implements OnInit {
   }
 
   formatTime(date: string, time: string) {
-    if (!date || !time) {
-      return '';
-    }
-    const dateTime = new Date(`${date}T${time}`);
-    return this.datePipe.transform(dateTime, 'h:mm a');
+    return this.timeFormatService.formatTime(date, time);
   }
 
   get confirmedAppointments() {

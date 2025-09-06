@@ -7,6 +7,7 @@ import { User } from '../../../interfaces/user.interface';
 import { BookingService } from '../../../services/booking.service';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { interval, Subscription } from 'rxjs';
+import { TimeFormatter } from '../../../services/format-time.service';
 
 @Component({
   selector: 'stylist-dashboard',
@@ -25,7 +26,7 @@ export class StylistDashboardComponent {
   authService = inject(UserAuthService);
   timeService = inject(TimeService);
   bookingService = inject(BookingService);
-  datePipe = inject(DatePipe);
+  timeFormatService = inject(TimeFormatter);
 
   viewDate: Date = new Date();
   view: string = 'month';
@@ -75,11 +76,7 @@ export class StylistDashboardComponent {
   }
 
   formatTime(date: string, time: string) {
-    if (!date || !time) {
-      return '';
-    }
-    const dateTime = new Date(`${date}T${time}`);
-    return this.datePipe.transform(dateTime, 'h:mm a');
+    return this.timeFormatService.formatTime(date, time);
   }
 
   get cornfirmedAppointments() {

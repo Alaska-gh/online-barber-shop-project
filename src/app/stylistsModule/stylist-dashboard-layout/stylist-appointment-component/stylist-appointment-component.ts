@@ -3,14 +3,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { Appointment } from '../../../interfaces/appointment.interface';
 import { User } from '../../../interfaces/user.interface';
 import { UserAuthService } from '../../../services/user-auth-service';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { interval, Subscription } from 'rxjs';
+import { TimeFormatter } from '../../../services/format-time.service';
 
 @Component({
   selector: 'app-stylist-appointment-component',
   imports: [CommonModule],
-  providers: [DatePipe],
+
   templateUrl: './stylist-appointment-component.html',
   styleUrl: './stylist-appointment-component.css',
 })
@@ -19,6 +20,7 @@ export class StylistAppointmentComponent implements OnInit {
   todaysAppointment: Appointment[] = [];
   currentAppointments: Appointment[] = [];
   pastAppointments: Appointment[] = [];
+  matchingAppt: Appointment[] = [];
   button: string = 'pending';
   private pollSub: Subscription;
 
@@ -27,7 +29,7 @@ export class StylistAppointmentComponent implements OnInit {
   bookingService = inject(BookingService);
   authService = inject(UserAuthService);
   toastr = inject(ToastrService);
-  datePipe = inject(DatePipe);
+  timeFormatService = inject(TimeFormatter);
 
   ngOnInit(): void {
     this.currentStylist = this.authService.currentUser.value;
@@ -86,12 +88,7 @@ export class StylistAppointmentComponent implements OnInit {
   }
 
   formatTime(date: string, time: string) {
-    if (!date || !time) {
-      return '';
-    }
-
-    const dateTime = new Date(`${date}T${time}`);
-    return this.datePipe.transform(dateTime, 'h:mm a');
+    return this.timeFormatService.formatTime(date, time);
   }
 
   get cornfirmedAppointments() {
