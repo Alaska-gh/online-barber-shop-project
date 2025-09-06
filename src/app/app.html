@@ -5,6 +5,10 @@
 
 @if (showConfirmLogout) {
 <confirm-logout (confirmLogoutEvent)="confirmLogOut($event)"></confirm-logout>
+} @if (showLoginForm) {
+<app-login></app-login>
+} @if (showSignupForm) {
+<signup-component></signup-component>
 } @if (dashboardLoaded === false) {
 <footer-component></footer-component>
 }

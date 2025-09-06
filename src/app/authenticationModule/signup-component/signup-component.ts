@@ -10,6 +10,7 @@ import { User } from '../../interfaces/user.interface';
 import { Router, RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../../Validators/password-match.directive';
 import { ToastrService } from 'ngx-toastr';
+import { DynamicComponent } from '../../services/dynamicComponent.service';
 
 @Component({
   selector: 'signup-component',
@@ -21,10 +22,12 @@ export class SignupComponent {
   signupType: string;
   //  this counter will be incremented upon creating a new user
   private idCounter: number = 0;
+  private showSignupForm: boolean = false;
 
   formBuilder: FormBuilder = inject(FormBuilder);
   router: Router = inject(Router);
-  getStylistService = inject(UserAuthService);
+  authservice = inject(UserAuthService);
+  dynamicComponent = inject(DynamicComponent);
   toastr = inject(ToastrService);
 
   signUpForm = this.formBuilder.group(
@@ -48,6 +51,7 @@ export class SignupComponent {
   );
 
   signUp() {
+    this.hideSignupForm();
     const formValues = this.signUpForm.value;
     const userData: User = {
       id: this.idCounter++,
@@ -75,10 +79,10 @@ export class SignupComponent {
 
     delete userData.confirmPassword;
 
-    this.getStylistService.registerUser(userData).subscribe(
+    this.authservice.registerUser(userData).subscribe(
       (response) => {
         this.toastr.success('Account Created Successfully', 'Welcome');
-        this.router.navigate(['login']);
+        this.dynamicComponent.loginBtnClicked(true);
       },
       (error) => {
         this.toastr.error(`Couldn't create account ${error}`);
@@ -87,6 +91,9 @@ export class SignupComponent {
     this.resetForm();
   }
 
+  hideSignupForm() {
+    this.dynamicComponent.signupBtnClicked(this.showSignupForm);
+  }
   onRoleChanged() {
     this.signupType = this.signUpForm.controls['role'].value;
     this.resetForm();

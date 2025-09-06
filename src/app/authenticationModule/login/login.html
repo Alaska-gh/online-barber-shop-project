@@ -1,51 +1,66 @@
+<div class="overlay">
+  <form action="" [formGroup]="loginForm" (ngSubmit)="onLoginClicked()">
+    <div class="container">
+      <div class="col-lg-5 mx-auto my-4 form">
+        <div class="close-btn" (click)="hideLoginForm()">&times;</div>
+        <header class="text-center">LogIn</header>
 
-<form action="" [formGroup]="loginForm" (ngSubmit)="onLoginClicked()">
-  <div class="container ">
-    <div class="col-lg-5 mx-auto my-4 form">
-      <header class="text-center">LogIn</header>
-  
-      <div class="field">
-        <label for="email">Email</label> <br>
-        <input class="form-input" type="email" name="email" 
-        placeholder="Enter Email Address"
-        id="email" formControlName="email" >
-      </div>
+        <div class="field">
+          <label for="email">Email</label> <br />
+          <input
+            class="form-input"
+            type="email"
+            name="email"
+            placeholder="Enter Email Address"
+            id="email"
+            formControlName="email"
+          />
+        </div>
 
-      @if (email.invalid && (email.dirty || email.touched)) {
-        @if (email.errors?.['required']) {
-          <small class="err">*Email is required</small>
+        @if (email.invalid && (email.dirty || email.touched)) { @if
+        (email.errors?.['required']) {
+        <small class="err">*Email is required</small>
         }@else if (email.errors?.['email']) {
-          <small class="err">*Invalid Email</small>
-        }
-      }
-  
-      <div class="field">
-        <label for="password">Password</label> <br>
-        <input class="form-input"  type="password" name="password" 
-        id="password" formControlName="password"
-        placeholder="Enter Password">
-      </div>
+        <small class="err">*Invalid Email</small>
+        } }
 
-        @if (pwd.invalid && (pwd.dirty || pwd.touched)) {
-        @if (pwd.errors?.['required']) {
+        <div class="field">
+          <label for="password">Password</label> <br />
+          <input
+            class="form-input"
+            type="password"
+            name="password"
+            id="password"
+            formControlName="password"
+            placeholder="Enter Password"
+          />
+        </div>
+
+        @if (pwd.invalid && (pwd.dirty || pwd.touched)) { @if
+        (pwd.errors?.['required']) {
         <small class="err">*Password is required</small>
         }@else if(pwd.errors?.['minlength']){
-          <small class="err">*Password must be  at least {{pwd.errors?.['minlength'].requiredLength}}</small>
-        }
-      }
-      <p class="reset-passwaord text-end">Forgot Password?</p>
-      <button [disabled]="loginForm.invalid" type="submit"  class="login-btn">Log in</button>
-      
-      <div class="mt-3 ms-auto text-center">
-        Don't have an account? <a routerLink="/signup" class="signup-link">Sign Up</a>
+        <small class="err"
+          >*Password must be at least
+          {{pwd.errors?.['minlength'].requiredLength}}</small
+        >
+        } }
+        <p class="reset-passwaord text-end">Forgot Password?</p>
+        <button [disabled]="loginForm.invalid" type="submit" class="login-btn">
+          Log in
+        </button>
+
+        <div class="mt-3 ms-auto text-center">
+          Don't have an account?
+          <a routerLink="/signup" class="signup-link">Sign Up</a>
+        </div>
+        <button type="submit" class="appple-login-btn">
+          <i class="fab fa-apple text-white"></i>Log in with Apple
+        </button>
+        <button type="submit" class="google-login-btn">
+          <i class="fab fa-google"></i>Log in with Google
+        </button>
       </div>
-        <button type="submit" class="appple-login-btn"><i class="fab fa-apple text-white"></i>Log in with Apple</button>
-        <button type="submit" class="google-login-btn"><i class="fab fa-google"></i>Log in with Google</button>
     </div>
-  
-  </div>
-</form>
-
-
-
-
+  </form>
+</div>

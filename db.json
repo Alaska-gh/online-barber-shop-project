@@ -24,6 +24,26 @@
       "region": null,
       "city": null,
       "image": "images/last-1.jpeg"
+    },
+    {
+      "id": 3,
+      "firstName": "Bless",
+      "lastName": "Kay",
+      "email": "kayjay@gmail.com",
+      "password": "Alaskagh",
+      "gender": "male",
+      "role": "customer",
+      "image": "images/user-avatar.png"
+    },
+    {
+      "id": 4,
+      "firstName": "Ama",
+      "lastName": "Kwaku",
+      "email": "jhon23@gmail.com",
+      "password": "Alaskagh",
+      "gender": "female",
+      "role": "customer",
+      "image": "images/user-avatar.png"
     }
   ],
   "appointment": [
@@ -109,6 +129,20 @@
       "notes": "",
       "duration": 45,
       "price": 30,
+      "status": "confirmed"
+    },
+    {
+      "id": 7,
+      "fullName": "Kay Jay",
+      "phoneNum": 208999290,
+      "email": "bashiruyussif87@gmail.com",
+      "date": "2025-09-06",
+      "stylist": "Bashiru Barber Salon",
+      "service": "Braid Haircut",
+      "time": "01:30",
+      "notes": "",
+      "duration": 60,
+      "price": 50,
       "status": "confirmed"
     }
   ]

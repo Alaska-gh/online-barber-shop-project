@@ -1,62 +1,90 @@
- <!-- MAIN NAVIGATION -->
-<nav class="navbar navbar-expand-lg ">
+<!-- MAIN NAVIGATION -->
+<nav class="navbar navbar-expand-lg">
   <!-- MAIN NAVIGATION CONTAINER -->
   <div class="container">
-  <!-- BRAND LOGO -->
-    <a class="navbar-brand text-white" routerLink="home">Online<span>Barber</span>Shop</a>
+    <!-- BRAND LOGO -->
+    <a class="navbar-brand text-white" routerLink="home"
+      >Online<span>Barber</span>Shop</a
+    >
     <!-- TOGGLE BUTTON ON SMALL SCRENS -->
-      <button class="navbar-toggler bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button
+      class="navbar-toggler bg-light"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
-      </button>
+    </button>
     <!-- NAVIGATION BAR ITEMS ONLY APPEARS ON WIDE SCREENS -->
-    <div class="collapse navbar-collapse justify-content-between 
-    " id="navbarSupportedContent">
-    <!-- navigation link -->
-    <ul class="navbar-nav ms-auto ">
-       <!-- BOOK AN APPOINTMENT BUTTON -->
-    
-    <li class="nav-item">
-      <a class="nav-link " routerLink="home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
-    </li>
-     
-  
-      <li class="nav-item">
-        <a class="nav-link " routerLink="services" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Styles and Services</a>
-      </li>
-  
-      <li class="nav-item">
-        <a class="nav-link" routerLink="stylists"  routerLinkActive="active" >Stylists</a>
-      </li>
-    
-        @if (!isLoggedIn || user.role !== 'customer') {
-          <li class="nav-item">
-            <a class="nav-link" routerLink="login" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Signin</a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link signup-btn" routerLink="signup" routerLinkActive="active"
-              [routerLinkActiveOptions]="{exact: true}">Get Started</a>
-          </li>
-         
-        }@else {
-          <li class="nav-item">
-            <a class="nav-link " routerLink="customer/appointments" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">My Appointments
-              @if (ongoingAppointments.length >0) {
-                <span class="badge">{{ongoingAppointments.length}}</span>
-              }
-            </a>
-          </li>
+    <div
+      class="collapse navbar-collapse justify-content-between"
+      id="navbarSupportedContent"
+    >
+      <!-- navigation link -->
+      <ul class="navbar-nav ms-auto">
+        <!-- BOOK AN APPOINTMENT BUTTON -->
 
-          <li class="nav-item">
-            <a class="nav-link " 
-              (click)="onLogoutClicked($event)">Signout</a>
-          </li>
-          
-          <div class="profile-pic ">
-             <p>{{user.firstName.slice(0, 1)}}{{user.lastName.slice(0, 1)}}</p>
-          </div>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="home"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="services"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Styles and Services</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="stylists" routerLinkActive="active"
+            >Stylists</a
+          >
+        </li>
+
+        @if (!isLoggedIn || user.role !== 'customer') {
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLoginButtonClicked(true)">Signin</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link signup-btn" (click)="onSignupBtnClicked(true)"
+            >Get Started</a
+          >
+        </li>
+
+        }@else {
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            routerLink="customer/appointments"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >My Appointments @if (ongoingAppointments.length >0) {
+            <span class="badge">{{ ongoingAppointments.length }}</span>
+            }
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" (click)="onLogoutClicked($event)">Signout</a>
+        </li>
+
+        <div class="profile-pic">
+          <p>{{ user.firstName.slice(0, 1) }}{{ user.lastName.slice(0, 1) }}</p>
+        </div>
         }
-    </ul>
+      </ul>
     </div>
   </div>
 </nav>
-

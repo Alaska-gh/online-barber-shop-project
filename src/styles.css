@@ -189,3 +189,19 @@ i {
 .history-container {
   border-top: 10px solid gray;
 }
+
+.close-btn {
+  font-size: 24px;
+  font-weight: 700;
+  color: rgb(10, 10, 36);
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  margin-left: 95%;
+  border-radius: 50%;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  color: red;
+}

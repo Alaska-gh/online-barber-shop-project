@@ -12,54 +12,54 @@ import { interval, Subscription } from 'rxjs';
   selector: 'stylist-dashboard-layout',
   imports: [RouterModule, ConfirmLogoutComponent],
   templateUrl: './stylist-dashboard-layout.html',
-  styleUrl: './stylist-dashboard-layout.css'
+  styleUrl: './stylist-dashboard-layout.css',
 })
-export class StylistDashboardLayout{
+export class StylistDashboardLayout {
   // properties
   isLoggedIn: boolean;
   currentStylist: User;
-  showConfirmLogout: boolean = false
-  appointments: Appointment[] = []
+  showConfirmLogout: boolean = false;
+  appointments: Appointment[] = [];
 
   // instances
-  authService = inject(UserAuthService)
-  router: Router = inject(Router)
-  bookingService = inject(BookingService)
-  pollSub: Subscription
+  authService = inject(UserAuthService);
+  router: Router = inject(Router);
+  bookingService = inject(BookingService);
+  pollSub: Subscription;
 
   // methods
   ngOnInit(): void {
-   this.isLoggedIn = this.authService.logInState.value
-   this.authService.currentUser.subscribe((currentUser) => {
-    this.currentStylist = currentUser
-   })    
-   
-   this.pollSub = interval(1000).subscribe(()=>{
-    this.loadAppointments()
-   })
+    this.isLoggedIn = this.authService.logInState.value;
+    this.authService.currentUser.subscribe((currentUser) => {
+      this.currentStylist = currentUser;
+    });
+
+    this.pollSub = interval(1000).subscribe(() => {
+      this.loadAppointments();
+    });
   }
 
-
-  loadAppointments(){
-    this.bookingService.getAllAppointmentsForStylist(this.currentStylist.bussinessName).subscribe(appts => {
-      this.appointments = appts
-    })
+  loadAppointments() {
+    this.bookingService
+      .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
+      .subscribe((appts) => {
+        this.appointments = appts;
+      });
   }
-   onLogOutClicked(event: Event){
+  onLogOutClicked(event: Event) {
     event.preventDefault(); //preventing the default behaviur of the anchor element
-    this.showConfirmLogout = true
+    this.showConfirmLogout = true;
   }
 
-
-  confirmLogout(value: boolean){
-    this.showConfirmLogout = false
-    if(value){
+  confirmLogout(value: boolean) {
+    this.showConfirmLogout = false;
+    if (value) {
       this.authService.logoutStylist();
-      this.router.navigate(['login'])
+      this.router.navigate(['home']);
     }
   }
 
-  get pendingAppointments(){
-    return this.appointments.filter(appt => appt.status === 'pending')
+  get pendingAppointments() {
+    return this.appointments.filter((appt) => appt.status === 'pending');
   }
 }
