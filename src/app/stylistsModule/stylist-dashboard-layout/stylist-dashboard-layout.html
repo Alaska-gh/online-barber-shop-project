@@ -1,40 +1,133 @@
+<!-- Sidebar toggle button (only visible on small screens) -->
+<button
+  class="btn toggle-btn d-lg-none m-2"
+  type="button"
+  data-bs-toggle="offcanvas"
+  data-bs-target="#sidebarOffcanvas"
+  aria-controls="sidebarOffcanvas"
+>
+  ☰ Menu
+</button>
 
-  <div class="d-flex min-vh-100 justify-content-center ">
-    
-    <div class="sidebar text-white p-3 ">
-      <span class="fs-4 offcanvas-title">{{currentStylist.bussinessName}}</span>
-      <hr>
-      <ul class="nav nav-pills flex-column mb-auto ">
-        <li class="nav-item">
-          <a routerLink="summary" routerLinkActive="active" class="nav-link text-white">Dashboard</a>
-        </li>
-        <li><a routerLink="appointments" routerLinkActive="active" class="nav-link text-white">Appointments 
-          @if (pendingAppointments.length > 0) {
-            <span class="badge">{{ pendingAppointments.length}}</span>
-          }
-        </a></li>
-        <li><a routerLink="customers" routerLinkActive="active" class="nav-link text-white">Customers</a></li>
-        <li><a routerLink="profile" routerLinkActive="active" class="nav-link text-white">Profile</a></li>
-        <li><a routerLink="settings" routerLinkActive="active" class="nav-link text-white">Settings</a></li>
-      </ul>
-      <hr class="divider">
-      <div class="d-flex align-items-center text-white text-decoration-none justify-content-between">
-        <div class="d-flex align-items-center"> 
-          <div class="profile-pic">
-            <p>{{currentStylist.firstName.slice(0, 1)}}{{currentStylist.lastName.slice(0, 1)}}</p>
-          </div>
-          <strong>{{currentStylist.firstName}} {{currentStylist.lastName}}</strong>
+<!-- Sidebar -->
+<div
+  class="offcanvas offcanvas-start d-lg-flex flex-column sidebar p-3"
+  tabindex="-1"
+  id="sidebarOffcanvas"
+  [ngClass]="{ 'collapsed-sidebar': isSidebarCollapsed }"
+>
+  <div class="offcanvas-header d-lg-none">
+    <h5 class="offcanvas-title text-white">
+      {{ currentStylist.bussinessName }}
+    </h5>
+    <button
+      type="button"
+      class="btn-close fw-bold"
+      data-bs-dismiss="offcanvas"
+      aria-label="Close"
+    ></button>
+  </div>
+
+  <div class="offcanvas-body p-0 d-flex flex-column">
+    <span class="fs-4 d-none d-lg-block">{{
+      currentStylist.bussinessName
+    }}</span>
+    <hr />
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item" data-bs-dismiss="offcanvas">
+        <i class="fas fa-tachometer-alt" title="Dashboard"></i>
+        <span class="link-text">
+          <a
+            routerLink="summary"
+            routerLinkActive="active"
+            class="nav-link text-white"
+            >Dashboard</a
+          ></span
+        >
+      </li>
+      <li class="nav-item" data-bs-dismiss="offcanvas">
+        <i class="fas fa-calendar-alt" title="Appointments"></i>
+        <span class="link-text">
+          <a
+            routerLink="appointments"
+            routerLinkActive="active"
+            class="nav-link text-white"
+          >
+            Appointments @if (pendingAppointments.length > 0) {
+            <span class="badge">{{ pendingAppointments.length }}</span>
+            }
+          </a>
+        </span>
+      </li>
+      <li class="nav-item" data-bs-dismiss="offcanvas">
+        <i class="fas fa-users" title="Customers"></i>
+        <span class="link-text">
+          <a
+            routerLink="customers"
+            routerLinkActive="active"
+            class="nav-link text-white"
+            >Customers</a
+          >
+        </span>
+      </li>
+      <li class="nav-item" data-bs-dismiss="offcanvas">
+        <i class="fas fa-user" title="Profile"></i>
+        <span class="link-text">
+          <a
+            routerLink="profile"
+            routerLinkActive="active"
+            class="nav-link text-white"
+            >Profile</a
+          ></span
+        >
+      </li>
+      <li class="nav-item" data-bs-dismiss="offcanvas">
+        <i class="fas fa-cog" title="Settings"></i>
+        <span class="link-text">
+          <a
+            routerLink="settings"
+            routerLinkActive="active"
+            class="nav-link text-white"
+            >Settings</a
+          ></span
+        >
+      </li>
+    </ul>
+
+    <hr class="divider" />
+    <div class="profile-info">
+      <div class="name-pic">
+        <div class="profile-pic">
+          <p>
+            {{ currentStylist.firstName.slice(0, 1)
+            }}{{ currentStylist.lastName.slice(0, 1) }}
+          </p>
         </div>
-        <a href="#" (click)="onLogOutClicked($event)"><i class="fas fa-sign-out-alt text-danger"></i></a>
+        <strong class="text-white profile-name">
+          {{ currentStylist.firstName }} {{ currentStylist.lastName }}
+        </strong>
       </div>
-    </div>
-  
-    <!-- Main Content -->
-    <div class=" main">
-      <router-outlet></router-outlet>
+      <a href="#" (click)="onLogOutClicked($event)" data-bs-dismiss="offcanvas">
+        <i class="fas fa-sign-out-alt text-danger"></i>
+      </a>
     </div>
   </div>
-  
- @if (showConfirmLogout) {
-  <confirm-logout (confirmLogoutEvent)="confirmLogout($event)"></confirm-logout>
- }
+</div>
+
+<!-- Main Content -->
+<div
+  class="main flex-grow-1"
+  [ngClass]="{ 'collapsed-main': isSidebarCollapsed }"
+>
+  <button
+    class="btn btn-outline-dark d-none d-lg-inline m-2"
+    (click)="toggleSidebar()"
+  >
+    ☰
+  </button>
+  <router-outlet></router-outlet>
+</div>
+
+@if (showConfirmLogout) {
+<confirm-logout (confirmLogoutEvent)="confirmLogout($event)"></confirm-logout>
+}

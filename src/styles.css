@@ -205,3 +205,8 @@ i {
 .close-btn:hover {
   color: red;
 }
+@media screen and (max-width: 991.98px) {
+  .display-btn-container button {
+    margin: 5px 0;
+  }
+}

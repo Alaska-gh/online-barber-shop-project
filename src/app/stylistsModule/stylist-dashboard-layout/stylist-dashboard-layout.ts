@@ -7,10 +7,12 @@ import { User } from '../../interfaces/user.interface';
 import { BookingService } from '../../services/booking.service';
 import { Appointment } from '../../interfaces/appointment.interface';
 import { interval, Subscription } from 'rxjs';
+import { CommonModule } from '@angular/common';
+import { Toast } from 'ngx-toastr';
 
 @Component({
   selector: 'stylist-dashboard-layout',
-  imports: [RouterModule, ConfirmLogoutComponent],
+  imports: [RouterModule, ConfirmLogoutComponent, CommonModule],
   templateUrl: './stylist-dashboard-layout.html',
   styleUrl: './stylist-dashboard-layout.css',
 })
@@ -20,6 +22,7 @@ export class StylistDashboardLayout {
   currentStylist: User;
   showConfirmLogout: boolean = false;
   appointments: Appointment[] = [];
+  isSidebarCollapsed = false;
 
   // instances
   authService = inject(UserAuthService);
@@ -37,6 +40,9 @@ export class StylistDashboardLayout {
     this.pollSub = interval(1000).subscribe(() => {
       this.loadAppointments();
     });
+  }
+  toggleSidebar() {
+    this.isSidebarCollapsed = !this.isSidebarCollapsed;
   }
 
   loadAppointments() {

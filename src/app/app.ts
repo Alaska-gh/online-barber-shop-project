@@ -28,10 +28,10 @@ import { DynamicComponent } from './services/dynamicComponent.service';
   styleUrl: './app.css',
 })
 export class App implements OnInit {
-  dashboardLoaded = false;
-  showConfirmLogout: boolean = false;
-  showLoginForm: boolean = false;
-  showSignupForm: boolean = false;
+  dashboardLoaded: boolean;
+  showConfirmLogout: boolean;
+  showLoginForm: boolean;
+  showSignupForm: boolean;
 
   userAuthService = inject(UserAuthService);
   dynamicComponent = inject(DynamicComponent);
@@ -48,12 +48,14 @@ export class App implements OnInit {
       this.showConfirmLogout = value;
     });
 
-    this.dynamicComponent.loginBtnClickedEvent.subscribe(
-      (value) => (this.showLoginForm = value)
-    );
+    this.dynamicComponent.loginBtnClickedEvent.subscribe((value) => {
+      this.showLoginForm = value;
+      this.showSignupForm = false;
+    });
 
     this.dynamicComponent.signupBtnClickedEvent.subscribe((value) => {
       this.showSignupForm = value;
+      this.showLoginForm = false;
     });
   }
 

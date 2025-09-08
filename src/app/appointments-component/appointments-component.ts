@@ -30,7 +30,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AppointmentsComponent implements OnInit {
   selectedstylist: User;
   selectedStyle: Services;
-  idCounter = 0;
   bookedSlots: { start: Date; end: Date }[] = [];
   loggedInUser: User = null;
   currentTime = new Date().toISOString().split('T')[0];
@@ -174,7 +173,6 @@ export class AppointmentsComponent implements OnInit {
       return;
     }
     const appointmentData: Appointment = {
-      id: this.idCounter++,
       fullName: formValues.fullName,
       phoneNum: formValues.phoneNum,
       email: formValues.email,

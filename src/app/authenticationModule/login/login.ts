@@ -38,7 +38,6 @@ export class Login implements OnInit {
   }
 
   onLoginClicked() {
-    this.hideLoginForm();
     const email: string = this.loginForm.get('email')?.value;
     const password: string = this.loginForm.get('password')?.value;
 
@@ -46,13 +45,14 @@ export class Login implements OnInit {
       next: (user) => {
         if (user) {
           this.toastr.success('Logged In Successfully', 'Welcome !!!');
+          this.hideLoginForm();
           this.redirectUser(user.role);
         } else {
           this.toastr.error('Invalid Credentials', 'Login Failed !!!');
         }
       },
       error: (err) => {
-        this.toastr.error(`Couldn't Login at this time ${err}`);
+        this.toastr.error(`Couldn't Login at this time ${err.message}`);
       },
     });
     this.loginForm.reset();
@@ -71,5 +71,9 @@ export class Login implements OnInit {
 
   hideLoginForm() {
     this.dynamicComponent.loginBtnClicked(this.showLoginForm);
+  }
+
+  showSignupForm(value: boolean) {
+    this.dynamicComponent.signupBtnClicked(value);
   }
 }

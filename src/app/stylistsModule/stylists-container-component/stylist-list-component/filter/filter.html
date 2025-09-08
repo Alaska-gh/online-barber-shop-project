@@ -1,16 +1,51 @@
 <div class="filter">
   <span class="title">Filter By:</span>
 
-  <input type="radio" name="filter" id="all" value="all" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="all">All</label>
+  <div class="d-flex">
+    <div>
+      <input
+        type="radio"
+        name="filter"
+        id="all"
+        value="all"
+        [(ngModel)]="selectedStylists"
+        (change)="onBtnChange()"
+      />
+      <label for="all">All</label>
+    </div>
+    <div>
+      <input
+        type="radio"
+        name="filter"
+        id="barber"
+        value="barber"
+        [(ngModel)]="selectedStylists"
+        (change)="onBtnChange()"
+      />
+      <label for="barber">Barbers</label>
+    </div>
+    <div>
+      <input
+        type="radio"
+        name="filter"
+        id="beauty"
+        value="beauty"
+        [(ngModel)]="selectedStylists"
+        (change)="onBtnChange()"
+      />
+      <label for="beauty">Hairdressers</label>
+    </div>
 
-  <input type="radio" name="filter" id="barber" value="barber" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="barber">Barbers</label>
-
-  <input type="radio" name="filter" id="beauty" value="beauty" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="beauty">Hairdressers</label>
-
-  <input type="radio" name="filter" id="unisex" value="unisex" [(ngModel)]="selectedStylists" (change)="onBtnChange()">
-  <label for="unisex">Unisex</label>
-
+    <div>
+      <input
+        type="radio"
+        name="filter"
+        id="unisex"
+        value="unisex"
+        [(ngModel)]="selectedStylists"
+        (change)="onBtnChange()"
+      />
+      <label for="unisex">Unisex</label>
+    </div>
+  </div>
 </div>

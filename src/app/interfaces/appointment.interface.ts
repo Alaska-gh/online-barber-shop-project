@@ -1,5 +1,5 @@
-export interface Appointment{
-  id: number;
+export interface Appointment {
+  id?: string;
   fullName: string;
   phoneNum: number;
   email: string;
@@ -7,8 +7,8 @@ export interface Appointment{
   service: string;
   date: string;
   time: string;
-  duration: number
-  notes?: string
-  price: number
-  status?: 'pending' | 'confirmed' | 'rejected'
+  duration: number;
+  notes?: string;
+  price: number;
+  status?: 'pending' | 'confirmed' | 'rejected';
 }

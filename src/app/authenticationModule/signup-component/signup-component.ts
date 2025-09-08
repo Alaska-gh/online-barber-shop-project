@@ -8,7 +8,7 @@ import {
 import { UserAuthService } from '../../services/user-auth-service';
 import { User } from '../../interfaces/user.interface';
 import { Router, RouterModule } from '@angular/router';
-import { passwordMatchValidator } from '../../Validators/password-match.directive';
+import { passwordMatchValidator } from '../../validators/password-match.directive';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
 
@@ -51,7 +51,6 @@ export class SignupComponent {
   );
 
   signUp() {
-    this.hideSignupForm();
     const formValues = this.signUpForm.value;
     const userData: User = {
       id: this.idCounter++,
@@ -82,6 +81,7 @@ export class SignupComponent {
     this.authservice.registerUser(userData).subscribe(
       (response) => {
         this.toastr.success('Account Created Successfully', 'Welcome');
+        this.hideSignupForm();
         this.dynamicComponent.loginBtnClicked(true);
       },
       (error) => {
@@ -93,6 +93,10 @@ export class SignupComponent {
 
   hideSignupForm() {
     this.dynamicComponent.signupBtnClicked(this.showSignupForm);
+  }
+
+  showLogingForm(value: boolean) {
+    this.dynamicComponent.loginBtnClicked(value);
   }
   onRoleChanged() {
     this.signupType = this.signUpForm.controls['role'].value;

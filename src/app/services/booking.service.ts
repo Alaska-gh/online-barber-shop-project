@@ -1,102 +1,176 @@
-import { inject, Injectable } from "@angular/core";
-import { User } from "../interfaces/user.interface";
-import { Services } from "../interfaces/services.interface";
-import { HttpClient } from "@angular/common/http";
-import { Appointment } from "../interfaces/appointment.interface";
-import { map, Observable, switchMap } from "rxjs";
+import { Appointment } from './../interfaces/appointment.interface';
+import { inject, Injectable } from '@angular/core';
+import { User } from '../interfaces/user.interface';
+import { Services } from '../interfaces/services.interface';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { map, Observable, switchMap } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class BookingService{
+export class BookingService {
   private stylist: User = null;
   private style: Services = null;
-  private formData: any = null
+  private formData: any = null;
   private http: HttpClient = inject(HttpClient);
-  private url = 'http://localhost:3000/appointment'
+  private jsonServerUrl = 'http://localhost:3000/appointment';
+  private baseUrl =
+    'https://online-barber-shop-e6bfb-default-rtdb.asia-southeast1.firebasedatabase.app/appointments';
 
-
-
-  setStylist(stylist: User){
-    this.stylist = stylist
+  setStylist(stylist: User) {
+    this.stylist = stylist;
   }
 
-  getStylist(){
-    return this.stylist
+  getStylist() {
+    return this.stylist;
   }
 
-
-  setStyle(style: Services){
-    this.style = style
+  setStyle(style: Services) {
+    this.style = style;
   }
 
-  getStyle(){
-    return this.style
+  getStyle() {
+    return this.style;
   }
 
-  setFormData(data: any){
-    this.formData = data
+  setFormData(data: any) {
+    this.formData = data;
   }
 
-  getFormData(){
-    return this.formData
+  getFormData() {
+    return this.formData;
   }
 
-  getAllAppointmentsForStylist(stylist: string){
-    return this.http.get<Appointment[]>(`${this.url}?stylist=${stylist}`)
-  }
-
-  getAppointmentsForStylist(stylist: string, date: string){
-    return this.http.get<Appointment[]>(`${this.url}?sylist=${stylist}&date=${date}`)
-  }
-
-  getAppointmentsByCustomer(email: string){
-    return this.http.get<Appointment[]>(`${this.url}?email=${email}`)
-  }
-
-  updateAppointmentStatus(id: number, status: 'confirmed' | 'rejected'){
-    return this.http.patch<Appointment>(`${this.url}/${id}`,  { status })
-  }
-
-
-  createAppointment(newAppt: Appointment): Observable<{success: boolean, message: string}>{
-    const newStart = new Date(`${newAppt.date}T${newAppt.time}`);
-    const newEnd = new Date(newStart.getTime() + newAppt.duration * 60000)
-      return this.getAppointmentsForStylist(newAppt.stylist, newAppt.date).pipe(
-        map( appointment =>{
-          const conflict = appointment.find(appt => {
-            const apptStart = new Date(`${appt.date}T${appt.time}`)
-            const apptEnd = new Date(apptStart.getTime() + appt.duration * 60000)
-            return timesOverlap(newStart, newEnd, apptStart, apptEnd)
-          } );          
-          if(conflict){
-            return { success: false, message: 'This stylist is already booked at that time.' }
+  getAllAppointmentsForStylist(stylist: string) {
+    const params = new HttpParams()
+      .set('orderBy', JSON.stringify('stylist'))
+      .set('equalTo', JSON.stringify(stylist));
+    return this.http
+      .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
+      .pipe(
+        map((data) => {
+          const appts = [];
+          for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+              appts.push({ ...data[key], id: key });
+            }
           }
-          return { success: true, message: 'ok' };
-        }),
-       switchMap(result => {
-        if(!result.success){
+          return appts;
+        })
+      );
+  }
+
+  getAppointmentsForStylist(stylist: string, date: string) {
+    const params = new HttpParams()
+      .set('orderBy', JSON.stringify('stylist'))
+      .set('equalTo', JSON.stringify(stylist));
+    return this.http
+      .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
+      .pipe(
+        map((data) => {
+          const appts = [];
+
+          for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+              appts.push({ ...data[key], id: key });
+            }
+          }
+          return appts.filter((appt) => appt.date === date);
+        })
+      );
+  }
+
+  getAppointmentsByCustomer(email: string) {
+    const params = new HttpParams()
+      .set('orderBy', JSON.stringify('email'))
+      .set('equalTo', JSON.stringify(email));
+    return this.http
+      .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
+      .pipe(
+        map((data) => {
+          // Transfom data
+          let appts = [];
+          for (let key in data) {
+            if (data.hasOwnProperty(key)) {
+              appts.push({ ...data[key], id: key });
+            }
+          }
+          return appts;
+        })
+      );
+  }
+
+  updateAppointmentStatus(id: string, status: 'confirmed' | 'rejected') {
+    return this.http.patch<Appointment>(`${this.baseUrl}/${id}.json`, {
+      status,
+    });
+  }
+
+  // getAllAppointments() {
+  //   this.http
+  //     .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`)
+  //     .pipe(
+  //       map((response) => {
+  //         // TRANSFORM DATA
+  //         let appts = [];
+
+  //         for (let key in response) {
+  //           if (response.hasOwnProperty(key)) {
+  //             appts.push({ ...response[key], id: key });
+  //           }
+  //         }
+  //         return appts;
+  //       })
+  //     )
+  //     .subscribe((appts) => {
+  //       console.log(appts);
+  //     });
+  // }
+
+  createAppointment(
+    newAppt: Appointment
+  ): Observable<{ success: boolean; message: string }> {
+    const newStart = new Date(`${newAppt.date}T${newAppt.time}`);
+    const newEnd = new Date(newStart.getTime() + newAppt.duration * 60000);
+    return this.getAppointmentsForStylist(newAppt.stylist, newAppt.date).pipe(
+      map((appointment) => {
+        const conflict = appointment.find((appt) => {
+          const apptStart = new Date(`${appt.date}T${appt.time}`);
+          const apptEnd = new Date(apptStart.getTime() + appt.duration * 60000);
+          return timesOverlap(newStart, newEnd, apptStart, apptEnd);
+        });
+        if (conflict) {
+          return {
+            success: false,
+            message: 'This stylist is already booked at that time.',
+          };
+        }
+        return { success: true, message: 'ok' };
+      }),
+      switchMap((result) => {
+        if (!result.success) {
           throw new Error(result.message);
-          
         }
 
-        return this.http.post<Appointment>(this.url, newAppt).pipe(
-          map(() => ({ success: true, message: 'Appointment booked successfully!' }))
-        );
-       })
-        
-      )
-
-
+        return this.http
+          .post<Appointment>(`${this.baseUrl}.json`, newAppt)
+          .pipe(
+            map(() => ({
+              success: true,
+              message: 'Appointment booked successfully!',
+            }))
+          );
+      })
+    );
   }
 
-   apptHasEnded(appt: Appointment){
-    const start = new Date(`${appt.date}T${appt.time}`)
-    const end = new Date(start.getTime() + (appt.duration) * 60000)
-    return end < new Date()
+  apptHasEnded(appt: Appointment) {
+    const start = new Date(`${appt.date}T${appt.time}`);
+    const end = new Date(start.getTime() + appt.duration * 60000);
+    return end < new Date();
   }
 }
 
-function timesOverlap(start1: Date, end1: Date, start2:Date, end2:Date){
-  return start1 < end2 && start2 < end1
+function timesOverlap(start1: Date, end1: Date, start2: Date, end2: Date) {
+  return start1 < end2 && start2 < end1;
 }

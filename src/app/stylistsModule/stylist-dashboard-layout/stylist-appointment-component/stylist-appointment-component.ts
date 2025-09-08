@@ -63,7 +63,7 @@ export class StylistAppointmentComponent implements OnInit {
       });
   }
 
-  confirmAppointment(id: number) {
+  confirmAppointment(id: string) {
     this.bookingService.updateAppointmentStatus(id, 'confirmed').subscribe({
       next: () => {
         this.loadAppointments();
@@ -72,7 +72,7 @@ export class StylistAppointmentComponent implements OnInit {
       error(err) {},
     });
   }
-  rejectAppointment(id: number) {
+  rejectAppointment(id: string) {
     this.bookingService.updateAppointmentStatus(id, 'rejected').subscribe({
       next: () => {
         this.loadAppointments();

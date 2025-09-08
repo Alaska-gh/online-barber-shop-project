@@ -1,5 +1,5 @@
 <section class="overlay">
-  <form class="form col-lg-12" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
     <div class="close-btn" (click)="hideSignupForm()">&times;</div>
     <header>Registration Form</header>
     <div class="signup-type-box">
@@ -223,7 +223,8 @@
     <!-- [disabled]="!reactiveForm.valid" -->
 
     <div class="mt-3 ms-auto text-center">
-      Already Registered? <a routerLink="/login" class="signin-link">Login</a>
+      Already Registered?
+      <a (click)="showLogingForm(true)" class="signin-link">Login</a>
     </div>
   </form>
 </section>
