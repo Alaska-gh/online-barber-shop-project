@@ -5,11 +5,12 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserAuthService } from '../../services/user-auth-service';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
+import { SignupLoader } from '../../utilities/login/signup-loader/signup-loader';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, SignupLoader],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -20,6 +21,7 @@ export class Login implements OnInit {
   dynamicComponent = inject(DynamicComponent);
   activeRoute = inject(ActivatedRoute);
   showLoginForm: boolean = false;
+  isLoading: boolean;
 
   constructor(private toastr: ToastrService) {}
   loginForm = this.formBuilder.group({
@@ -38,6 +40,7 @@ export class Login implements OnInit {
   }
 
   onLoginClicked() {
+    this.isLoading = true;
     const email: string = this.loginForm.get('email')?.value;
     const password: string = this.loginForm.get('password')?.value;
 
@@ -47,8 +50,12 @@ export class Login implements OnInit {
           this.toastr.success('Logged In Successfully', 'Welcome !!!');
           this.hideLoginForm();
           this.redirectUser(user.role);
+          this.isLoading = false;
         } else {
-          this.toastr.error('Invalid Credentials', 'Login Failed !!!');
+          setTimeout(() => {
+            this.isLoading = false;
+            this.toastr.error('Invalid Credentials', 'Login Failed !!!');
+          }, 3000);
         }
       },
       error: (err) => {

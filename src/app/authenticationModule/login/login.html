@@ -46,9 +46,18 @@
         >
         } }
         <p class="reset-passwaord text-end">Forgot Password?</p>
-        <button [disabled]="loginForm.invalid" type="submit" class="login-btn">
-          Log in
-        </button>
+        <div class="btn-container">
+          @if (isLoading) {
+          <app-signup-loader></app-signup-loader>
+          }
+          <button
+            [disabled]="loginForm.invalid"
+            type="submit"
+            class="login-btn"
+          >
+            Log in
+          </button>
+        </div>
 
         <div class="mt-3 ms-auto text-center">
           Don't have an account?

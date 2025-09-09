@@ -98,3 +98,7 @@ input.ng-invalid.ng-touched {
   opacity: 0.7;
   cursor: pointer;
 }
+
+.btn-container {
+  position: relative;
+}

@@ -11,10 +11,11 @@ import { Router, RouterModule } from '@angular/router';
 import { passwordMatchValidator } from '../../validators/password-match.directive';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
+import { SignupLoader } from '../../utilities/login/signup-loader/signup-loader';
 
 @Component({
   selector: 'signup-component',
-  imports: [FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, RouterModule, SignupLoader],
   templateUrl: './signup-component.html',
   styleUrl: './signup-component.css',
 })
@@ -23,6 +24,7 @@ export class SignupComponent {
   //  this counter will be incremented upon creating a new user
   private idCounter: number = 0;
   private showSignupForm: boolean = false;
+  isLoading: boolean;
 
   formBuilder: FormBuilder = inject(FormBuilder);
   router: Router = inject(Router);
@@ -51,6 +53,7 @@ export class SignupComponent {
   );
 
   signUp() {
+    this.isLoading = true;
     const formValues = this.signUpForm.value;
     const userData: User = {
       id: this.idCounter++,
@@ -78,16 +81,20 @@ export class SignupComponent {
 
     delete userData.confirmPassword;
 
-    this.authservice.registerUser(userData).subscribe(
-      (response) => {
+    this.authservice.registerUser(userData).subscribe({
+      next: () => {
         this.toastr.success('Account Created Successfully', 'Welcome');
         this.hideSignupForm();
         this.dynamicComponent.loginBtnClicked(true);
+        this.isLoading = false;
       },
-      (error) => {
-        this.toastr.error(`Couldn't create account ${error}`);
-      }
-    );
+      error: (error) => {
+        setTimeout(() => {
+          this.isLoading = false;
+          this.toastr.error(`Couldn't create account ${error}`);
+        }, 3000);
+      },
+    });
     this.resetForm();
   }
 

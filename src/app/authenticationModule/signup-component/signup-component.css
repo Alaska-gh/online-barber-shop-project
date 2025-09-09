@@ -163,3 +163,6 @@ header {
 input.ng-invalid.ng-touched {
   border-bottom: red 1px solid !important;
 }
+.btn-container {
+  position: relative;
+}

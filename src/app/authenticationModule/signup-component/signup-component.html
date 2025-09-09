@@ -214,12 +214,19 @@
     </div>
     }
 
-    <input
-      type="submit"
-      value="Submit"
-      class="sign-up-btn mt-4"
-      [disabled]="signUpForm.invalid"
-    />
+    <div class="btn-container">
+      @if (isLoading) {
+      <app-signup-loader></app-signup-loader>
+      }
+      <button
+        type="submit"
+        value="Submit"
+        class="sign-up-btn mt-4"
+        [disabled]="signUpForm.invalid"
+      >
+        Signup
+      </button>
+    </div>
     <!-- [disabled]="!reactiveForm.valid" -->
 
     <div class="mt-3 ms-auto text-center">
