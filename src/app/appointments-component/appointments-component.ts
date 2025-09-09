@@ -121,9 +121,8 @@ export class AppointmentsComponent implements OnInit {
     const date = this.appointmentForm.value.date;
 
     if (stylist && date) {
-      this.bookingservice
-        .getAppointmentsForStylist(stylist, date)
-        .subscribe((appointments) => {
+      this.bookingservice.getAppointmentsForStylist(stylist, date).subscribe({
+        next: (appointments) => {
           this.bookedSlots = appointments.map((appointment) => {
             const start = new Date(`${appointment.date}T${appointment.time}`);
             const end = new Date(
@@ -131,7 +130,11 @@ export class AppointmentsComponent implements OnInit {
             );
             return { start, end };
           });
-        });
+        },
+        error: (err) => {
+          // this.toastr.error(err.message);
+        },
+      });
     }
   }
   // checks to make sure the start of a new appointment is not before the end of the existing one

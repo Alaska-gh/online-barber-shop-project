@@ -103,21 +103,11 @@
   padding: 15px 0;
 }
 
-.collapsed-sidebar .link-text {
-  display: none;
-}
-
-.collapsed-sidebar .profile-name {
-  display: none;
-}
-
-.collapsed-sidebar .fs-4 {
-  display: none !important;
-}
-
-/* Optional: badge alignment */
+.collapsed-sidebar .link-text,
+.collapsed-sidebar .profile-info,
+.collapsed-sidebar .fs-4,
 .collapsed-sidebar .badge {
-  display: none; /* hide badges when collapsed */
+  display: none !important;
 }
 
 /* Desktop sidebar (always visible, fixed) */

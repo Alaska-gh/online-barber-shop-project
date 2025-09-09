@@ -6,10 +6,12 @@ import { User } from '../../interfaces/user.interface';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 import { TimeFormatter } from '../../services/format-time.service';
+import { ToastrService } from 'ngx-toastr';
+import { Loader } from '../../utilities/loader/loader';
 
 @Component({
   selector: 'app-customer-appointments-component',
-  imports: [CommonModule],
+  imports: [CommonModule, Loader],
   templateUrl: './customer-appointments-component.html',
   styleUrl: './customer-appointments-component.css',
 })
@@ -20,10 +22,12 @@ export class CustomerAppointmentsComponent implements OnInit {
   currentUser: User;
   pollSub: Subscription;
   button: string = 'pending';
+  isLoading: boolean;
 
   bookingService: BookingService = inject(BookingService);
   authService: UserAuthService = inject(UserAuthService);
   timeFormatService = inject(TimeFormatter);
+  toastr = inject(ToastrService);
 
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser.value;
@@ -39,22 +43,32 @@ export class CustomerAppointmentsComponent implements OnInit {
   }
 
   loadAppointments() {
+    this.isLoading = true;
     this.bookingService
       .getAppointmentsByCustomer(this.currentUser.email)
-      .subscribe((appts) => {
-        const now = new Date();
-        const today = now.toISOString().split('T')[0];
-        this.todysAppointments = appts.filter((appt) => appt.date === today);
-        this.pastAppointments = appts.filter(
-          (appt) =>
-            new Date(`${appt.date}T${appt.time}`) < now &&
-            this.bookingService.apptHasEnded(appt)
-        );
-        this.currentAppointments = appts.filter(
-          (appt) =>
-            new Date(`${appt.date}T${appt.time}`) >= now &&
-            this.bookingService.apptHasEnded(appt)
-        );
+      .subscribe({
+        next: (appts) => {
+          const now = new Date();
+          const today = now.toISOString().split('T')[0];
+          this.todysAppointments = appts.filter((appt) => appt.date === today);
+          this.pastAppointments = appts.filter(
+            (appt) =>
+              new Date(`${appt.date}T${appt.time}`) < now &&
+              this.bookingService.apptHasEnded(appt)
+          );
+          this.currentAppointments = appts.filter(
+            (appt) =>
+              new Date(`${appt.date}T${appt.time}`) >= now &&
+              this.bookingService.apptHasEnded(appt)
+          );
+          this.isLoading = false;
+        },
+        error: (errMsg) => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.toastr.error(errMsg);
+          }, 3000);
+        },
       });
   }
 

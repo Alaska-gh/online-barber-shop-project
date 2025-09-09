@@ -7,10 +7,11 @@ import { CommonModule } from '@angular/common';
 import { ToastrService } from 'ngx-toastr';
 import { interval, Subscription } from 'rxjs';
 import { TimeFormatter } from '../../../services/format-time.service';
+import { Loader } from '../../../utilities/loader/loader';
 
 @Component({
   selector: 'app-stylist-appointment-component',
-  imports: [CommonModule],
+  imports: [CommonModule, Loader],
 
   templateUrl: './stylist-appointment-component.html',
   styleUrl: './stylist-appointment-component.css',
@@ -23,6 +24,7 @@ export class StylistAppointmentComponent implements OnInit {
   matchingAppt: Appointment[] = [];
   button: string = 'pending';
   private pollSub: Subscription;
+  isLoading: boolean;
 
   // constructor(private datePipe: DatePipe) {}
 
@@ -33,33 +35,44 @@ export class StylistAppointmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentStylist = this.authService.currentUser.value;
-    this.loadAppointments();
 
-    this.pollSub = interval(1000).subscribe(() => {
-      this.loadAppointments();
-    });
+    // this.pollSub = interval(1000).subscribe(() => {
+    //   this.loadAppointments();
+    // });
+
+    this.loadAppointments();
   }
 
   ngOnDestroy() {
     this.pollSub.unsubscribe();
   }
   loadAppointments() {
+    this.isLoading = true;
     this.bookingService
       .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
-      .subscribe((appts) => {
-        const now = new Date();
-        const today = now.toISOString().split('T')[0];
-        this.pastAppointments = appts.filter(
-          (appt) =>
-            new Date(`${appt.date}T${appt.time}`) < now &&
-            this.bookingService.apptHasEnded(appt)
-        );
-        this.currentAppointments = appts.filter(
-          (appt) =>
-            new Date(`${appt.date}T${appt.time}`) >= now &&
-            this.bookingService.apptHasEnded(appt)
-        );
-        this.todaysAppointment = appts.filter((appt) => appt.date === today);
+      .subscribe({
+        next: (appts) => {
+          const now = new Date();
+          const today = now.toISOString().split('T')[0];
+          this.pastAppointments = appts.filter(
+            (appt) =>
+              new Date(`${appt.date}T${appt.time}`) < now &&
+              this.bookingService.apptHasEnded(appt)
+          );
+          this.currentAppointments = appts.filter(
+            (appt) =>
+              new Date(`${appt.date}T${appt.time}`) >= now &&
+              this.bookingService.apptHasEnded(appt)
+          );
+          this.todaysAppointment = appts.filter((appt) => appt.date === today);
+          this.isLoading = false;
+        },
+        error: (errMsg) => {
+          setTimeout(() => {
+            this.isLoading = false;
+            this.toastr.error(errMsg);
+          }, 3000);
+        },
       });
   }
 
@@ -69,7 +82,9 @@ export class StylistAppointmentComponent implements OnInit {
         this.loadAppointments();
         this.toastr.success('Appointment Confirmed', 'Confirmed');
       },
-      error(err) {},
+      error: (errMsg) => {
+        this.toastr.error(errMsg);
+      },
     });
   }
   rejectAppointment(id: string) {
@@ -78,7 +93,9 @@ export class StylistAppointmentComponent implements OnInit {
         this.loadAppointments();
         this.toastr.error(`You've Cancelled the appointment`);
       },
-      error(err) {},
+      error: (errMsg) => {
+        this.toastr.error(errMsg);
+      },
     });
   }
 

@@ -8,7 +8,7 @@ import { BookingService } from '../../services/booking.service';
 import { Appointment } from '../../interfaces/appointment.interface';
 import { interval, Subscription } from 'rxjs';
 import { CommonModule } from '@angular/common';
-import { Toast } from 'ngx-toastr';
+import { Toast, ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'stylist-dashboard-layout',
@@ -29,6 +29,7 @@ export class StylistDashboardLayout {
   router: Router = inject(Router);
   bookingService = inject(BookingService);
   pollSub: Subscription;
+  toastr = inject(ToastrService);
 
   // methods
   ngOnInit(): void {
@@ -48,8 +49,13 @@ export class StylistDashboardLayout {
   loadAppointments() {
     this.bookingService
       .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
-      .subscribe((appts) => {
-        this.appointments = appts;
+      .subscribe({
+        next: (appts) => {
+          this.appointments = appts;
+        },
+        error: (errMsg) => {
+          this.toastr.error(errMsg);
+        },
       });
   }
   onLogOutClicked(event: Event) {

@@ -39,6 +39,7 @@ a {
 /* Base container */
 .toast-container {
   position: fixed !important;
+
   /* z-index: 99999 !important; */
   pointer-events: none;
   /* clicks pass through container */

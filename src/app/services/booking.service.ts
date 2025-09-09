@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { User } from '../interfaces/user.interface';
 import { Services } from '../interfaces/services.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { map, Observable, switchMap } from 'rxjs';
+import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,6 @@ export class BookingService {
   private style: Services = null;
   private formData: any = null;
   private http: HttpClient = inject(HttpClient);
-  private jsonServerUrl = 'http://localhost:3000/appointment';
   private baseUrl =
     'https://online-barber-shop-e6bfb-default-rtdb.asia-southeast1.firebasedatabase.app/appointments';
 
@@ -56,7 +55,8 @@ export class BookingService {
             }
           }
           return appts;
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -76,7 +76,8 @@ export class BookingService {
             }
           }
           return appts.filter((appt) => appt.date === date);
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -96,7 +97,8 @@ export class BookingService {
             }
           }
           return appts;
-        })
+        }),
+        catchError(this.handleError)
       );
   }
 
@@ -158,10 +160,28 @@ export class BookingService {
             map(() => ({
               success: true,
               message: 'Appointment booked successfully!',
-            }))
+            })),
+            catchError(this.handleError)
           );
       })
     );
+  }
+
+  handleError(err) {
+    let errormessage = 'Unexpected error occurred.';
+    switch (err.status) {
+      case 0:
+        errormessage = 'Network error. Please check your connection.';
+        break;
+      case 404:
+        errormessage = 'Data not found.';
+        break;
+      case 500:
+        errormessage = 'Server error. Please try again later.';
+        break;
+    }
+
+    return throwError(() => errormessage);
   }
 
   apptHasEnded(appt: Appointment) {

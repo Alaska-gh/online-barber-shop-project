@@ -15,6 +15,7 @@ import { Appointment } from '../../interfaces/appointment.interface';
 import { interval, Subscription } from 'rxjs';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
 import { Collapse } from 'bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'main-nav',
@@ -31,6 +32,7 @@ export class MainNavComponent implements OnInit, AfterViewInit {
   router: Router = inject(Router);
   bookingService = inject(BookingService);
   dynamicComponent = inject(DynamicComponent);
+  toastr = inject(ToastrService);
   pollSub: Subscription;
 
   @ViewChild('navBarToggle', { static: true }) toggleNavBarEl!: ElementRef;
@@ -44,9 +46,11 @@ export class MainNavComponent implements OnInit, AfterViewInit {
       this.user = currentUser;
     });
 
-    this.pollSub = interval(1000).subscribe(() => {
-      this.loadAppointments();
-    });
+    if (this.user) {
+      this.pollSub = interval(1000).subscribe(() => {
+        this.loadAppointments();
+      });
+    }
   }
 
   ngAfterViewInit() {
@@ -64,16 +68,19 @@ export class MainNavComponent implements OnInit, AfterViewInit {
   }
 
   loadAppointments() {
-    this.bookingService
-      .getAppointmentsByCustomer(this.user.email)
-      .subscribe((appts) => {
+    this.bookingService.getAppointmentsByCustomer(this.user?.email).subscribe({
+      next: (appts) => {
         const today = new Date();
         this.ongoingAppointments = appts.filter(
           (appt) =>
             new Date(`${appt.date}T${appt.time}`) >= today &&
             !this.bookingService.apptHasEnded(appt)
         );
-      });
+      },
+      error: (errMsg) => {
+        this.toastr.error(errMsg);
+      },
+    });
   }
 
   onLogoutClicked(event: Event) {
