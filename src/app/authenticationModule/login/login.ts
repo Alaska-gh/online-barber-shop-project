@@ -24,8 +24,9 @@ export class Login implements OnInit {
   isLoading: boolean;
 
   constructor(private toastr: ToastrService) {}
+
   loginForm = this.formBuilder.group({
-    email: ['', Validators.required, Validators.email],
+    email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8)]],
   });
 
@@ -39,30 +40,21 @@ export class Login implements OnInit {
     return this.loginForm.controls['password'];
   }
 
-  onLoginClicked() {
+  async onLoginClicked() {
     this.isLoading = true;
     const email: string = this.loginForm.get('email')?.value;
     const password: string = this.loginForm.get('password')?.value;
+    try {
+      const user = await this.authService.loginUser(email, password);
+      this.toastr.success('Logged In Successfully', 'Welcome !!!');
+      this.redirectUser(user.role);
+      this.hideLoginForm();
+    } catch (err) {
+      this.toastr.error(err.message);
+    } finally {
+      this.isLoading = false;
+    }
 
-    this.authService.loginUser(email, password).subscribe({
-      next: (user) => {
-        if (user) {
-          this.toastr.success('Logged In Successfully', 'Welcome !!!');
-          this.hideLoginForm();
-          this.redirectUser(user.role);
-          this.isLoading = false;
-        } else {
-          setTimeout(() => {
-            this.isLoading = false;
-            this.toastr.error('Invalid Credentials', 'Login Failed !!!');
-          }, 3000);
-        }
-      },
-      error: (err) => {
-        this.isLoading = false;
-        this.toastr.error(`Couldn't Login at this time ${err.message}`);
-      },
-    });
     this.loginForm.reset();
   }
 

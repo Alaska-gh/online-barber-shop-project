@@ -22,7 +22,6 @@ import { SignupLoader } from '../../utilities/login/signup-loader/signup-loader'
 export class SignupComponent {
   signupType: string;
   //  this counter will be incremented upon creating a new user
-  private idCounter: number = 0;
   private showSignupForm: boolean = false;
   isLoading: boolean;
 
@@ -52,11 +51,10 @@ export class SignupComponent {
     }
   );
 
-  signUp() {
+  async onSignUp() {
     this.isLoading = true;
     const formValues = this.signUpForm.value;
     const userData: User = {
-      id: this.idCounter++,
       bussinessName: formValues.businessName,
       firstName: formValues.firstName,
       lastName: formValues.lastName,
@@ -81,21 +79,16 @@ export class SignupComponent {
 
     delete userData.confirmPassword;
 
-    this.authservice.registerUser(userData).subscribe({
-      next: () => {
-        this.toastr.success('Account Created Successfully', 'Welcome');
-        this.hideSignupForm();
-        this.dynamicComponent.loginBtnClicked(true);
-        this.isLoading = false;
-      },
-      error: (error) => {
-        setTimeout(() => {
-          this.isLoading = false;
-          this.toastr.error(`Couldn't create account ${error}`);
-        }, 3000);
-      },
-    });
-    this.resetForm();
+    try {
+      await this.authservice.registerUser(userData);
+      this.toastr.success('Signup successful!');
+      this.resetForm();
+      this.dynamicComponent.loginBtnClicked(true);
+    } catch (errMsg) {
+      this.toastr.error(errMsg);
+    } finally {
+      this.isLoading = false;
+    }
   }
 
   hideSignupForm() {

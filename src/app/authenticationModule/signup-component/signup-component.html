@@ -1,5 +1,5 @@
 <section class="overlay">
-  <form class="form" [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <form class="form" [formGroup]="signUpForm" (ngSubmit)="onSignUp()">
     <div class="close-btn" (click)="hideSignupForm()">&times;</div>
     <header>Registration Form</header>
     <div class="signup-type-box">
@@ -27,10 +27,6 @@
           />
           <label for="stylist">Stylist</label>
         </div>
-        <!-- <div class="signup-type">
-          <input type="radio" value="admin" id="admin" name="role" formControlName="role" (change)="onRoleChanged()" />
-          <label for="admin">Admin</label>
-        </div> -->
       </div>
     </div>
     <div class="column">

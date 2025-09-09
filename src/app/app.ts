@@ -62,7 +62,7 @@ export class App implements OnInit {
   confirmLogOut(value) {
     this.showConfirmLogout = false;
     if (value) {
-      this.userAuthService.logoutStylist();
+      this.userAuthService.logoutUser();
       this.router.navigate(['home']);
     }
   }

@@ -63,7 +63,7 @@ export class StylistDashboardLayout {
   confirmLogout(value: boolean) {
     this.showConfirmLogout = false;
     if (value) {
-      this.authService.logoutStylist();
+      this.authService.logoutUser();
       this.router.navigate(['home']);
     }
   }
