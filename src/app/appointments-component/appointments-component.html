@@ -178,13 +178,18 @@
             <label for="agreement">I agree to the terms & policies</label>
           </div>
 
-          <button
-            class="confirm-btn"
-            type="submit"
-            [disabled]="appointmentForm.invalid"
-          >
-            Confirm Appointment
-          </button>
+          <div class="btn-container">
+            @if (isLoading) {
+            <app-signup-loader></app-signup-loader>
+            }
+            <button
+              class="confirm-btn"
+              type="submit"
+              [disabled]="appointmentForm.invalid"
+            >
+              Confirm Appointment
+            </button>
+          </div>
         </form>
       </div>
 

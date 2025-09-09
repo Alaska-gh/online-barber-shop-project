@@ -27,13 +27,13 @@ export class MainNavComponent implements OnInit, AfterViewInit {
   isLoggedIn: boolean;
   user: User;
   ongoingAppointments: Appointment[] = [];
+  pollSub: Subscription;
 
   authService = inject(UserAuthService);
   router: Router = inject(Router);
   bookingService = inject(BookingService);
   dynamicComponent = inject(DynamicComponent);
   toastr = inject(ToastrService);
-  pollSub: Subscription;
 
   @ViewChild('navBarToggle', { static: true }) toggleNavBarEl!: ElementRef;
   private collapse: Collapse;
@@ -46,13 +46,14 @@ export class MainNavComponent implements OnInit, AfterViewInit {
       this.user = currentUser;
     });
 
-    if (this.user) {
-      this.pollSub = interval(1000).subscribe(() => {
-        this.loadAppointments();
-      });
-    }
+    this.pollSub = interval(2000).subscribe(() => {
+      this.loadAppointments();
+    });
   }
 
+  ngOnDestroy() {
+    this.pollSub.unsubscribe();
+  }
   ngAfterViewInit() {
     this.collapse = new Collapse(this.toggleNavBarEl.nativeElement, {
       toggle: false,
@@ -77,9 +78,9 @@ export class MainNavComponent implements OnInit, AfterViewInit {
             !this.bookingService.apptHasEnded(appt)
         );
       },
-      error: (errMsg) => {
-        this.toastr.error(errMsg);
-      },
+      // error: (errMsg) => {
+      //   this.toastr.error(errMsg);
+      // },
     });
   }
 

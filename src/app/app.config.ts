@@ -32,7 +32,7 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideToastr({
-      timeOut: 5000,
+      timeOut: 10000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
       progressBar: true,

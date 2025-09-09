@@ -20,7 +20,6 @@ export class CustomerAppointmentsComponent implements OnInit {
   pastAppointments: Appointment[] = [];
   currentAppointments: Appointment[] = [];
   currentUser: User;
-  pollSub: Subscription;
   button: string = 'pending';
   isLoading: boolean;
 
@@ -32,14 +31,7 @@ export class CustomerAppointmentsComponent implements OnInit {
   ngOnInit(): void {
     this.currentUser = this.authService.currentUser.value;
 
-    // this.pollSub = interval(1000).subscribe(() => {
-    //   this.loadAppointments();
-    // });
     this.loadAppointments();
-  }
-
-  ngOnDestroy() {
-    this.pollSub.unsubscribe();
   }
 
   loadAppointments() {

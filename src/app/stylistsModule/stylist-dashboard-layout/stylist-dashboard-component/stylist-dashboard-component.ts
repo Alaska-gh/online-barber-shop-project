@@ -48,13 +48,7 @@ export class StylistDashboardComponent {
     setInterval(() => {
       this.updateTimeOfDay(); //updating the time every 1 minute
     }, 60000);
-
-    this.pollSub = interval(1000).subscribe(() => {
-      this.loadAppointment();
-    });
-  }
-  ngOnDestroy() {
-    if (this.pollSub) this.pollSub.unsubscribe();
+    this.loadAppointment();
   }
 
   updateTimeOfDay() {

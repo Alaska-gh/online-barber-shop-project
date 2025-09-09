@@ -14,6 +14,7 @@ import { Appointment } from '../interfaces/appointment.interface';
 import { DatePipe, CurrencyPipe } from '@angular/common';
 import { UserAuthService } from '../services/user-auth-service';
 import { ToastrService } from 'ngx-toastr';
+import { SignupLoader } from '../utilities/login/signup-loader/signup-loader';
 
 @Component({
   selector: 'app-appointments-component',
@@ -23,6 +24,7 @@ import { ToastrService } from 'ngx-toastr';
     FormsModule,
     DatePipe,
     CurrencyPipe,
+    SignupLoader,
   ],
   templateUrl: './appointments-component.html',
   styleUrl: './appointments-component.css',
@@ -33,6 +35,7 @@ export class AppointmentsComponent implements OnInit {
   bookedSlots: { start: Date; end: Date }[] = [];
   loggedInUser: User = null;
   currentTime = new Date().toISOString().split('T')[0];
+  isLoading: boolean;
 
   formBuilder: FormBuilder = inject(FormBuilder);
   servicesservice = inject(StylesService);
@@ -164,6 +167,7 @@ export class AppointmentsComponent implements OnInit {
   }
 
   submitForm() {
+    this.isLoading = true;
     const formValues = this.appointmentForm.value;
 
     const start = new Date(`${formValues.date}T${formValues.time}`);
@@ -190,13 +194,15 @@ export class AppointmentsComponent implements OnInit {
     };
 
     this.bookingservice.createAppointment(appointmentData).subscribe({
-      next: () =>
-        this.toastr.success('Appointment Booked Successfully', 'Thank You'),
-      error: () =>
-        this.toastr.error(
-          `Couldn't Book Your Appointment At This Time`,
-          'Try Again'
-        ),
+      next: () => {
+        this.isLoading = false;
+        this.toastr.success('Appointment Booked Successfully', 'Thank You');
+      },
+
+      error: (errMsg) => {
+        this.isLoading = false;
+        this.toastr.error(errMsg);
+      },
     });
     this.appointmentForm.reset();
   }

@@ -36,16 +36,15 @@ export class StylistAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.currentStylist = this.authService.currentUser.value;
 
-    // this.pollSub = interval(1000).subscribe(() => {
-    //   this.loadAppointments();
-    // });
-
-    this.loadAppointments();
+    this.pollSub = interval(2000).subscribe(() => {
+      this.loadAppointments();
+    });
   }
 
   ngOnDestroy() {
     this.pollSub.unsubscribe();
   }
+
   loadAppointments() {
     this.isLoading = true;
     this.bookingService

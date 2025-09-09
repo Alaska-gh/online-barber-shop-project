@@ -59,6 +59,7 @@ export class Login implements OnInit {
         }
       },
       error: (err) => {
+        this.isLoading = false;
         this.toastr.error(`Couldn't Login at this time ${err.message}`);
       },
     });
