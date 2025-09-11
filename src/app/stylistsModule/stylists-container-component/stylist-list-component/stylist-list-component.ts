@@ -13,7 +13,7 @@ import { BookingService } from '../../../services/booking.service';
   styleUrl: './stylist-list-component.css',
 })
 export class StylistListComponent implements OnInit {
-  selectedStylist: string = 'all';
+  filterCategory: string = 'all';
   listOfStylists: User[] = [];
 
   filterService = inject(FilterService);
@@ -23,14 +23,13 @@ export class StylistListComponent implements OnInit {
 
   ngOnInit(): void {
     // retrieves list of stylist from the database
-    // this.stylistService.fetchAllStylist().then((user) => {
-    //   this.listOfStylists = user;
-    //   console.log(this.listOfStylists);
-    // });
+    this.stylistService.fetchAllStylist().subscribe((user) => {
+      this.listOfStylists = user;
+    });
 
     //  listening to the changes when the value of the radio button change
     this.filterService.selectedBtnEvent.subscribe((value) => {
-      this.selectedStylist = value;
+      this.filterCategory = value;
     });
   }
 

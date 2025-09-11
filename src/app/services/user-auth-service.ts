@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, switchMap, throwError } from 'rxjs';
 import { AuthResponse } from '../interfaces/AuthResponse';
@@ -75,9 +75,28 @@ export class UserAuthService {
   }
 
   logoutUser() {
-    // await this.auth.signOut();
     this.logInState.next(false);
     localStorage.removeItem('user');
+  }
+
+  fetchAllStylist() {
+    const params = new HttpParams()
+      .set('orderBy', JSON.stringify('role'))
+      .set('equalTo', JSON.stringify('stylist'));
+    return this.http
+      .get<{ [key: string]: User }>(`${this.dbUrl}/users.json`, { params })
+      .pipe(
+        map((user) => {
+          const stylist = [];
+
+          for (let key in user) {
+            if (user.hasOwnProperty(key)) {
+              stylist.push({ ...user[key], id: key });
+            }
+          }
+          return stylist;
+        })
+      );
   }
   handleError(err) {
     let errormessage = 'Unexpected error occurred.';

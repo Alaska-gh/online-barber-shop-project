@@ -5,8 +5,8 @@
 <div class="container my-5">
   <div class="row">
     <!-- for all of the stylist in the database we are checking if their service category equal the filtered category -->
-    @for (stylist of listOfStylists; track $index) { @if (selectedStylist ===
-    'all' || stylist.serviceType.toLowerCase().includes(selectedStylist)) {
+    @for (stylist of listOfStylists; track $index) { @if (filterCategory ===
+    'all' || stylist.serviceType.toLowerCase().includes(filterCategory)) {
     <div class="col-xs-12 col-sm-6 col-md-4">
       <div class="card-container">
         <div class="card">
