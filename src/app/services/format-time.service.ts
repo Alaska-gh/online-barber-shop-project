@@ -4,12 +4,12 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class TimeFormatter {
-  formatTime(date: string, time: string): string {
-    if (!date || !time) {
+  formatTime(date: string): string {
+    if (!date) {
       return '';
     }
 
-    const dateTime = new Date(`${date}T${time}`);
+    const dateTime = new Date(date);
     return new Intl.DateTimeFormat('en-US', {
       hour: 'numeric',
       minute: 'numeric',

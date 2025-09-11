@@ -4,6 +4,7 @@ import { User } from '../interfaces/user.interface';
 import { Services } from '../interfaces/services.interface';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { catchError, map, Observable, switchMap, throwError } from 'rxjs';
+import { formatDate } from '@angular/common';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +16,8 @@ export class BookingService {
   private http: HttpClient = inject(HttpClient);
   private baseUrl =
     'https://online-barber-shop-e6bfb-default-rtdb.asia-southeast1.firebasedatabase.app/appointments';
+
+  // private db = inject(Database);
 
   setStylist(stylist: User) {
     this.stylist = stylist;
@@ -40,10 +43,10 @@ export class BookingService {
     return this.formData;
   }
 
-  getAllAppointmentsForStylist(stylist: string) {
+  getAppointmentsForCustomer(email: string) {
     const params = new HttpParams()
-      .set('orderBy', JSON.stringify('stylist'))
-      .set('equalTo', JSON.stringify(stylist));
+      .set('orderBy', JSON.stringify('email'))
+      .set('equalTo', JSON.stringify(email));
     return this.http
       .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
       .pipe(
@@ -54,6 +57,7 @@ export class BookingService {
               appts.push({ ...data[key], id: key });
             }
           }
+
           return appts;
         }),
         catchError(this.handleError)
@@ -75,28 +79,12 @@ export class BookingService {
               appts.push({ ...data[key], id: key });
             }
           }
-          return appts.filter((appt) => appt.date === date);
-        }),
-        catchError(this.handleError)
-      );
-  }
 
-  getAppointmentsByCustomer(email: string) {
-    const params = new HttpParams()
-      .set('orderBy', JSON.stringify('email'))
-      .set('equalTo', JSON.stringify(email));
-    return this.http
-      .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
-      .pipe(
-        map((data) => {
-          // Transfom data
-          let appts = [];
-          for (let key in data) {
-            if (data.hasOwnProperty(key)) {
-              appts.push({ ...data[key], id: key });
-            }
-          }
-          return appts;
+          return appts.filter((appt) => {
+            const aptDate = formatDate(appt.dateTime, 'yyyy-MM-dd', 'en-US');
+            const newDate = formatDate(date, 'yyyy-MM-dd', 'en-Us');
+            return aptDate === newDate;
+          });
         }),
         catchError(this.handleError)
       );
@@ -107,38 +95,42 @@ export class BookingService {
       status,
     });
   }
+  getAllAppointmentsForStylist(stylist: string) {
+    const params = new HttpParams()
+      .set('orderBy', JSON.stringify('stylist'))
+      .set('equalTo', JSON.stringify(stylist));
+    return this.http
+      .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`, { params })
+      .pipe(
+        map((response) => {
+          // TRANSFORM DATA
+          let appts = [];
 
-  // getAllAppointments() {
-  //   this.http
-  //     .get<{ [key: string]: Appointment }>(`${this.baseUrl}.json`)
-  //     .pipe(
-  //       map((response) => {
-  //         // TRANSFORM DATA
-  //         let appts = [];
-
-  //         for (let key in response) {
-  //           if (response.hasOwnProperty(key)) {
-  //             appts.push({ ...response[key], id: key });
-  //           }
-  //         }
-  //         return appts;
-  //       })
-  //     )
-  //     .subscribe((appts) => {
-  //       console.log(appts);
-  //     });
-  // }
+          for (let key in response) {
+            if (response.hasOwnProperty(key)) {
+              appts.push({ ...response[key], id: key });
+            }
+          }
+          return appts;
+        }),
+        catchError(this.handleError)
+      );
+  }
 
   createAppointment(
     newAppt: Appointment
   ): Observable<{ success: boolean; message: string }> {
-    const newStart = new Date(`${newAppt.date}T${newAppt.time}`);
+    const newStart = new Date(newAppt.dateTime);
     const newEnd = new Date(newStart.getTime() + newAppt.duration * 60000);
-    return this.getAppointmentsForStylist(newAppt.stylist, newAppt.date).pipe(
+    return this.getAppointmentsForStylist(
+      newAppt.stylist,
+      newAppt.dateTime
+    ).pipe(
       map((appointment) => {
         const conflict = appointment.find((appt) => {
-          const apptStart = new Date(`${appt.date}T${appt.time}`);
+          const apptStart = new Date(appt.dateTime);
           const apptEnd = new Date(apptStart.getTime() + appt.duration * 60000);
+          console.log(newStart < apptEnd);
           return timesOverlap(newStart, newEnd, apptStart, apptEnd);
         });
         if (conflict) {
@@ -147,23 +139,24 @@ export class BookingService {
             message: 'This stylist is already booked at that time.',
           };
         }
+
         return { success: true, message: 'ok' };
       }),
+
       switchMap((result) => {
         if (!result.success) {
           throw new Error(result.message);
         }
-
         return this.http
           .post<Appointment>(`${this.baseUrl}.json`, newAppt)
           .pipe(
             map(() => ({
               success: true,
               message: 'Appointment booked successfully!',
-            })),
-            catchError(this.handleError)
+            }))
           );
-      })
+      }),
+      catchError(this.handleError)
     );
   }
 
@@ -183,9 +176,8 @@ export class BookingService {
 
     return throwError(() => errormessage);
   }
-
   apptHasEnded(appt: Appointment) {
-    const start = new Date(`${appt.date}T${appt.time}`);
+    const start = new Date(appt.dateTime);
     const end = new Date(start.getTime() + appt.duration * 60000);
     return end < new Date();
   }

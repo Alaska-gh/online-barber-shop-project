@@ -1,3 +1,4 @@
+import { User } from './../../interfaces/user.interface';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -40,20 +41,23 @@ export class Login implements OnInit {
     return this.loginForm.controls['password'];
   }
 
-  async onLoginClicked() {
+  onLoginClicked() {
     this.isLoading = true;
     const email: string = this.loginForm.get('email')?.value;
     const password: string = this.loginForm.get('password')?.value;
-    try {
-      const user = await this.authService.loginUser(email, password);
-      this.toastr.success('Logged In Successfully', 'Welcome !!!');
-      this.redirectUser(user.role);
-      this.hideLoginForm();
-    } catch (err) {
-      this.toastr.error(err.message);
-    } finally {
-      this.isLoading = false;
-    }
+    this.authService.loginUser(email, password).subscribe({
+      next: (user: User) => {
+        this.redirectUser(user.role);
+        // console.log(user);
+        this.hideLoginForm();
+        this.isLoading = false;
+        this.toastr.success('Logged In Successfully', 'Welcome !!!');
+      },
+      error: (err) => {
+        this.toastr.error(err);
+        this.isLoading = false;
+      },
+    });
 
     this.loginForm.reset();
   }

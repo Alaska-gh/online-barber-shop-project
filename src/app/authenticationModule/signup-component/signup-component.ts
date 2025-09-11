@@ -51,7 +51,7 @@ export class SignupComponent {
     }
   );
 
-  async onSignUp() {
+  onSignUp() {
     this.isLoading = true;
     const formValues = this.signUpForm.value;
     const userData: User = {
@@ -79,16 +79,19 @@ export class SignupComponent {
 
     delete userData.confirmPassword;
 
-    try {
-      await this.authservice.registerUser(userData);
-      this.toastr.success('Signup successful!');
-      this.resetForm();
-      this.dynamicComponent.loginBtnClicked(true);
-    } catch (errMsg) {
-      this.toastr.error(errMsg);
-    } finally {
-      this.isLoading = false;
-    }
+    this.authservice.registerUser(userData).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.toastr.success('Signup successful!');
+        this.resetForm();
+        this.dynamicComponent.loginBtnClicked(true);
+      },
+      error: (err) => {
+        this.toastr.error(err);
+        this.isLoading = false;
+        console.log(err);
+      },
+    });
   }
 
   hideSignupForm() {

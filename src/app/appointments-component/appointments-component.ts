@@ -127,15 +127,13 @@ export class AppointmentsComponent implements OnInit {
       this.bookingservice.getAppointmentsForStylist(stylist, date).subscribe({
         next: (appointments) => {
           this.bookedSlots = appointments.map((appointment) => {
-            const start = new Date(`${appointment.date}T${appointment.time}`);
+            const start = new Date(appointment.dateTime);
             const end = new Date(
               start.getTime() + appointment.duration * 60000
             );
+
             return { start, end };
           });
-        },
-        error: (err) => {
-          // this.toastr.error(err.message);
         },
       });
     }
@@ -166,7 +164,7 @@ export class AppointmentsComponent implements OnInit {
     }
   }
 
-  submitForm() {
+  async submitForm() {
     this.isLoading = true;
     const formValues = this.appointmentForm.value;
 
@@ -183,10 +181,9 @@ export class AppointmentsComponent implements OnInit {
       fullName: formValues.fullName,
       phoneNum: formValues.phoneNum,
       email: formValues.email,
-      date: formValues.date,
+      dateTime: start.toISOString(),
       stylist: formValues.stylist,
       service: formValues.service,
-      time: formValues.time,
       notes: formValues.notes,
       duration: this.selectedStyle.duration,
       price: this.selectedStyle.price,
@@ -204,6 +201,7 @@ export class AppointmentsComponent implements OnInit {
         this.toastr.error(errMsg);
       },
     });
+
     this.appointmentForm.reset();
   }
 }

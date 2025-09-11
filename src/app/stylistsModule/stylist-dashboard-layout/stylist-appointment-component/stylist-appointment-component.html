@@ -67,8 +67,8 @@
         <tr>
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.dateTime | date }}</td>
+          <td>{{ formatTime(appt.dateTime) }}</td>
           <td>{{ appt.duration }}mins</td>
           <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
           <td>
@@ -112,8 +112,8 @@
         <tr>
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.dateTime | date }}</td>
+          <td>{{ formatTime(appt.dateTime) }}</td>
           <td>{{ appt.duration }}mins</td>
           <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
           <td>
@@ -150,8 +150,8 @@
         <tr>
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.dateTime | date }}</td>
+          <td>{{ formatTime(appt.dateTime) }}</td>
           <td>{{ appt.duration }}mins</td>
           <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
           <td>
@@ -188,8 +188,8 @@
         <tr class="headers">
           <td>{{ appt.fullName }}</td>
           <td>{{ appt.service }}</td>
-          <td>{{ appt.date }}</td>
-          <td>{{ formatTime(appt.date, appt.time) }}</td>
+          <td>{{ appt.dateTime | date }}</td>
+          <td>{{ formatTime(appt.dateTime) }}</td>
           <td>{{ appt.duration }}mins</td>
           <td>{{ appt.price | currency : "GHS" : "symbol-narrow" }}</td>
           <td>

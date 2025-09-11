@@ -37,7 +37,7 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideToastr({
-      timeOut: 10000,
+      timeOut: 1000000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
       progressBar: true,
@@ -46,9 +46,9 @@ export const appConfig: ApplicationConfig = {
       disableTimeOut: false,
       extendedTimeOut: 0,
     }),
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideDatabase(() => getDatabase()),
+    // provideFirebaseApp(() => initializeApp(environment.firebase)),
+    // provideAuth(() => getAuth()),
+    // provideDatabase(() => getDatabase()),
     // { provide: HTTP_INTERCEPTORS, useClass: LoggingInterceptor, multi: true },
   ],
 };

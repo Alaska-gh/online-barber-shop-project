@@ -36,8 +36,12 @@ export class StylistDashboardLayout {
     this.isLoggedIn = this.authService.logInState.value;
     this.authService.currentUser.subscribe((currentUser) => {
       this.currentStylist = currentUser;
+      console.log(this.currentStylist);
     });
-    this.loadAppointments();
+
+    this.pollSub = interval(1000).subscribe(() => {
+      this.loadAppointments();
+    });
   }
   toggleSidebar() {
     this.isSidebarCollapsed = !this.isSidebarCollapsed;

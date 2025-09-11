@@ -23,9 +23,11 @@ export class StylistListComponent implements OnInit {
 
   ngOnInit(): void {
     // retrieves list of stylist from the database
-    //  this.stylistService.getUsers().subscribe((data) =>{
-    //    this.listOfStylists = data.filter(user => user.role === 'stylist');
-    //  });
+    // this.stylistService.fetchAllStylist().then((user) => {
+    //   this.listOfStylists = user;
+    //   console.log(this.listOfStylists);
+    // });
+
     //  listening to the changes when the value of the radio button change
     this.filterService.selectedBtnEvent.subscribe((value) => {
       this.selectedStylist = value;

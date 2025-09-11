@@ -18,15 +18,10 @@ import { Loader } from '../../../utilities/loader/loader';
 })
 export class StylistAppointmentComponent implements OnInit {
   currentStylist: User;
-  todaysAppointment: Appointment[] = [];
   currentAppointments: Appointment[] = [];
   pastAppointments: Appointment[] = [];
-  matchingAppt: Appointment[] = [];
   button: string = 'pending';
-  private pollSub: Subscription;
   isLoading: boolean;
-
-  // constructor(private datePipe: DatePipe) {}
 
   bookingService = inject(BookingService);
   authService = inject(UserAuthService);
@@ -36,43 +31,37 @@ export class StylistAppointmentComponent implements OnInit {
   ngOnInit(): void {
     this.currentStylist = this.authService.currentUser.value;
 
-    this.pollSub = interval(2000).subscribe(() => {
-      this.loadAppointments();
-    });
-  }
-
-  ngOnDestroy() {
-    this.pollSub.unsubscribe();
+    this.loadAppointments();
   }
 
   loadAppointments() {
     this.isLoading = true;
-    this.bookingService
-      .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
-      .subscribe({
-        next: (appts) => {
-          const now = new Date();
-          const today = now.toISOString().split('T')[0];
-          this.pastAppointments = appts.filter(
-            (appt) =>
-              new Date(`${appt.date}T${appt.time}`) < now &&
-              this.bookingService.apptHasEnded(appt)
-          );
-          this.currentAppointments = appts.filter(
-            (appt) =>
-              new Date(`${appt.date}T${appt.time}`) >= now &&
-              this.bookingService.apptHasEnded(appt)
-          );
-          this.todaysAppointment = appts.filter((appt) => appt.date === today);
-          this.isLoading = false;
-        },
-        error: (errMsg) => {
-          setTimeout(() => {
+    if (this.currentStylist) {
+      this.bookingService
+        .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
+        .subscribe({
+          next: (appts) => {
+            const now = new Date();
+            for (const apt of appts) {
+              const aptDate = new Date(apt.dateTime);
+
+              if (aptDate >= now && !this.bookingService.apptHasEnded(apt)) {
+                this.currentAppointments.push(apt);
+              } else {
+                this.pastAppointments.push(apt);
+              }
+            }
+
             this.isLoading = false;
-            this.toastr.error(errMsg);
-          }, 3000);
-        },
-      });
+          },
+          error: (errMsg) => {
+            setTimeout(() => {
+              this.isLoading = false;
+              this.toastr.error(errMsg);
+            }, 3000);
+          },
+        });
+    }
   }
 
   confirmAppointment(id: string) {
@@ -103,19 +92,23 @@ export class StylistAppointmentComponent implements OnInit {
     this.button = btn.value;
   }
 
-  formatTime(date: string, time: string) {
-    return this.timeFormatService.formatTime(date, time);
+  formatTime(date: string) {
+    return this.timeFormatService.formatTime(date);
   }
 
   get cornfirmedAppointments() {
-    return this.todaysAppointment.filter((appt) => appt.status === 'confirmed');
+    return this.currentAppointments.filter(
+      (appt) => appt.status === 'confirmed'
+    );
   }
 
   get pendingAppointments() {
-    return this.todaysAppointment.filter((appt) => appt.status === 'pending');
+    return this.currentAppointments.filter((appt) => appt.status === 'pending');
   }
 
   get rejectedAppointments() {
-    return this.todaysAppointment.filter((appt) => appt.status === 'rejected');
+    return this.currentAppointments.filter(
+      (appt) => appt.status === 'rejected'
+    );
   }
 }

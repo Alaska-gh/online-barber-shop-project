@@ -37,22 +37,19 @@ export class CustomerAppointmentsComponent implements OnInit {
   loadAppointments() {
     this.isLoading = true;
     this.bookingService
-      .getAppointmentsByCustomer(this.currentUser.email)
+      .getAppointmentsForCustomer(this.currentUser.email)
       .subscribe({
         next: (appts) => {
           const now = new Date();
-          const today = now.toISOString().split('T')[0];
-          this.todysAppointments = appts.filter((appt) => appt.date === today);
-          this.pastAppointments = appts.filter(
-            (appt) =>
-              new Date(`${appt.date}T${appt.time}`) < now &&
-              this.bookingService.apptHasEnded(appt)
-          );
-          this.currentAppointments = appts.filter(
-            (appt) =>
-              new Date(`${appt.date}T${appt.time}`) >= now &&
-              this.bookingService.apptHasEnded(appt)
-          );
+          for (const apt of appts) {
+            const aptDate = new Date(apt.dateTime);
+
+            if (aptDate >= now && !this.bookingService.apptHasEnded(apt)) {
+              this.currentAppointments.push(apt);
+            } else {
+              this.pastAppointments.push(apt);
+            }
+          }
           this.isLoading = false;
         },
         error: (errMsg) => {
@@ -69,17 +66,21 @@ export class CustomerAppointmentsComponent implements OnInit {
     this.button = btn.value;
   }
 
-  formatTime(date: string, time: string) {
-    return this.timeFormatService.formatTime(date, time);
+  formatTime(date: string) {
+    return this.timeFormatService.formatTime(date);
   }
 
   get confirmedAppointments() {
-    return this.todysAppointments.filter((appt) => appt.status === 'confirmed');
+    return this.currentAppointments.filter(
+      (appt) => appt.status === 'confirmed'
+    );
   }
   get rejectedAppointments() {
-    return this.todysAppointments.filter((appt) => appt.status === 'rejected');
+    return this.currentAppointments.filter(
+      (appt) => appt.status === 'rejected'
+    );
   }
   get pendingAppointments() {
-    return this.todysAppointments.filter((appt) => appt.status === 'pending');
+    return this.currentAppointments.filter((appt) => appt.status === 'pending');
   }
 }

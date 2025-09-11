@@ -5,8 +5,7 @@ export interface Appointment {
   email: string;
   stylist: string;
   service: string;
-  date: string;
-  time: string;
+  dateTime: string;
   duration: number;
   notes?: string;
   price: number;

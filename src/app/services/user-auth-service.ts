@@ -1,107 +1,104 @@
-import { inject, Injectable } from '@angular/core';
-import { User } from '../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, map, Observable, Subject } from 'rxjs';
-import { Auth } from '@angular/fire/auth';
-import { Database } from '@angular/fire/database';
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from 'firebase/auth';
-import { child, get, ref, set } from 'firebase/database';
-
-// const allStylist: Stylist [] = JSON.parse(localStorage.getItem('stylist')) || []
+import { inject, Injectable } from '@angular/core';
+import { BehaviorSubject, catchError, map, switchMap, throwError } from 'rxjs';
+import { AuthResponse } from '../interfaces/AuthResponse';
+import { User } from './../interfaces/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserAuthService {
-  // private http: HttpClient = inject(HttpClient);
-  private auth = inject(Auth);
-  private db = inject(Database);
-
   logInState = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
   currentUser = new BehaviorSubject<User>(
     JSON.parse(localStorage.getItem('user'))
   );
 
-  // getUsers() {
-  //   return this.http.get<User[]>(`${this.url}/users`);
-  // }
+  http = inject(HttpClient);
+  baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
+  key = 'AIzaSyA026gRjcoRmgngtRpl_QlKjgoThhYxL-c';
+  signupEndPoint = 'signUp';
+  signInEndPoint = 'signInWithPassword';
+  dbUrl =
+    'https://online-barber-shop-e6bfb-default-rtdb.asia-southeast1.firebasedatabase.app';
 
-  // loginUser(email: string, password: string): Observable<User | null> {
-  //   return this.http.get<User[]>(`${this.url}/users`).pipe(
-  //     map((users) => {
-  //       const user = users.find(
-  //         (u) => u.email === email && u.password === password
-  //       );
+  registerUser(newUser: User) {
+    const data = {
+      email: newUser.email,
+      password: newUser.password,
+      returnSecureToken: true,
+    };
+    const { password, ...userData } = newUser;
 
-  //       if (user) {
-  //         this.logInState.next(true);
-  //         this.currentUser.next(user);
-  //         localStorage.setItem('user', JSON.stringify(user));
-  //       }
-  //       return user || null;
-  //     })
-  //   );
-  // }
-
-  async registerUser(newUser: User) {
-    try {
-      // Create user in Firebase Authentication
-      const userCredentials = await createUserWithEmailAndPassword(
-        this.auth,
-        newUser.email,
-        newUser.password
+    return this.http
+      .post<AuthResponse>(
+        `${this.baseUrl}:${this.signupEndPoint}?key=${this.key}`,
+        data
+      )
+      .pipe(
+        switchMap((userCred) => {
+          return this.http.put(`${this.dbUrl}/users/${userCred.localId}.json`, {
+            uid: userCred.localId,
+            ...userData,
+            createdAt: new Date().toISOString(),
+          });
+        }),
+        catchError(this.handleError)
       );
-
-      const user = userCredentials.user;
-
-      // Save only safe extra data in Realtime Database
-      const { password, ...userData } = newUser; // remove password before saving
-
-      await set(ref(this.db, `users/${user.uid}`), {
-        uid: user.uid,
-        ...userData, // this will include name, phone, email, etc.
-        createdAt: new Date().toISOString(),
-      });
-
-      return user;
-    } catch (err) {
-      console.error('Signup error:', err);
-      throw err;
-    }
   }
 
-  async loginUser(email: string, password: string) {
-    try {
-      const userCred = await signInWithEmailAndPassword(
-        this.auth,
-        email,
-        password
+  loginUser(email: string, password: string) {
+    const data = {
+      email: email,
+      password: password,
+      returnSecureToken: true,
+    };
+    return this.http
+      .post<AuthResponse>(
+        `${this.baseUrl}:${this.signInEndPoint}?key=${this.key}`,
+        data
+      )
+      .pipe(
+        switchMap((userCred) => {
+          return this.http
+            .get<User>(`${this.dbUrl}/users/${userCred.localId}.json`)
+            .pipe(
+              map((user) => {
+                localStorage.setItem('user', JSON.stringify(user));
+                this.logInState.next(true);
+                this.currentUser.next(user);
+                return user;
+              })
+            );
+        }),
+        catchError(this.handleError)
       );
-
-      // fecth details of the user
-      const databaseref = ref(this.db);
-      const snapshot = await get(
-        child(databaseref, `users/${userCred.user.uid}`)
-      );
-
-      if (snapshot.exists()) {
-        const user = snapshot.val();
-        localStorage.setItem('user', JSON.stringify(user));
-        this.currentUser.next(user);
-        this.logInState.next(true);
-        return user;
-      }
-    } catch (err) {
-      throw err;
-    }
   }
 
   logoutUser() {
-    this.auth.signOut();
+    // await this.auth.signOut();
     this.logInState.next(false);
     localStorage.removeItem('user');
+  }
+  handleError(err) {
+    let errormessage = 'Unexpected error occurred.';
+
+    if (!err.error || !err.error.error) {
+      return throwError(() => errormessage);
+    }
+    switch (err.error.error.message) {
+      case 'EMAIL_EXISTS':
+        errormessage = 'Email Already Exist.';
+        break;
+      case 'EMAIL_NOT_FOUND':
+        errormessage = 'Email Not Found';
+        break;
+      case 'INVALID_PASSWORD':
+        errormessage = 'Invalid Password. Please check and try again';
+        break;
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errormessage = 'Invalid Email / Password';
+    }
+
+    return throwError(() => errormessage);
   }
 }

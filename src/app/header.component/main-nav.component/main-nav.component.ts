@@ -46,13 +46,9 @@ export class MainNavComponent implements OnInit, AfterViewInit {
       this.user = currentUser;
     });
 
-    this.pollSub = interval(2000).subscribe(() => {
+    this.pollSub = interval(1000).subscribe(() => {
       this.loadAppointments();
     });
-  }
-
-  ngOnDestroy() {
-    this.pollSub.unsubscribe();
   }
   ngAfterViewInit() {
     this.collapse = new Collapse(this.toggleNavBarEl.nativeElement, {
@@ -69,19 +65,23 @@ export class MainNavComponent implements OnInit, AfterViewInit {
   }
 
   loadAppointments() {
-    this.bookingService.getAppointmentsByCustomer(this.user?.email).subscribe({
-      next: (appts) => {
-        const today = new Date();
-        this.ongoingAppointments = appts.filter(
-          (appt) =>
-            new Date(`${appt.date}T${appt.time}`) >= today &&
-            !this.bookingService.apptHasEnded(appt)
-        );
-      },
-      // error: (errMsg) => {
-      //   this.toastr.error(errMsg);
-      // },
-    });
+    if (this.user?.email) {
+      this.bookingService
+        .getAppointmentsForCustomer(this.user.email)
+        .subscribe({
+          next: (appts) => {
+            const today = new Date();
+            this.ongoingAppointments = appts.filter(
+              (appt) =>
+                new Date(appt.dateTime) >= today &&
+                !this.bookingService.apptHasEnded(appt)
+            );
+          },
+          // error: (errMsg) => {
+          //   this.toastr.error(errMsg);
+          // },
+        });
+    }
   }
 
   onLogoutClicked(event: Event) {

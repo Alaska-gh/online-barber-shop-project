@@ -1,4 +1,4 @@
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, formatDate } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import { UserAuthService } from '../../../services/user-auth-service';
 import { TimeService } from '../../../services/timeOfDay.service';
@@ -64,13 +64,18 @@ export class StylistDashboardComponent {
       .getAllAppointmentsForStylist(this.currentStylist.bussinessName)
       .subscribe((appts) => {
         const now = new Date();
-        const today = now.toISOString().split('T')[0];
-        this.appointments = appts.filter((appt) => appt.date === today);
+        for (const apt of appts) {
+          const today = now.toISOString().split('T')[0];
+          const apptDate = formatDate(apt.dateTime, 'yyyy-MM-dd', 'en-US');
+          if (apptDate === today) {
+            this.appointments.push(apt);
+          }
+        }
       });
   }
 
-  formatTime(date: string, time: string) {
-    return this.timeFormatService.formatTime(date, time);
+  formatTime(date: string) {
+    return this.timeFormatService.formatTime(date);
   }
 
   get cornfirmedAppointments() {
