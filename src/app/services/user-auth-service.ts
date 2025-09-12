@@ -5,15 +5,23 @@ import { AuthResponse } from '../interfaces/AuthResponse';
 import { User } from './../interfaces/user.interface';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root', // Makes this service available application-wide
 })
 export class UserAuthService {
+  // Tracks whether a user is logged in.
+
   logInState = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
+
+  // Holds the current authenticated user. Loaded from localStorage if available.
+
   currentUser = new BehaviorSubject<User>(
     JSON.parse(localStorage.getItem('user'))
   );
 
+  // Dependencies
   http = inject(HttpClient);
+
+  // Firebase Authentication & Realtime Database URLs
   baseUrl = 'https://identitytoolkit.googleapis.com/v1/accounts';
   key = 'AIzaSyA026gRjcoRmgngtRpl_QlKjgoThhYxL-c';
   signupEndPoint = 'signUp';
@@ -21,12 +29,19 @@ export class UserAuthService {
   dbUrl =
     'https://online-barber-shop-e6bfb-default-rtdb.asia-southeast1.firebasedatabase.app';
 
+  /*
+    Registers a new user by first creating credentials in Firebase Authentication,
+    then saving user profile data in Firebase Realtime Database.
+   */
   registerUser(newUser: User) {
+    // Payload for Firebase Auth
     const data = {
       email: newUser.email,
       password: newUser.password,
       returnSecureToken: true,
     };
+
+    // Exclude password from the data stored in database
     const { password, ...userData } = newUser;
 
     return this.http
@@ -35,6 +50,7 @@ export class UserAuthService {
         data
       )
       .pipe(
+        // Once credentials are created, store user profile data in the database
         switchMap((userCred) => {
           return this.http.put(`${this.dbUrl}/users/${userCred.localId}.json`, {
             uid: userCred.localId,
@@ -46,24 +62,32 @@ export class UserAuthService {
       );
   }
 
+  /* Logs in a user by verifying credentials with Firebase Authentication,
+   then fetching the corresponding user profile from the database.
+  */
   loginUser(email: string, password: string) {
     const data = {
       email: email,
       password: password,
       returnSecureToken: true,
     };
+
     return this.http
       .post<AuthResponse>(
         `${this.baseUrl}:${this.signInEndPoint}?key=${this.key}`,
         data
       )
       .pipe(
+        // Once authenticated, fetch user data from the database
         switchMap((userCred) => {
           return this.http
             .get<User>(`${this.dbUrl}/users/${userCred.localId}.json`)
             .pipe(
               map((user) => {
+                // Persist user session in localStorage
                 localStorage.setItem('user', JSON.stringify(user));
+
+                // Notify subscribers that login state and current user changed
                 this.logInState.next(true);
                 this.currentUser.next(user);
                 return user;
@@ -74,36 +98,22 @@ export class UserAuthService {
       );
   }
 
+  // Logs out the current user by clearing local storage and notifying subscribers.
+
   logoutUser() {
     this.logInState.next(false);
     localStorage.removeItem('user');
   }
 
-  fetchAllStylist() {
-    const params = new HttpParams()
-      .set('orderBy', JSON.stringify('role'))
-      .set('equalTo', JSON.stringify('stylist'));
-    return this.http
-      .get<{ [key: string]: User }>(`${this.dbUrl}/users.json`, { params })
-      .pipe(
-        map((user) => {
-          const stylist = [];
+  //   Handles Firebase API errors and maps them to human-readable messages.
 
-          for (let key in user) {
-            if (user.hasOwnProperty(key)) {
-              stylist.push({ ...user[key], id: key });
-            }
-          }
-          return stylist;
-        })
-      );
-  }
   handleError(err) {
     let errormessage = 'Unexpected error occurred.';
 
     if (!err.error || !err.error.error) {
       return throwError(() => errormessage);
     }
+
     switch (err.error.error.message) {
       case 'EMAIL_EXISTS':
         errormessage = 'Email Already Exist.';
@@ -116,6 +126,7 @@ export class UserAuthService {
         break;
       case 'INVALID_LOGIN_CREDENTIALS':
         errormessage = 'Invalid Email / Password';
+        break;
     }
 
     return throwError(() => errormessage);

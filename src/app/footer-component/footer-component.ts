@@ -7,16 +7,20 @@ import { Footer } from '../interfaces/footer.interface';
   selector: 'footer-component',
   imports: [CommonModule],
   templateUrl: './footer-component.html',
-  styleUrl: './footer-component.css'
+  styleUrl: './footer-component.css',
 })
-export class FooterComponent implements OnInit{
-  // CREATING A LIST OF TITLES FOR USE IN THE TEMPLATE
- listOfTitles: Footer[] = []
+export class FooterComponent implements OnInit {
+  // Stores the list of footer titles/sections to be displayed in the UI.
+  listOfTitles: Footer[] = [];
 
- listOfLinks = inject(FooterService)
+  // Injects the FooterService to fetch footer data.
+  listOfLinks = inject(FooterService);
 
- ngOnInit(): void {
-   this.listOfTitles = this.listOfLinks.getList();
-   
- }
+  /*
+    Lifecycle hook: Runs once the component is initialized.
+   Fetches the list of footer links from FooterService and assigns them to `listOfTitles`.
+   */
+  ngOnInit(): void {
+    this.listOfTitles = this.listOfLinks.getList();
+  }
 }

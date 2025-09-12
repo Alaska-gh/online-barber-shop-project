@@ -1,4 +1,4 @@
-import { Component,inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { FilterService } from '../../../../services/filter.service';
 
@@ -6,14 +6,20 @@ import { FilterService } from '../../../../services/filter.service';
   selector: 'app-filter',
   imports: [FormsModule],
   templateUrl: './filter.html',
-  styleUrl: './filter.css'
+  styleUrl: './filter.css',
 })
 export class Filter {
+  // Stores the currently selected stylist filter option (default: 'all')
   selectedStylists: string = 'all';
 
-  fiterService = inject(FilterService)
+  //Injected service used to broadcast filter changes across the app
+  fiterService = inject(FilterService);
 
- onBtnChange(){
-   this.fiterService.onRadioBtnChanged(this.selectedStylists) // passing the value of the selected radio button 
- }
+  /*
+  Called whenever the radio button selection changes.
+   Emits the currently selected stylist filter to subscribers.
+   */
+  onBtnChange() {
+    this.fiterService.onRadioBtnChanged(this.selectedStylists);
+  }
 }

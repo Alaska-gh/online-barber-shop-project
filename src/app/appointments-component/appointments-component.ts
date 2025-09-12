@@ -30,13 +30,25 @@ import { SignupLoader } from '../utilities/login/signup-loader/signup-loader';
   styleUrl: './appointments-component.css',
 })
 export class AppointmentsComponent implements OnInit {
+  // Stores the stylist selected by the user
   selectedstylist: User;
+
+  // Stores the selected service/style
   selectedStyle: Services;
+
+  // Array of booked slots (start and end times) to prevent overlap
   bookedSlots: { start: Date; end: Date }[] = [];
+
+  // Logged-in user information
   loggedInUser: User = null;
+
+  // Current date in YYYY-MM-DD format (used to prevent booking in the past)
   currentTime = new Date().toISOString().split('T')[0];
+
+  // Loading indicator for submit process
   isLoading: boolean;
 
+  // Dependency injection for required services
   formBuilder: FormBuilder = inject(FormBuilder);
   servicesservice = inject(StylesService);
   bookingservice = inject(BookingService);
@@ -44,35 +56,42 @@ export class AppointmentsComponent implements OnInit {
   toastr = inject(ToastrService);
 
   ngOnInit(): void {
+    // Retrieve selected style and stylist from the booking service
     this.selectedStyle = this.bookingservice.getStyle();
     this.selectedstylist = this.bookingservice.getStylist();
-    const saveddata = this.bookingservice.getFormData();
 
+    // Restore previously saved form data (if any)
+    const saveddata = this.bookingservice.getFormData();
     if (saveddata) {
       this.appointmentForm.patchValue(saveddata);
     }
 
+    // If stylist was previously selected, pre-fill stylist field
     if (this.selectedstylist) {
       this.appointmentForm.patchValue({
         stylist: this.selectedstylist.bussinessName,
       });
     }
 
+    // If service was previously selected, pre-fill service field
     if (this.selectedStyle) {
       this.appointmentForm.patchValue({
         service: this.selectedStyle.name,
       });
     }
 
+    // Save form data on every change so user progress is not lost
     this.appointmentForm.valueChanges.subscribe((values) => {
       this.bookingservice.setFormData(values);
     });
 
+    // Subscribe to logged-in user observable to keep user data updated
     this.authservice.currentUser.subscribe((user) => {
       this.loggedInUser = user;
     });
   }
 
+  // Define the appointment booking form with validation rules
   appointmentForm = this.formBuilder.group({
     fullName: ['', Validators.required],
     phoneNum: [null, Validators.required],
@@ -82,43 +101,39 @@ export class AppointmentsComponent implements OnInit {
     date: ['', Validators.required],
     time: ['', Validators.required],
     notes: [''],
-    agreement: ['', Validators.required],
+    agreement: ['', Validators.required], // checkbox or confirmation must be checked
   });
 
-  // getter methods for the formControls
+  // Getter methods for template form control access
   get fname() {
     return this.appointmentForm.controls['fullName'];
   }
-
   get phoneNum() {
     return this.appointmentForm.controls['phoneNum'];
   }
-
   get email() {
     return this.appointmentForm.controls['email'];
   }
-
   get stylist() {
     return this.appointmentForm.controls['stylist'];
   }
-
   get service() {
     return this.appointmentForm.controls['service'];
   }
-
   get date() {
     return this.appointmentForm.controls['date'];
   }
-
   get time() {
     return this.appointmentForm.controls['time'];
   }
-
   get agreement() {
     return this.appointmentForm.controls['agreement'];
   }
 
-  // fetch all appointments for a stylist on a particular day
+  /*
+    Fetches all booked appointments for the selected stylist on a given date
+    and populates `bookedSlots` to prevent overlapping bookings.
+   */
   onDateOrStylistChanged() {
     const stylist = this.appointmentForm.value.stylist;
     const date = this.appointmentForm.value.date;
@@ -129,30 +144,37 @@ export class AppointmentsComponent implements OnInit {
           this.bookedSlots = appointments.map((appointment) => {
             const start = new Date(appointment.dateTime);
             const end = new Date(
-              start.getTime() + appointment.duration * 60000
+              start.getTime() + appointment.duration * 60000 // add duration in minutes
             );
-
             return { start, end };
           });
         },
       });
     }
   }
-  // checks to make sure the start of a new appointment is not before the end of the existing one
+
+  /*
+   Validates the selected time to ensure:
+    - It's not in the past
+    - It does not overlap with other booked slots
+   */
   onTimeChange(event: Event) {
     const now = new Date();
     const time = (event.target as HTMLInputElement).value;
     if (!time) return;
 
+    // Calculate start and end times for the new appointment
     const newStart = new Date(`${this.appointmentForm.value.date}T${time}`);
     const newEnd = new Date(
       newStart.getTime() + this.selectedStyle.duration * 60000
     );
 
+    // Prevent booking in the past
     if (newStart < now) {
       this.appointmentForm.get('time')?.setErrors({ pastTime: true });
     }
 
+    // Check for overlapping bookings
     const conflict = this.bookedSlots.find(
       (slot) => newStart < slot.end && slot.start < newEnd
     );
@@ -164,19 +186,30 @@ export class AppointmentsComponent implements OnInit {
     }
   }
 
+  /*
+   Submits the appointment form:
+   - Validates date/time to avoid past bookings
+    - Creates appointment data object
+    - Calls BookingService to save the appointment
+    - Displays success/error notifications
+   */
   async submitForm() {
     this.isLoading = true;
     const formValues = this.appointmentForm.value;
 
     const start = new Date(`${formValues.date}T${formValues.time}`);
 
+    // Prevent booking in the past
     if (start < new Date()) {
       this.toastr.error(
         "You can't book an appointment in the past",
         'Invalid Time'
       );
+      this.isLoading = false;
       return;
     }
+
+    // Build appointment object
     const appointmentData: Appointment = {
       fullName: formValues.fullName,
       phoneNum: formValues.phoneNum,
@@ -187,21 +220,22 @@ export class AppointmentsComponent implements OnInit {
       notes: formValues.notes,
       duration: this.selectedStyle.duration,
       price: this.selectedStyle.price,
-      status: 'pending',
+      status: 'pending', // default status until stylist confirms
     };
 
+    // Call service to create appointment
     this.bookingservice.createAppointment(appointmentData).subscribe({
       next: () => {
         this.isLoading = false;
         this.toastr.success('Appointment Booked Successfully', 'Thank You');
       },
-
       error: (errMsg) => {
         this.isLoading = false;
         this.toastr.error(errMsg);
       },
     });
 
+    // Reset the form after successful booking
     this.appointmentForm.reset();
   }
 }

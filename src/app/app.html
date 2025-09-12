@@ -1,14 +1,32 @@
+<!-- Show the header only when the dashboard is NOT loaded -->
 @if (dashboardLoaded === false) {
 <header-component></header-component>
 }
+
+<!-- Placeholder where routed components will be rendered -->
 <router-outlet></router-outlet>
 
+<!-- Display a loading indicator while navigation or async operations are in progress -->
+@if (showLoader) {
+<app-loader></app-loader>
+}
+
+<!-- Confirmation modal shown when the user clicks logout -->
 @if (showConfirmLogout) {
 <confirm-logout (confirmLogoutEvent)="confirmLogOut($event)"></confirm-logout>
-} @if (showLoginForm) {
+}
+
+<!-- Show login form when user clicks login button -->
+@if (showLoginForm) {
 <app-login></app-login>
-} @if (showSignupForm) {
+}
+
+<!-- Show signup form when user clicks signup button -->
+@if (showSignupForm) {
 <signup-component></signup-component>
-} @if (dashboardLoaded === false) {
+}
+
+<!-- Show the footer only when the dashboard is NOT loaded -->
+@if (dashboardLoaded === false) {
 <footer-component></footer-component>
 }
