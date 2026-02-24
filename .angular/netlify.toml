@@ -1,0 +1,8 @@
+[build]
+  command = "ng build --configuration production"
+  publish = "dist/online-barber-shop-project/browser"
+
+[plugins]
+  [[plugins]]
+    package = "@netlify/angular-runtime"
+    inputs = { disableBrowserFolder = true }
