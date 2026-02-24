@@ -82,26 +82,54 @@ export class StylistAppointmentComponent implements OnInit {
   // Updates the appointment status to "confirmed" and reloads the appointments list.
 
   confirmAppointment(id: string) {
+    this.isLoading = true;
     this.bookingService.updateAppointmentStatus(id, 'confirmed').subscribe({
       next: () => {
         this.toastr.success('Appointment Confirmed', 'Confirmed');
-        this.loadAppointments();
+        // Find the appointment in pending list
+        const index = this.pendingAppointments.findIndex(
+          (apt) => apt.id === id
+        );
+        if (index !== -1) {
+          const confirmedApt = this.pendingAppointments[index];
+          confirmedApt.status = 'confirmed'; // update locally
+          //  Remove from pending list (mutate in place)
+          this.pendingAppointments.splice(index, 1);
+          // Push to confirmed list (mutate in place)
+          this.cornfirmedAppointments.push(confirmedApt);
+        }
+        this.isLoading = false;
       },
       error: (errMsg) => {
         this.toastr.error(errMsg);
+        this.isLoading = false;
       },
     });
   }
 
   //  Updates the appointment status to "rejected" and reloads the appointments list.
   rejectAppointment(id: string) {
+    this.isLoading = true;
     this.bookingService.updateAppointmentStatus(id, 'rejected').subscribe({
       next: () => {
         this.toastr.error(`You've Cancelled the appointment`);
-        this.loadAppointments();
+        // Find the appointment in pending list
+        const index = this.pendingAppointments.findIndex(
+          (apt) => apt.id === id
+        );
+        if (index !== -1) {
+          const rejectedApt = this.pendingAppointments[index];
+          rejectedApt.status = 'rejected'; // update locally
+          //  Remove from pending list (mutate in place)
+          this.pendingAppointments.splice(index, 1);
+          // Push to confirmed list (mutate in place)
+          this.rejectedAppointments.push(rejectedApt);
+        }
+        this.isLoading = false;
       },
       error: (errMsg) => {
         this.toastr.error(errMsg);
+        this.isLoading = false;
       },
     });
   }

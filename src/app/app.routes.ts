@@ -1,61 +1,121 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './LandingPageModule/home-component/home-component';
-import { SignupComponent } from './authenticationModule/signup-component/signup-component';
-import { StylistListComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-list-component';
-import { WildCardComponent } from './wild-card-component/wild-card-component';
-import { StylistDetailsComponent } from './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component';
-import { Login } from './authenticationModule/login/login';
-import { AppointmentsComponent } from './appointments-component/appointments-component';
 import {
   authGuard,
   resolveGuard,
 } from './authenticationModule/guards/authGuard';
-import { StylistDashboardLayout } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout';
-import { StylesAndServicesComponent } from './stylesAndServices/styles-and-services-component/styles-and-services-component';
-import { StylistAppointmentComponent } from './stylistsModule/stylist-dashboard-layout/stylist-appointment-component/stylist-appointment-component';
-import { StylistCustomersComponent } from './stylistsModule/stylist-dashboard-layout/stylist-customers-component/stylist-customers-component';
-import { StylistSettingsComponent } from './stylistsModule/stylist-dashboard-layout/stylist-settings-component/stylist-settings-component';
-import { StylistDashboardComponent } from './stylistsModule/stylist-dashboard-layout/stylist-dashboard-component/stylist-dashboard-component';
-import { StylistProfileComponent } from './stylistsModule/stylist-dashboard-layout/stylist-profile-component/stylist-profile-component';
-import { CustomerAppointmentsComponent } from './customerModule/customer-appointments-component/customer-appointments-component';
+import { HomeComponent } from './LandingPageModule/home-component/home-component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
   {
-    path: 'stylists',
-    component: StylistListComponent,
-    resolve: { stylist: resolveGuard },
+    path: 'home',
+    component: HomeComponent,
   },
-  { path: 'signup', component: SignupComponent },
   {
     path: 'stylists',
+    loadComponent: () =>
+      import(
+        './stylistsModule/stylists-container-component/stylist-list-component/stylist-list-component'
+      ).then((comp) => comp.StylistListComponent),
+    resolve: { stylist: resolveGuard },
+    data: { preload: true },
     children: [
       {
         path: 'stylist/:id',
-        component: StylistDetailsComponent,
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylists-container-component/stylist-list-component/stylist-details-component/stylist-details-component'
+          ).then((comp) => comp.StylistDetailsComponent),
       },
     ],
   },
-  { path: 'login', component: Login },
+  {
+    path: 'signup',
+    loadComponent: () =>
+      import('./authenticationModule/signup-component/signup-component').then(
+        (comp) => comp.SignupComponent
+      ),
+  },
+
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./authenticationModule/login/login').then((comp) => comp.Login),
+  },
   {
     path: 'booking',
-    component: AppointmentsComponent,
+    loadComponent: () =>
+      import('./appointments-component/appointments-component').then(
+        (comp) => comp.AppointmentsComponent
+      ),
     canActivate: [authGuard],
   },
   {
     path: 'dashboard',
-    component: StylistDashboardLayout,
+    loadComponent: () =>
+      import(
+        './stylistsModule/stylist-dashboard-layout/stylist-dashboard-layout'
+      ).then((comp) => comp.StylistDashboardLayout),
     canActivate: [authGuard],
     children: [
-      { path: 'summary', component: StylistDashboardComponent },
-      { path: 'appointments', component: StylistAppointmentComponent },
-      { path: 'customers', component: StylistCustomersComponent },
-      { path: 'settings', component: StylistSettingsComponent },
-      { path: 'profile', component: StylistProfileComponent },
+      {
+        path: 'summary',
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylist-dashboard-layout/stylist-dashboard-component/stylist-dashboard-component'
+          ).then((comp) => comp.StylistDashboardComponent),
+        data: { preload: true },
+      },
+      {
+        path: 'appointments',
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylist-dashboard-layout/stylist-appointment-component/stylist-appointment-component'
+          ).then((comp) => comp.StylistAppointmentComponent),
+        data: { preload: true },
+      },
+      {
+        path: 'customers',
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylist-dashboard-layout/stylist-customers-component/stylist-customers-component'
+          ).then((comp) => comp.StylistCustomersComponent),
+      },
+      {
+        path: 'settings',
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylist-dashboard-layout/stylist-settings-component/stylist-settings-component'
+          ).then((comp) => comp.StylistSettingsComponent),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import(
+            './stylistsModule/stylist-dashboard-layout/stylist-profile-component/stylist-profile-component'
+          ).then((comp) => comp.StylistProfileComponent),
+      },
     ],
   },
-  { path: 'customer/appointments', component: CustomerAppointmentsComponent },
-  { path: 'services', component: StylesAndServicesComponent },
-  { path: '**', component: WildCardComponent },
+  {
+    path: 'customer/appointments',
+    loadComponent: () =>
+      import(
+        './customerModule/customer-appointments-component/customer-appointments-component'
+      ).then((comp) => comp.CustomerAppointmentsComponent),
+  },
+  {
+    path: 'services',
+    loadComponent: () =>
+      import(
+        './stylesAndServices/styles-and-services-component/styles-and-services-component'
+      ).then((comp) => comp.StylesAndServicesComponent),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./wild-card-component/wild-card-component').then(
+        (comp) => comp.WildCardComponent
+      ),
+  },
 ];

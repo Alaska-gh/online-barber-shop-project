@@ -4,13 +4,20 @@ import {
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
 } from '@angular/core';
-import { provideRouter, withInMemoryScrolling } from '@angular/router';
+import {
+  PreloadAllModules,
+  PreloadingStrategy,
+  provideRouter,
+  withInMemoryScrolling,
+  withPreloading,
+} from '@angular/router';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { CustomPreloadingStrategy } from './services/preload-strategy.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,6 +25,7 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
+      withPreloading(CustomPreloadingStrategy),
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
@@ -32,10 +40,9 @@ export const appConfig: ApplicationConfig = {
       })
     ),
     provideToastr({
-      timeOut: 1000000,
+      timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-      progressBar: true,
       easeTime: 0,
       enableHtml: true,
       disableTimeOut: false,
