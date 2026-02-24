@@ -8,10 +8,10 @@ import {
 import { UserAuthService } from '../../services/user-auth-service';
 import { User } from '../../interfaces/user.interface';
 import { Router, RouterModule } from '@angular/router';
-import { passwordMatchValidator } from '../../validators/password-match.directive';
 import { ToastrService } from 'ngx-toastr';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
 import { SignupLoader } from '../../utilities/login/signup-loader/signup-loader';
+import { passwordMatchValidator } from '../../validators/password-match.directive';
 
 @Component({
   selector: 'signup-component',
