@@ -5,17 +5,14 @@ import { AuthResponse } from '../interfaces/AuthResponse';
 import { User } from './../interfaces/user.interface';
 
 @Injectable({
-  providedIn: 'root', // Makes this service available application-wide
+  providedIn: 'root',
 })
 export class UserAuthService {
-  // Tracks whether a user is logged in.
-
   logInState = new BehaviorSubject<boolean>(!!localStorage.getItem('user'));
-
-  // Holds the current authenticated user. Loaded from localStorage if available.
-
+  redirectUrl: string | null = null;
+  
   currentUser = new BehaviorSubject<User>(
-    JSON.parse(localStorage.getItem('user'))
+    JSON.parse(localStorage.getItem('user')),
   );
 
   // Dependencies
@@ -34,23 +31,19 @@ export class UserAuthService {
     then saving user profile data in Firebase Realtime Database.
    */
   registerUser(newUser: User) {
-    // Payload for Firebase Auth
     const data = {
       email: newUser.email,
       password: newUser.password,
       returnSecureToken: true,
     };
-
-    // Exclude password from the data stored in database
     const { password, ...userData } = newUser;
 
     return this.http
       .post<AuthResponse>(
         `${this.baseUrl}:${this.signupEndPoint}?key=${this.key}`,
-        data
+        data,
       )
       .pipe(
-        // Once credentials are created, store user profile data in the database
         switchMap((userCred) => {
           return this.http.put(`${this.dbUrl}/users/${userCred.localId}.json`, {
             uid: userCred.localId,
@@ -58,13 +51,10 @@ export class UserAuthService {
             createdAt: new Date().toISOString(),
           });
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       );
   }
 
-  /* Logs in a user by verifying credentials with Firebase Authentication,
-   then fetching the corresponding user profile from the database.
-  */
   loginUser(email: string, password: string) {
     const data = {
       email: email,
@@ -75,26 +65,22 @@ export class UserAuthService {
     return this.http
       .post<AuthResponse>(
         `${this.baseUrl}:${this.signInEndPoint}?key=${this.key}`,
-        data
+        data,
       )
       .pipe(
-        // Once authenticated, fetch user data from the database
         switchMap((userCred) => {
           return this.http
             .get<User>(`${this.dbUrl}/users/${userCred.localId}.json`)
             .pipe(
               map((user) => {
-                // Persist user session in localStorage
                 localStorage.setItem('user', JSON.stringify(user));
-
-                // Notify subscribers that login state and current user changed
                 this.logInState.next(true);
                 this.currentUser.next(user);
                 return user;
-              })
+              }),
             );
         }),
-        catchError(this.handleError)
+        catchError(this.handleError),
       );
   }
 

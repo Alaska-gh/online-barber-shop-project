@@ -63,12 +63,20 @@ export class Login implements OnInit {
   }
 
   redirectUser(role: string) {
+    const redirectUrl = this.authService.redirectUrl;
+
+    if (redirectUrl) {
+      this.router.navigateByUrl(redirectUrl);
+      this.authService.redirectUrl = null; // clear it after use
+      return;
+    }
+
+    // default role redirects
     if (role === 'stylist') {
       this.router.navigate(['dashboard/summary']);
     } else if (role === 'customer') {
       this.router.navigate(['home']);
     } else {
-      // fallback
       this.router.navigate(['/login']);
     }
   }

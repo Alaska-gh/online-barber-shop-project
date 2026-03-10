@@ -4,22 +4,11 @@ import { CanActivateFn, CanDeactivateFn, Router } from '@angular/router';
 import { UserAuthService } from '../../services/user-auth-service';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
 import { StylistService } from '../../services/stylist.service';
-import { User } from '../../interfaces/user.interface';
 
 //Prevents navigation to a route unless the user is logged in
 export const authGuard: CanActivateFn = () => {
   const authService = inject(UserAuthService);
-  const dynamicComponent = inject(DynamicComponent);
-
-  const state = authService.logInState.value; // Current login state (true if logged in)
-
-  if (state) {
-    return true; // Allow route activation
-  }
-
-  // If not logged in, open login modal and block navigation
-  dynamicComponent.loginBtnClicked(true);
-  return false;
+  return authService.logInState.value;
 };
 
 //  Prevents the user from accidentally leaving a route with unsaved changes.
