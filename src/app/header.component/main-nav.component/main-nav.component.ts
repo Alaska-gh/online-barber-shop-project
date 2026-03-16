@@ -6,7 +6,7 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router, RouterModule } from '@angular/router';
 import { User } from '../../interfaces/user.interface';
 import { UserAuthService } from '../../services/user-auth-service';
@@ -19,7 +19,7 @@ import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'main-nav',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.css',
 })

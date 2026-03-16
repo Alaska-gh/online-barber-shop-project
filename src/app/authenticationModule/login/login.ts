@@ -1,7 +1,7 @@
 import { User } from './../../interfaces/user.interface';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserAuthService } from '../../services/user-auth-service';
 import { ToastrService } from 'ngx-toastr';
@@ -11,7 +11,7 @@ import { SignupLoader } from '../../utilities/login/signup-loader/signup-loader'
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterModule, SignupLoader],
+  imports: [ReactiveFormsModule, RouterModule, SignupLoader],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })

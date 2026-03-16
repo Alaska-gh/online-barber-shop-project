@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'advert-component',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './advert.component.html',
   styleUrl: './advert.component.css'
 })

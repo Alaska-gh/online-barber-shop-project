@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 
 @Component({
   selector: 'bottom-banner',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './bottom-banner-component.html',
   styleUrl: './bottom-banner-component.css'
 })

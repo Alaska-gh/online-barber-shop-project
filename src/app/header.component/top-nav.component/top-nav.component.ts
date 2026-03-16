@@ -1,11 +1,11 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'top-nav',
-  imports: [CommonModule, RouterModule],
+  imports: [RouterModule],
   templateUrl: './top-nav.component.html',
   styleUrl: './top-nav.component.css',
 })

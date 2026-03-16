@@ -2,11 +2,11 @@ import { Component, OnInit, inject} from '@angular/core';
 import Swiper from 'swiper';
 import { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
 import { ClientFeedbackService} from '../../../services/client-feedback-service';
-import { CommonModule } from '@angular/common';
+
 import { CardDetails } from '../../../interfaces/cardDetails.interface';
 @Component({
   selector: 'client-feedback',
-  imports: [CommonModule],
+  imports: [],
   standalone: true,
   templateUrl: './client-feedback-component.html',
   styleUrl: './client-feedback-component.css'

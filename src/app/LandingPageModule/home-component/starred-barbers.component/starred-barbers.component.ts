@@ -1,5 +1,5 @@
 import { StarredBarbersService } from './../../../services/starred-barbers.service';
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, OnInit} from '@angular/core';
 import Swiper from 'swiper';
 import  { Pagination, Navigation, Autoplay, Scrollbar } from 'swiper/modules';
@@ -8,7 +8,7 @@ import { CardDetails } from '../../../interfaces/cardDetails.interface';
 
 @Component({
   selector: 'starred-barbers',
-  imports: [CommonModule],
+  imports: [],
   standalone: true,
   templateUrl: './starred-barbers.component.html',
   styleUrl: './starred-barbers.component.css'

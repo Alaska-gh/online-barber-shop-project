@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 
 import { FooterComponent } from './footer-component/footer-component';
-import { CommonModule } from '@angular/common';
+
 import { HeaderComponent } from './header.component/header.component';
 import {
   NavigationEnd,
@@ -24,13 +24,12 @@ import { Loader } from './utilities/loader/loader';
   imports: [
     HeaderComponent,
     FooterComponent,
-    CommonModule,
     RouterOutlet,
     ConfirmLogoutComponent,
     Login,
     SignupComponent,
-    Loader,
-  ],
+    Loader
+],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
