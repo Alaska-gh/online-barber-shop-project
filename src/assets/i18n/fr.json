@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Créez votre propre style",
+    "subtitle": "Nous vous mettons en contact avec des professionnels",
+    "description": "Êtes-vous un barbier professionnel cherchant à entrer en contact avec ses clients ou recherchez-vous également un barbier professionnel pour vous offrir une coupe de cheveux classique ?",
+    "cta": "Prendre rendez-vous",
+    "title2": "Le salon de coiffure en ligne est là pour vous"
+  },
+  "about": {
+    "title": "À propos de nous",
+    "subtitle-span1": "Nous",
+    "subtitle-span2": "Faire",
+    "subtitle-span3": "Votre vie",
+    "subtitle-span4": "Plus facile",
+    "desc1": "Bienvenue sur OnlineBarberShop, où le style rencontre la sophistication dans un espace accueillant et inclusif. Nous pensons que tout le monde mérite d'être et de se sentir mieux, c'est pourquoi nous avons créé un salon moderne et unisexe qui s'adresse à tous les types de cheveux, textures et styles personnels.",
+    "desc2": "Notre équipe de stylistes qualifiés est passionnée par la création de coupes de cheveux, de colorations, de coiffages et de traitements exceptionnels adaptés à vos préférences uniques. Que vous recherchiez une transformation audacieuse, une coupe classique ou des services de toilettage experts, nous combinons les dernières techniques avec des soins personnalisés pour vous assurer de repartir confiant et rafraîchi.",
+    "desc3": "Chez OnlineBarberShop, nous accordons la priorité à la qualité, à la créativité et à une atmosphère détendue. En utilisant des produits haut de gamme et en gardant une longueur d'avance sur les tendances de l'industrie, nous créons des looks qui mettent en valeur votre beauté naturelle. Votre satisfaction est notre priorité absolue et nous nous engageons à faire de chaque visite une expérience agréable et ressourçante. Prenez rendez-vous et découvrez la différence OnlineBarberShop où de beaux cheveux ne connaissent pas de sexe !",
+    "bussines-hrs-title": "Heures d'ouverture",
+    "bussines-hrs-days": "Mon - Fri",
+    "bussines-hrs-time": "10h00 - 20h00",
+    "bussines-sat-hrs-day": "Samedi",
+    "bussines-sat-hrs-time": "10h00 - 20h00",
+    "bussines-sun-hrs-day": "Dimanche",
+    "bussines-sun-hrs-time": "10h00 - 20h00",
+    "cta": "Prendre rendez-vous"
+  }
+}

@@ -3,14 +3,12 @@
   <div class="container">
     <div class="row">
       <div class="col-12 text-center text-white intro">
-        <h6 class="hero-h6-1">We Connect You With Professionals</h6>
-        <h1 class="display-1 fw-bolder">Make your own style</h1>
+        <h6 class="hero-h6-1">{{'hero.title' | translate }}</h6>
+        <h1 class="display-1 fw-bolder">{{'hero.subtitle' | translate}}</h1>
         <p>
-          Are you a professional barber looking to connect with customers Or Are
-          you also looking for a profesional barber to give you a classic hair
-          cut?
+         {{'hero.description' | translate}}
         </p>
-        <h6 class="hero-h6-2 mb-4">Online Barber Shop Is Here For You</h6>
+        <h6 class="hero-h6-2 mb-4">{{'hero.title2' | translate}}</h6>
         <li class="nav-item text-center">
           <a
             class="appointment"
@@ -18,7 +16,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             style="cursor: pointer;"
-            >Book An Appointment</a
+            >{{'hero.cta' | translate}}</a
           >
         </li>
       </div>

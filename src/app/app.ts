@@ -17,6 +17,7 @@ import { Login } from './authenticationModule/login/login';
 import { SignupComponent } from './authenticationModule/signup-component/signup-component';
 import { DynamicComponent } from './services/dynamicComponent.service';
 import { Loader } from './utilities/loader/loader';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -28,8 +29,8 @@ import { Loader } from './utilities/loader/loader';
     ConfirmLogoutComponent,
     Login,
     SignupComponent,
-    Loader
-],
+    Loader,
+  ],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
@@ -46,6 +47,11 @@ export class App implements OnInit {
   dynamicComponent = inject(DynamicComponent);
   router: Router = inject(Router);
   toastr = inject(ToastrService);
+
+  constructor(private translate: TranslateService) {
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
+  }
 
   ngOnInit(): void {
     // Detect when navigation ends and check if the current route is dashboard

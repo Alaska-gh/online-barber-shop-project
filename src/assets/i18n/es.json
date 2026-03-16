@@ -1,0 +1,27 @@
+{
+  "hero": {
+    "title": "Haz tu propio estilo",
+    "subtitle": "Te conectamos con profesionales",
+    "description": "¿Es usted un barbero profesional que busca conectarse con los clientes o también está buscando un barbero profesional que le haga un corte de cabello clásico?",
+    "cta": "Reserve una cita",
+    "title2": "La barbería en línea está aquí para usted"
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "subtitle-span1": "Nosotros",
+    "subtitle-span2": "Hacer",
+    "subtitle-span3": "tu vida",
+    "subtitle-span4": "Más fácil",
+    "desc1": "Bienvenido a OnlineBarberShop, donde el estilo se combina con la sofisticación en un espacio acogedor con inclusión de género. Creemos que todos merecen verse y sentirse lo mejor posible, por eso hemos creado un salón unisex moderno que atiende a todo tipo de cabello, texturas y estilos personales.",
+    "desc2": "A nuestro equipo de estilistas expertos le apasiona ofrecer cortes de cabello, coloraciones, peinados y tratamientos excepcionales adaptados a sus preferencias únicas. Ya sea que esté buscando una transformación audaz, un corte clásico o servicios de cuidado expertos, combinamos las últimas técnicas con atención personalizada para garantizar que se sienta seguro y renovado.",
+    "desc3": "En OnlineBarberShop priorizamos la calidad, la creatividad y el ambiente relajado. Utilizando productos de primera calidad y manteniéndonos a la vanguardia de las tendencias de la industria, creamos looks que realzan su belleza natural. Su satisfacción es nuestra principal prioridad y estamos comprometidos a hacer de cada visita una experiencia agradable y rejuvenecedora. ¡Reserva una cita y descubre la diferencia de OnlineBarberShop donde un cabello fantástico no conoce género!",
+    "bussines-hrs-title": "Horario comercial",
+    "bussines-hrs-days": "Lun - Vie",
+    "bussines-hrs-time": "10 a. m. - 20 p. m.",
+    "bussines-sat-hrs-day": "Sábado",
+    "bussines-sat-hrs-time": "10 a. m. - 20 p. m.",
+    "bussines-sun-hrs-day": "Domingo",
+    "bussines-sun-hrs-time": "10 a. m. - 20 p. m.",
+    "cta": "Reserve una cita"
+  }
+}

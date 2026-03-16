@@ -1,0 +1,28 @@
+{
+  "hero": {
+    "title": "Make your own style",
+    "subtitle": "We Connect You With Professionals",
+    "description": "Are you a professional barber looking to connect with customers Or Are you also looking for a professional barber to give you a classic hair cut?",
+    "cta": "Book An Appointment",
+    "title2": "Online Barber Shop Is Here For You"
+  },
+  "about":{
+    "title":"About Us",
+    "subtitle-span1": "We",
+    "subtitle-span2": "Make",
+    "subtitle-span3": "Your Life",
+    "subtitle-span4": "Easier",
+    "desc1": "Welcome to OnlineBarberShop, where style meets sophistication in a welcoming gender-inclusive space. We believe that everyone deserves to look and feel their best, which is why we've created a modern, unisex salon that caters to all hair types, textures, and personal styles.",
+    "desc2": " Our team of skilled stylists is passionate about delivering exceptional haircuts, coloring, styling, and treatments tailored to your unique preferences. Whether you're looking for a bold transformation, a classic trim, or expert grooming services, we combine the latest techniques with personalized care to ensure you leave feeling confident and refreshed",
+    "desc3": "At OnlineBarberShop, we prioritize quality, creativity, and a relaxed atmosphere. Using premium products and staying ahead of industry trends, we craft looks that enhance your natural beauty. Your satisfaction is our top priority, and we're committed to making every visit an enjoyable and rejuvenating experience. Book an appointment and discover the OnlineBarberShop difference where great hair knows no gender!",
+    "bussines-hrs-title": "Business Hours",
+    "bussines-hrs-days": "Mon - Fri",
+    "bussines-hrs-time": "10 AM - 08 PM",
+    "bussines-sat-hrs-day": "Saturday",
+    "bussines-sat-hrs-time": "10 AM - 08 PM",
+    "bussines-sun-hrs-day": "Sunday",
+    "bussines-sun-hrs-time": "10 AM - 08 PM",
+    "cta": "Book An Appointment"
+  }
+}
+

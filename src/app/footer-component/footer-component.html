@@ -2,27 +2,30 @@
      <div class="container py-3">
         <div class="row">
             <!-- DYNAMICALLY GENERATING THE CONTENT WITH NGFOR DIRECTIVE -->
-             @for (title of listOfTitles; track $index) {
-                <div class="col-lg-3" >
-                @if (title.group.title !== 'Language') {
-                  <h6 class="my-style text-start title">{{title.group.title}}</h6>
+            @for (title of listOfTitles; track $index) {
+            <div class="col-lg-3">
+            
+               @if (title.group.title !== 'Language') {
+               <h6 class="my-style text-start title">{{title.group.title}}</h6>
+            
+               <ul>
                   @for (list of title.group.items; track $index) {
-                  <ul>
-                     <li>
-                        {{list.label}}
-                     </li>
-                  </ul>
+                  <li>{{list.label}}</li>
                   }
-                } @else {
-                  <select name="lang" id="lang" class="bg-transparent text-white ms-4 border-transparent">
-                     @for (option of title.group.items; track $index) {
-                        <option [value]="option.value" class="bg-transparent text-black">{{option.label}}</option>
-                     }
-                  </select>
-                }
-                
+               </ul>
+            
+               } @else {
+            
+               <select name="lang" id="lang" class="bg-transparent text-white ms-4 border-transparent"  (change)="changeLanguage($event)">
+                  @for (option of title.group.items; track $index) {
+                  <option [value]="option.value" class="bg-transparent text-black">
+                     {{option.label}}
+                  </option>
+                  }
+               </select>
+               }
             </div>
-             }
+            }
             
 
         </div>

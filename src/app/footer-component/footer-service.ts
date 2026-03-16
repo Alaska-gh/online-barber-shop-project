@@ -49,10 +49,10 @@ import { Footer } from '../interfaces/footer.interface';
       group: {
         title: 'Language',
         items: [
+          { label: 'English', value: 'en' },
           { label: 'French', value: 'fr' },
           { label: 'Spanish', value: 'es' },
-          { label: 'English', value: 'en' },
-          { label: 'Portuguese', value: 'pt' },
+          { label: 'Arabic', value: 'ar' },
         ],
       },
     },

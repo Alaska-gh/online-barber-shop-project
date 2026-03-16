@@ -13,11 +13,13 @@ import {
 } from '@angular/router';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { CustomPreloadingStrategy } from './services/preload-strategy.service';
+import { provideTranslateService } from '@ngx-translate/core';
+import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,15 +31,14 @@ export const appConfig: ApplicationConfig = {
       withInMemoryScrolling({
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
-      })
+      }),
     ),
-    provideHttpClient(),
     provideAnimations(),
     importProvidersFrom(
       CalendarModule.forRoot({
         provide: DateAdapter,
         useFactory: adapterFactory,
-      })
+      }),
     ),
     provideToastr({
       timeOut: 3000,
@@ -48,5 +49,14 @@ export const appConfig: ApplicationConfig = {
       disableTimeOut: false,
       extendedTimeOut: 0,
     }),
+    provideHttpClient(),
+    provideTranslateService(
+      {
+        loader: provideTranslateHttpLoader({
+          prefix: './assets/i18n/',
+          suffix: '.json'
+        })
+      }
+    )
   ],
 };

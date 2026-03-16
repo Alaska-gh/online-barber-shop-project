@@ -2,10 +2,11 @@ import { Component } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UserAuthService } from '../../../services/user-auth-service';
 import { DynamicComponent } from '../../../services/dynamicComponent.service';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'hero-section',
-  imports: [RouterModule],
+  imports: [RouterModule, TranslateModule],
   templateUrl: './hero.component.html',
   styleUrl: './hero.component.css',
 })
