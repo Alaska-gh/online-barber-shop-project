@@ -3,7 +3,7 @@
 export interface Footer{
   group: {
     title: string;
-    items: string[]
+    items: {label: string, value: string}[]
   }
 }
 
