@@ -31,7 +31,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="closeNavBar()"
-            >Home</a
+            >{{'header.home' | translate}}</a
           >
         </li>
 
@@ -42,7 +42,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="closeNavBar()"
-            >Styles and Services</a
+            >{{'header.style' | translate}}</a
           >
         </li>
 
@@ -52,7 +52,7 @@
             routerLink="stylists"
             routerLinkActive="active"
             (click)="closeNavBar()"
-            >Stylists</a
+            >{{'header.stylist' | translate}}</a
           >
         </li>
 
@@ -62,7 +62,7 @@
             class="nav-link"
             (click)="onLoginButtonClicked(true)"
             (click)="closeNavBar()"
-            >Signin</a
+            >{{'header.signin' | translate}}</a
           >
         </li>
         <li class="nav-item">
@@ -70,7 +70,7 @@
             class="nav-link signup-btn"
             (click)="onSignupBtnClicked(true)"
             (click)="closeNavBar()"
-            >Get Started</a
+            >{{'header.signup' | translate}}</a
           >
         </li>
 
@@ -82,7 +82,7 @@
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             (click)="closeNavBar()"
-            >My Appointments @if (ongoingAppointments.length >0) {
+            >{{'header.appointment' | translate}} @if (ongoingAppointments.length >0) {
             <span class="badge">{{ ongoingAppointments.length }}</span>
             }
           </a>
@@ -93,7 +93,7 @@
             class="nav-link"
             (click)="onLogoutClicked($event)"
             (click)="closeNavBar()"
-            >Signout</a
+            >{{'header.signout' | translate}}</a
           >
         </li>
 

@@ -16,10 +16,11 @@ import { interval, Subscription } from 'rxjs';
 import { DynamicComponent } from '../../services/dynamicComponent.service';
 import { Collapse } from 'bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'main-nav',
-  imports: [RouterModule],
+  imports: [RouterModule, TranslateModule],
   templateUrl: './main-nav.component.html',
   styleUrl: './main-nav.component.css',
 })

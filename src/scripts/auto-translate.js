@@ -2,7 +2,8 @@
 import fs from "fs";
 
 // Dynamically import the package
-import { translate } from "@vitalets/google-translate-api";;
+import { translate } from "@vitalets/google-translate-api";
+// import { HttpProxyAgent } from "http-proxy-agent";
 
 // Path to English source file
 const sourcePath = "./src/assets/i18n/en.json";
@@ -16,7 +17,8 @@ async function translateObject(obj, lang) {
     } else {
       try {
         // IMPORTANT: call translate() directly
-        const res = await translate(obj[key], { to: lang });
+        // const agent = new HttpProxyAgent("http://103.152.112.162:80");
+        const res = await translate(obj[key], { to: lang});
         result[key] = res.text;
       } catch (err) {
         console.error(

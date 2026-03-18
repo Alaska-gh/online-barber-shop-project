@@ -18,6 +18,7 @@ export class FooterComponent implements OnInit {
   listOfLinks = inject(FooterService);
 
   constructor (private translate: TranslateService) {
+    this.translate.setFallbackLang('en')
   }
 
   /*

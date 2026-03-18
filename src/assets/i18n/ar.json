@@ -23,5 +23,14 @@
     "bussines-sun-hrs-day": "الأحد",
     "bussines-sun-hrs-time": "10 صباحًا - 08 مساءً",
     "cta": "حجز موعد"
+  },
+  "header": {
+    "home": "بيت",
+    "style": "الأنماط والخدمة",
+    "stylist": "حلاق",
+    "signin": "سينجين",
+    "signup": "ابدأ",
+    "appointments": "المواعيد",
+    "signout": "تسجيل الخروج"
   }
 }

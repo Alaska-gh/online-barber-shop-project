@@ -23,6 +23,15 @@
     "bussines-sun-hrs-day": "Sunday",
     "bussines-sun-hrs-time": "10 AM - 08 PM",
     "cta": "Book An Appointment"
+  },
+  "header": {
+    "home": "Home",
+    "style": "Styles And Service",
+    "stylist": "Stylist",
+    "signin": "Singin",
+    "signup": "Get Started",
+    "appointments": "Appointments",
+    "signout": "Signout"
   }
 }
 

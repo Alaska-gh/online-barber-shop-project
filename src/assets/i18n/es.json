@@ -23,5 +23,14 @@
     "bussines-sun-hrs-day": "Domingo",
     "bussines-sun-hrs-time": "10 a. m. - 20 p. m.",
     "cta": "Reserve una cita"
+  },
+  "header": {
+    "home": "Hogar",
+    "style": "Estilos y servicio",
+    "stylist": "Estilista",
+    "signin": "cantando",
+    "signup": "Empezar",
+    "appointments": "Equipo",
+    "signout": "desconectar"
   }
 }

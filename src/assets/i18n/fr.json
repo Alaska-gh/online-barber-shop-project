@@ -23,5 +23,14 @@
     "bussines-sun-hrs-day": "Dimanche",
     "bussines-sun-hrs-time": "10h00 - 20h00",
     "cta": "Prendre rendez-vous"
+  },
+  "header": {
+    "home": "Maison",
+    "style": "Styles et services",
+    "stylist": "Styliste",
+    "signin": "Chanter",
+    "signup": "Commencer",
+    "appointments": "Rendez-vous",
+    "signout": "se déconnecter"
   }
 }
